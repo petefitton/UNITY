@@ -1,0 +1,20 @@
+/* Styling for centering the main div and media queries for mobile first based development
+    mobile should force to landscape orientation
+    browsers should easily be able to be resized with gameplay staying centered
+    main gameplay div will need an exact width and height
+        I need to figure out that number as that will be pretty important
+
+h1 tag for title & Main Menu screen should be text-aligend center
+h6 tag for elems on main menu screen should be text-aligend center
+
+all elements on each type of screen will need to be set to their specific location in the gameplay screen 
+
+how do I want to handle animations?
+    static animation vs battle action animation
+    static = probably JS with some random activity that bounds back to center fairly quickly (small movements and at random intervals)
+    battle action = probably JS too
+
+
+
+
+*/
