@@ -18,3 +18,373 @@ how do I want to handle animations?
 
 
 */
+
+/* INDEX:
+
+Full page CSS rules
+
+Title Screen CSS rules
+
+Main Menu CSS rules
+
+Options Page CSS rules
+
+Opening Story Screen CSS rules
+
+First Battle Screen CSS rules
+
+Second Battle Screen CSS rules
+
+Third Battle Screen CSS rules
+
+World Map Screen CSS rules
+
+Closing Story Screen CSS rules
+
+Credits CSS rules
+
+Media Query CSS rules */
+
+
+/* Full page CSS rules --------------------------------------------------------------------------------------- */
+
+
+* {
+    margin: 0 auto;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.gameplayArea {
+    border: white 1px solid;
+    height: 318px;
+    width: 636px;
+    background-color: rgb(116, 109, 109);
+}
+
+.mobileLandscapeRecomendation {
+    display: none;
+    color: white;
+    position: absolute;
+    top: 50px;
+}
+
+/* Title Page CSS rules --------------------------------------------------------------------------------------- */
+
+
+.titleScreen {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    font-size: 150px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.clickAnywhere {
+    text-align: center;
+}
+
+
+/* Main Menu CSS rules --------------------------------------------------------------------------------------- */
+
+
+.mainMenu {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+}
+
+.titleMenu {
+    font-size: 100px;
+    text-align: center;
+    margin-bottom: 100px;
+    line-height: 140px;
+}
+
+.playButton {
+    text-align: center;
+    margin: 5px;
+}
+
+.optionButton {
+    text-align: center;
+}
+
+
+/* Options Page CSS rules --------------------------------------------------------------------------------------- */
+
+.optionsMenu {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+}
+
+.returnButton {
+    text-align: center;
+}
+
+
+/* Opening Story ScreenCSS rules --------------------------------------------------------------------------------------- */
+
+
+.openingStory {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+}
+
+
+/* First Battle Screen CSS rules --------------------------------------------------------------------------------------- */
+
+/* INDEX:
+
+MAIN
+
+ENEMY STATS BOX
+
+ENEMY IMG CONTAINER
+
+HERO IMG CONTAINER
+
+HERO STATS
+
+ACTIONS BOX */
+
+
+
+
+/* MAIN */
+
+.firstBattleScreen {
+    /* display: none; */
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+}
+
+
+/* ENEMY STATS BOX */
+
+.enemyStats {
+    border: 2px gray solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 200px;
+    height: 50px;
+    flex: none;
+    margin: 0;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.enemyName {
+    margin: 2px;
+}
+
+.enemyHP {
+    margin: 2px;
+}
+
+.enemySP {
+    margin: 2px;
+}
+
+.enemySP2D {
+    margin: 2px;
+}
+
+.enemySP3D {
+    margin: 2px;
+}
+
+.enemyStamina {
+    margin: 2px;
+}
+
+/* ENEMY IMG CONTAINER */
+
+.enemyImgContainer {}
+
+.enemyImg {}
+.enemyPlaceholder {
+    max-height: 100px;
+    position: absolute;
+    right: 50px;
+    top: 10px;
+}
+
+.enemyShadow {}
+
+.enemyStage {}
+
+
+/* HERO IMG CONTAINER */
+
+.heroImgContainer {}
+
+.heroImg {}
+.heroPlaceholder {
+    max-height: 100px;
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+}
+
+.heroShadow {}
+
+.heroStage {}
+
+.magnifyingGlass {}
+
+/* HERO STATS */
+
+.heroStats {
+    border: 2px gray solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 200px;
+    height: 50px;
+    float: right;
+    /* align-self: flex-end; */
+    flex: none;
+    margin: 0;
+    align-self: flex-end;
+    margin-bottom: 54px;
+}
+
+.heroName {
+}
+
+.heroHP {}
+
+.heroSP {}
+
+.heroStamina {}
+
+.heroLevel {}
+
+
+/* ACTIONS BOX */
+
+.actionsBox {
+    border: 2px gray solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 99.5%;
+    height: 50px;
+    /* flex-direction: column; */
+    align-self: flex-end;
+    flex: none;
+    /* order: -1; */
+    /* justify-self: flex-start; */
+    position: absolute;
+    
+}
+
+.action1 {
+    margin: 2px;
+}
+
+.action2 {
+    margin: 2px;
+}
+
+.action3 {
+    margin: 2px;
+}
+
+.action4 {
+    margin: 2px;
+}
+
+.action5 {
+    margin: 2px;
+}
+
+.action6 {
+    margin: 2px;
+}
+
+
+
+
+/* Second Battle Screen CSS rules --------------------------------------------------------------------------------------- */
+
+
+
+/* Third Battle Screen CSS rules --------------------------------------------------------------------------------------- */
+
+
+
+
+/* World Map Screen CSS rules --------------------------------------------------------------------------------------- */
+
+
+
+
+/* Closing Story Screen CSS rules --------------------------------------------------------------------------------------- */
+
+.closingStory {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+}
+
+
+
+/* Credits Page CSS rules --------------------------------------------------------------------------------------- */
+
+.creditsScreen {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+}
+
+.creditsTitle {
+    text-align: center;
+}
+
+.creditsCreator {
+    text-align: center;
+}
+
+.creditsAudio {
+    text-align: center;
+}
+
+
+
+/* Media Query CSS rules --------------------------------------------------------------------------------------- */
+
+
+@media screen and (max-width: 500px) and (orientation: portrait) {
+    .mobileLandscapeRecomendation {
+        display: block;
+    }
+}

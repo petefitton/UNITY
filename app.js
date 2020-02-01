@@ -1,3 +1,33 @@
+// INDEX------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
+
+// DOM References
+
+// variables and objects/arrays
+
+// functions
+    // functions for character creation
+    // functions for attacks/actions
+    // functions for moving between different screens
+    // functions for animations
+    // function for leveling up
+    // functions misc 
+        // game loop function during battle
+        // DOMContentLoaded
+
+
+
+
+
+
+
+
+
+
+
+
+
 // DOM References that I use frequently---------------------------------------------------------------------------
 
 
@@ -8,8 +38,19 @@
 // variables and objects/arrays---------------------------------------------------------------------------
 
 // battleCounter = 0 by default and increments each time a battle is called
+let battleCounter = 0;
 
 // class object to use for creating all characters
+
+function Character(hp, sp, grit, name, level) {
+    this.hp = hp;
+    this.sp = sp;
+    this.grit = grit;
+    this.name = name;
+    this.level = level;
+    this.alive = true;
+}
+
 
 
 
@@ -23,9 +64,14 @@
 // functions for character creation--------------------------------------------------------------------------------------------
 
 // create protagonist object function
+
+let hero = new Character(100, 0, 100, "Prometheus", 1);
+
 // create enemy1 object function
-    // create enemy2 object function
-    // create enemy3 object function
+let enemy1 = new Character(100, 100, 120, "Line", 1);
+
+    // create enemy2 object function -------STRETCH
+    // create enemy3 object function -------STRETCH
 
 
     
@@ -37,8 +83,14 @@
 // individual functions for each attack/action
     // should turn off static animation functions -----> staticAnimOff()
     // should call battle action functions
+    // should resume static animation again unless dead
 
-
+    // bash - damages HP of enemy
+    // maybe called 'soul compress' SP damage - damages SP of enemy
+    // rest
+    // learned after 1st battle: block - reduces HP damage from enemy on that turn
+    // learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
+    // learned after 2nd battle: 'soul reduce' SP damage3D - damages SP of enemy in the second dimension
 
 
 
@@ -126,9 +178,10 @@
 
 
 // static animation function during battles on a set interval
-// battle action functions
+// battle action animation functions
     // bash - damages HP of enemy
     // maybe called 'soul compress' SP damage - damages SP of enemy
+    // rest
     // learned after 1st battle: block - reduces HP damage from enemy on that turn
     // learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
     // learned after 2nd battle: 'soul reduce' SP damage3D - damages SP of enemy in the second dimension

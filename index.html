@@ -8,76 +8,165 @@
     <!-- any desired fonts -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
     <!-- 
         need audio tags
     -->
-    <!-- one large div that contains the whole gameplay area
-        one set of divs for the title screen
-            background set on this div ^^^
-            one div for the title
-            one div for "click/tap anywhere to start"
-        one set of divs for the main menu screen
-            background set on this div ^^^ (probably background image rather than solid black)
-            one div for the title
-            one div for play game button
-            one div for options button
-        one set of divs for the options screen
-            one div for the return function on options screen
-            divs for audio stuff
-        one set of divs for the opening story screen
-            whatever divs need to be here
-        one set of divs for the first battle screen
-            background set on this div ^^^ (probably background image rather than solid black)
-            one div for actions box
-                four divs for the four possible actions
-            one div for enemy stats
-                div for name
-                div for HP
-                div for SP in 1D
-                div for stamina bar
-            one div for player stats
-                div for name
-                div for HP
-                div for SP
-                div for stamina
-                div for level
-            one div for player image
-            one div for player image's shadow
-            one div for enemy image
-            one div for enemy image's shadow
-            one div for circle under enemy
-            one div for circle under player
-            one div for magnifying glass image
-        one set of divs for the second battle screen STRETCH GOAL
-            same as first battle screen
-            except enemy stat box should have an additional div for SP 2D
-                this might mean the enemy stat box might need to be larger
-        one set of divs for the third battle screen STRETCH GOAL
-            same as first battle screen
-            except enemy stat box should have an additional div for SP 3D
-        one set of divs for the world map screen STRETCH GOAL
-            background on ^^^^^
-            one div for player
-            one div for enemy
-            should I make any other things that are not the background?
-        one set of divs for the full background
-        I think the way I would like to do the background is to create a video with some animation software and then just call it
-        as a single object
-            I think the way I would like to make the dots and lines move in the background is to have individual divs
-                for each that
-            Actually after typing that out, it would probably be easiest for me to just make a video that loops
-                Not sure what the easiest way to do that is though.
-                But I'm not sure how easy it would be to smoothly move so many divs in different ways continuously through the game
+    <!-- recommendation to turn screen to landscape on mobile -->
+    <div class="mobileLandscapeRecomendation">You can rotate device for a better experience!</div>
+    <!-- one large div that contains the whole gameplay area -->
+    <div class="gameplayArea">
 
-        one set of divs for the credits screen
-            background on ^^^^^
-            one div for UNITY
-            one div for made by PF
-            one div for audio taken from/made by
-            possibly one div for images by PF
-     -->
+
+        <!-- one set of divs for the title screen -->
+        <div class="titleScreen"> <!-- background set on this div -->
+            <!-- one div for the title -->
+            <div class="title">UNITY</div>
+            <!-- one div for "click/tap anywhere to start" -->
+            <div class="clickAnywhere">Click anywhere to start.</div>
+        </div>
+
+        
+        <!-- one set of divs for the main menu screen -->
+        <div class="mainMenu"> <!-- background set on this div -->
+            <!-- one div for the title -->
+            <div class="titleMenu">UNITY</div>
+            <!-- one div for play game button -->
+            <div class="playButton">PLAY GAME</div>
+            <!-- one div for options button -->
+            <div class="optionButton">OPTIONS</div>
+        </div>
+    
+        
+        <!-- one set of divs for the options screen -->
+        <div class="optionsMenu">
+            <!-- one div for the return function on options screen -->
+            <div class="returnButton">RETURN</div>
+            <!-- divs for audio stuff -->
+        </div>
+
+
+        <!-- one set of divs for the opening story screen -->
+        <div class="openingStory">
+            <!-- whatever divs need to be here -->
+        </div>
+
+
+        <!-- one set of divs for the first battle screen -->
+        <div class="firstBattleScreen"> <!-- background set on this div ^^^ (probably background image rather than solid black) -->
+            <!-- one div for enemy stats -->
+            <div class="enemyStats">
+                <!-- div for name -->
+                <div class="enemyName">NAME</div>
+                <!-- div for HP -->
+                <div class="enemyHP">HP: 200</div>
+                <!-- div for SP in 1D plus other dimensions -->
+                <div class="enemySP">SP: 1</div>
+                <div class="break"></div> <!-- break -->
+                <div class="enemySP2D">SP²: 1</div>
+                <div class="enemySP3D">SP³: 1</div>
+                <!-- div for stamina bar -->
+                <div class="enemyStamina">GRIT: 120</div>
+            </div>
+            <!-- div for enemy image container -->
+            <div class="enemyImgContainer">
+                <!-- one div for enemy image -->
+                <div class="enemyImg"><img class="enemyPlaceholder" src="img/line-placeholder.jpg"></div>
+                <!-- one div for enemy image's shadow -->
+                <div class="enemyShadow"></div>
+                <!-- one div for circle under enemy -->
+                <div class="enemyStage"></div>
+            </div>
+            <!-- div for hero image container -->
+            <div class="heroImgContainer">
+                <!-- one div for player image -->
+                <div class="heroImg"><img class="heroPlaceholder" src="img/small-dot-placeholder.jpg"></div>
+                <!-- one div for player image's shadow -->
+                <div class="heroShadow"></div>
+                <!-- one div for circle under player -->
+                <div class="heroStage"></div>
+                <!-- one div for magnifying glass image -->
+                <div class="magnifyingGlass"></div>
+                <!-- one div for player stats -->
+            </div>
+            <div class="heroStats">
+                <!-- div for name -->
+                <div class="heroName">NAME</div>
+                <!-- div for HP -->
+                <div class="heroHP">HP: 100</div>
+                <!-- div for SP -->
+                <div class="heroSP">SP: 0</div>
+                <!-- div for stamina -->
+                <div class="heroStamina">GRIT: 100</div>
+                <!-- div for level -->
+                <div class="heroLevel">LEVEL: 1</div>
+            </div>
+            <!-- one div for actions box -->
+            <div class="actionsBox">
+                <!-- divs for the possible actions -->
+                <div class="action1">Bash</div>
+                <div class="action2">Soul Compress</div>
+                <div class="action3">Rest</div>
+                <div class="break"></div> <!-- break -->
+                <div class="action4">Block</div>
+                <div class="action5">Soul Constrict</div>
+                <div class="action6">Soul Reduce</div>
+            </div>
+        </div>
+
+
+
+        <!-- one set of divs for the second battle screen STRETCH GOAL -->
+            <!-- same as first battle screen -->
+            <!-- except enemy stat box should have an additional div for SP 2D -->
+                <!-- this might mean the enemy stat box might need to be larger -->
+        <!-- one set of divs for the third battle screen STRETCH GOAL -->
+            <!-- same as first battle screen -->
+            <!-- except enemy stat box should have an additional div for SP 3D -->
+        <!-- one set of divs for the world map screen STRETCH GOAL -->
+            <!-- background on ^^^^^ -->
+            <!-- one div for player -->
+            <!-- one div for enemy -->
+            <!-- should I make any other things that are not the background? -->
+            <!-- whatever divs need to be here -->
+            
+            
+        <!-- one set of divs for the closing story screen -->
+        <div class="closingStory">
+            <!-- whatever divs need to be here -->
+        </div>
+
+
+
+
+
+            
+            
+            
+        <!-- Just some notes: -->
+            
+        <!-- one set of divs for the full background -->
+        <!-- I think the way I would like to do the background is to create a video with some animation software and then just call it -->
+        <!-- as a single object -->
+            <!-- I think the way I would like to make the dots and lines move in the background is to have individual divs -->
+                <!-- for each that -->
+            <!-- Actually after typing that out, it would probably be easiest for me to just make a video that loops -->
+                <!-- Not sure what the easiest way to do that is though. -->
+                <!-- But I'm not sure how easy it would be to smoothly move so many divs in different ways continuously through the game -->
+
+
+        <!-- one set of divs for the credits screen -->
+        <div class=creditsScreen> <!-- background on ^^^^^ -->
+            <!-- one div for UNITY -->
+            <div class="creditsTitle">UNITY</div>
+            <!-- one div for made by PF -->
+            <div class="creditsCreator">Created by Pete Fitton</div>
+            <!-- one div for audio taken from/made by -->
+            <div class="creditsAudio">Audio sourced from:</div>
+            <!-- possibly one+ div(s) for images/video/misc by PF -->
+        </div>
+    </div>
 </body>
 </html>
