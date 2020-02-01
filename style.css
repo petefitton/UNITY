@@ -145,6 +145,26 @@ body {
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
+    position: relative;    
+}
+
+.openingStoryImg {
+    max-height: 200px;
+}
+
+.openingStoryTextbox {
+    border: 2px solid lightgray;
+    height: 25%;
+    max-width: 99%;
+    max-height: 200px;
+    position: absolute;
+    bottom: 0px;
+    padding: 10px;
+}
+
+.openingStoryClick {
+    text-align: center;
+    margin: 5px;
 }
 
 
@@ -170,11 +190,11 @@ ACTIONS BOX */
 /* MAIN */
 
 .firstBattleScreen {
-    /* display: none; */
+    display: flex;
+    display: none;
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
-    display: flex;
     flex-direction: row;
     position: relative;
     justify-content: space-between;
@@ -187,11 +207,13 @@ ACTIONS BOX */
     border: 2px gray solid;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    width: 200px;
-    height: 50px;
+    justify-content: space-evenly;
+    width: 245px;
+    height: 60px;
     flex: none;
     margin: 0;
+    border-top: none;
+    border-left: none
 }
 
 .break {
@@ -219,7 +241,7 @@ ACTIONS BOX */
     margin: 2px;
 }
 
-.enemyStamina {
+.enemyGrit {
     margin: 2px;
 }
 
@@ -264,27 +286,38 @@ ACTIONS BOX */
     border: 2px gray solid;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    width: 200px;
-    height: 50px;
+    justify-content: space-evenly;
+    width: 245px;
+    height: 60px;
     float: right;
     /* align-self: flex-end; */
     flex: none;
     margin: 0;
     align-self: flex-end;
     margin-bottom: 54px;
+    border-bottom: none;
+    border-right: none
 }
 
 .heroName {
+    margin: 2px;
 }
 
-.heroHP {}
+.heroHP {
+    margin: 2px;
+}
 
-.heroSP {}
+.heroSP {
+    margin: 2px;
+}
 
-.heroStamina {}
+.heroGrit {
+    margin: 2px;
+}
 
-.heroLevel {}
+.heroLevel {
+    margin: 2px;
+}
 
 
 /* ACTIONS BOX */
