@@ -23,3 +23,13 @@ Playable with only arrow keys rather than mouse clicks (how can I make it more a
 Make the background video
 
 (For Wireframes see drawings)
+
+
+
+UPDATES AS OF END OF MONDAY FEBRUARY 3RD, 2020:
+
+I have made a lot of good progress so far (over the weekend and today).
+
+The biggest issues that I have run into so far are forgetting to remove some of the event listeners that I have put on the divs I am using as buttons.
+
+I have used some console logs in different places to identify where and what the issues were which has helped with navigating my lengthy code.

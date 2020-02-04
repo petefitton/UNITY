@@ -8,14 +8,24 @@
     <!-- any desired fonts -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
     <!-- 
         need audio tags
     -->
+    <audio class="audioIntro">
+        <source src="audio/Monolith/01 Invitation.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="sfxIntro">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
+    </audio>
+    <!-- <audio class="sfx">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Transform.wav" type="audio/wav">
+    </audio> -->
     <!-- recommendation to turn screen to landscape on mobile -->
     <div class="mobileLandscapeRecomendation">You can rotate device for a better experience!</div>
+
+
     <!-- one large div that contains the whole gameplay area -->
     <div class="gameplayArea">
 
@@ -28,7 +38,7 @@
             <div class="clickAnywhere">Click anywhere to start.</div>
         </div>
 
-        
+
         <!-- one set of divs for the main menu screen -->
         <div class="mainMenu"> <!-- background set on this div -->
             <!-- one div for the title -->
@@ -36,22 +46,74 @@
             <!-- one div for play game button -->
             <div class="playButton">PLAY GAME</div>
             <!-- one div for options button -->
-            <div class="optionButton">OPTIONS</div>
+            <div class="optionsButton">OPTIONS</div>
+            <!-- one div for instructions button -->
+            <div class="instructionsButton">INSTRUCTIONS</div>
         </div>
     
         
         <!-- one set of divs for the options screen -->
         <div class="optionsMenu">
+            <!-- one div for the title -->
+            <div class="optionsTitle">UNITY</div>
+            <!-- music audio level -->
+            <div class="musicAudio">MUSIC AUDIO CONTROLS
+                <div class="musicMuteButton">Mute/Unmute Music</div>
+            <!-- <audio controls class="audioIntro">
+                <source src="audio/Monolith/01 Invitation.mp3" type="audio/mpeg">
+                <source src="audio/Monolith/02 Downfall.mp3" type="audio/mpeg">
+            </audio> -->
+            </div>
+            <!-- SFX audio level -->
+            <div class="sfxAudio">SFX AUDIO CONTROLS
+                <div class="sfxMuteButton">Mute/Unmute SFX</div>
+                <div class="sfxPlayButton">Play SFX</div>
+                <!-- <audio controls>
+                    <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
+                    <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Transform.wav" type="audio/wav">
+                </audio> -->
+            </div>
             <!-- one div for the return function on options screen -->
-            <div class="returnButton">RETURN</div>
+            <div class="returnButtonOptions">RETURN</div>
             <!-- divs for audio stuff -->
+        </div>
+
+
+        <!-- one set of divs for the instructions screen -->
+        <div class="instructionsScreen">
+            <!-- what do I want to have on this instructions screen?
+                I would like to have instructions for the various attacks
+                Instructions for the game mechanics 
+            I may need two instructions Screens if this proves too much text
+        
+            These are Instructions for Game Mechanics-->
+            <h1>GAME MECHANICS:</h1>
+            <ul>
+                <li><div class="instructionsHP">HP stands for hit points (health).</div></li>
+                <li><div class="instructionsSP">SP stands for soul points. SP is connected to dimensionality, hence a zero-dimensional being would have zero SP whereas a one-dimensional being would have SP greater than zero.</div></li>
+                <li><div class="instructionsSPWarning">Note: SP can NOT be attacked until an enemy's HP is reduced by at least 50%</div></li>
+                <li><div class="instructionsGRIT">GRIT can be thought of as stamina. Taking actions requires GRIT. If GRIT decreases to zero, a character's next turn will be a forced rest (turn will be skipped).</div></li>
+                <li><div class="instructionsBLOCK">BLOCK strengthens defense on the opponent's next turn and goes away after one turn.</div></li>
+                <li><div class="instructionsBUFF">BUFF strengthens offense on the player's next turn and goes away after one turn.</div></li>
+            </ul>
+            <!-- Action Instructions -->
+            <h1>ACTIONS EXPLAINED:</h1>
+            <ul>
+                <li><div class="instructionsBash">Bash is an offensive move that decreases enemy HP.</div></li>
+                <li><div class="instructionsSoul Compress">Soul Compress will reduce enemy SP on the Y-axis (decrease height). Soul Compress is disabled until enemy HP is reduced by at least 50%.</div></li>
+                <li><div class="instructionsRest">Rest heals HP and recovers GRIT. Max values cannot be exceeded.</div></li>
+            </ul>
+            <!-- one div for the return function on instructions screen -->
+            <div class="returnButtonInstructions">RETURN</div>
         </div>
 
 
         <!-- one set of divs for the opening story screen -->
         <div class="openingStory">
             <!-- whatever divs need to be here -->
-            <div><img class="openingStoryImg" src="img/small-dot-placeholder.jpg"></div>
+            <div class="openingHero">.
+                <!-- <img class="openingStoryImg" src="img/small-dot-placeholder.jpg"> -->
+            </div>
             <div class="openingStoryTextbox">You are a single dot - your own universe. A mysterious existence pulls you out of yourself and shows you that there are more dimensions of existence than you thought. You cannot cope and seek to remove all signs of multi-dimensionality.
                 <p class="openingStoryClick">Click to Proceed</p>
             </div>
@@ -76,23 +138,27 @@
             </div>
             <!-- div for enemy image container -->
             <div class="enemyImgContainer">
-                <!-- one div for enemy image -->
-                <div class="enemyImg"><img class="enemyPlaceholder" src="img/line-placeholder.jpg"></div>
+                <!-- one div for circle under enemy -->
+                <div class="enemyStage"><img src="img/Proj1EnemyStage.png"></div>
                 <!-- one div for enemy image's shadow -->
                 <div class="enemyShadow"></div>
-                <!-- one div for circle under enemy -->
-                <div class="enemyStage"></div>
+                <!-- one div for enemy image -->
+                <div class="enemyImg">
+                    <!-- <img class="enemyPlaceholder" src="img/line-placeholder.jpg"> -->
+                </div>
             </div>
             <!-- div for hero image container -->
             <div class="heroImgContainer">
-                <!-- one div for player image -->
-                <div class="heroImg"><img class="heroPlaceholder" src="img/small-dot-placeholder.jpg"></div>
+                <!-- one div for circle under player -->
+                <div class="heroStage"><img src="img/Proj1HeroStage.png"></div>
                 <!-- one div for player image's shadow -->
                 <div class="heroShadow"></div>
-                <!-- one div for circle under player -->
-                <div class="heroStage"></div>
-                <!-- one div for magnifying glass image -->
-                <div class="magnifyingGlass"></div>
+                <!-- one div for player image -->
+                <div class="heroImg">.
+                    <!-- <img class="heroPlaceholder" src="img/small-dot-placeholder.jpg"> -->
+                </div>
+                <!-- don't need because it's part of the stage, but originally: one div for magnifying glass image -->
+                <!-- <div class="magnifyingGlass"></div> -->
                 <!-- one div for player stats -->
             </div>
             <div class="heroStats">
@@ -111,14 +177,21 @@
             <div class="actionsBox">
                 <!-- divs for the possible actions -->
                 <div class="action1">Bash</div>
-                <div class="action2">Soul Compress</div>
+                <div class="action2"><span class="soulRestricted action2Span">Accessible once Enemy HP reaches 50%</span>Soul Compress</div>
                 <div class="action3">Rest</div>
                 <div class="break"></div> <!-- break -->
                 <div class="action4">Block</div>
                 <div class="action5">Soul Constrict</div>
                 <div class="action6">Soul Reduce</div>
             </div>
+            <!-- one div for promptBox which lays over actions box; for battle prompts such as "LINE stabbed you"-->
+            <div class="promptBox">
+                <!-- box for text-->
+                <div class="promptBoxText"></div>
+                <p class="promptBoxClick">Click to Continue</p>
+            </div>
         </div>
+        <!-- one set of divs for the level up screen STRETCH GOAL -->
 
 
 
@@ -140,25 +213,13 @@
         <!-- one set of divs for the closing story screen -->
         <div class="closingStory">
             <!-- whatever divs need to be here -->
+            <div class="openingHero">.
+                <!-- <img class="openingStoryImg" src="img/small-dot-placeholder.jpg"> -->
+            </div>
+            <div class="closingStoryTextbox">After spending an eternity forcing all of existence into the zero dimension, you are finally allowed to settle down into yourself for the rest of all time. It's peaceful, isn't it?
+                <p class="closingStoryClick">Click to Roll Credits</p>
+            </div>
         </div>
-
-
-
-
-
-            
-            
-            
-        <!-- Just some notes: -->
-            
-        <!-- one set of divs for the full background -->
-        <!-- I think the way I would like to do the background is to create a video with some animation software and then just call it -->
-        <!-- as a single object -->
-            <!-- I think the way I would like to make the dots and lines move in the background is to have individual divs -->
-                <!-- for each that -->
-            <!-- Actually after typing that out, it would probably be easiest for me to just make a video that loops -->
-                <!-- Not sure what the easiest way to do that is though. -->
-                <!-- But I'm not sure how easy it would be to smoothly move so many divs in different ways continuously through the game -->
 
 
         <!-- one set of divs for the credits screen -->
@@ -169,8 +230,33 @@
             <div class="creditsCreator">Created by Pete Fitton</div>
             <!-- one div for audio taken from/made by -->
             <div class="creditsAudio">Audio sourced from:</div>
+            <div class="creditsCode">Small coding ideas sourced from: StackOverflow</div>
+            <div class="creditsCode">Cursor sourced from: http://www.rw-designer.com</div>
+            <div class="returnMainMenu">Return to Main Menu</div>
             <!-- possibly one+ div(s) for images/video/misc by PF -->
         </div>
+
+
+        <!-- Lose Screen -->
+        <div class="loseScreen">
+            <h1 class="loseHead">You Died!</h1>
+            <div class="loseText">You failed to revert the universe back to a singularity.</div>
+            <div class="returnMainMenuLose">Return to Main Menu</div>
+        </div>
+
+        
+        <!-- Just some notes a la background animation idea(s): -->
+            
+        <!-- one set of divs for the full background -->
+        <!-- I think the way I would like to do the background is to create a video with some animation software and then just call it -->
+        <!-- as a single object -->
+            <!-- I think the way I would like to make the dots and lines move in the background is to have individual divs -->
+                <!-- for each that -->
+            <!-- Actually after typing that out, it would probably be easiest for me to just make a video that loops -->
+                <!-- Not sure what the easiest way to do that is though. -->
+                <!-- But I'm not sure how easy it would be to smoothly move so many divs in different ways continuously through the game -->
+
     </div>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

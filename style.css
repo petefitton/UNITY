@@ -43,7 +43,21 @@ Closing Story Screen CSS rules
 
 Credits CSS rules
 
-Media Query CSS rules */
+Media Query CSS rules 
+
+
+
+
+
+
+SOURCES/CREDITS:
+
+cursor image Dot.cur taken from: http://www.rw-designer.com/cursor-library
+
+
+
+
+*/
 
 
 /* Full page CSS rules --------------------------------------------------------------------------------------- */
@@ -51,6 +65,7 @@ Media Query CSS rules */
 
 * {
     margin: 0 auto;
+    cursor: url(img/Dot.cur), default;
 }
 
 body {
@@ -84,15 +99,18 @@ body {
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 
 .title {
     font-size: 150px;
     text-align: center;
     margin-bottom: 50px;
+    
 }
 .clickAnywhere {
     text-align: center;
+    cursor: pointer;
 }
 
 
@@ -110,16 +128,28 @@ body {
     font-size: 100px;
     text-align: center;
     margin-bottom: 100px;
-    line-height: 140px;
+    line-height: 110px;
 }
 
 .playButton {
     text-align: center;
-    margin: 5px;
+    cursor: pointer;
+    max-width: 92px;
+    margin: 4px auto;
 }
 
-.optionButton {
+.optionsButton {
     text-align: center;
+    cursor: pointer;
+    max-width: 72px;
+    margin: 4px auto;
+}
+
+.instructionsButton {
+    text-align: center;
+    cursor: pointer;
+    max-width: 120px;
+    margin: 4px auto;
 }
 
 
@@ -130,10 +160,83 @@ body {
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
-.returnButton {
+.optionsTitle {
+    font-size: xx-large;
+    color: white;
+    margin-left: 18px;
+    line-height: 48px;
+}
+
+.audioIntro {
+    display: none;
+}
+
+.musicAudio {
+    /* color: white; */
+    display: flex;
+    margin-top: 23px;
+    flex-direction: column;
     text-align: center;
+}
+
+.musicMuteButton {
+    cursor: pointer;
+}
+
+.sfxAudio {
+    /* color: white; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 46px;
+    text-align: center;
+}
+
+.sfxMuteButton {
+    cursor: pointer;
+}
+
+.sfxPlayButton {
+    cursor: pointer;
+}
+
+.returnButtonOptions {
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 18px;
+    bottom: 20px;
+}
+
+
+/* Instructions Screen CSS rules --------------------------------------------------------------------------------------- */
+
+.instructionsScreen {
+    display: none;
+    /* margin: 0 10px; */
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+h1 {
+    margin: 5px;
+    margin-top: 0px;
+}
+
+ul {
+    padding-inline-start: 24px;
+}
+
+.returnButtonInstructions {
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    bottom: 20px;
 }
 
 
@@ -145,12 +248,20 @@ body {
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
-    position: relative;    
+    position: relative;
+    cursor: pointer;
 }
 
-.openingStoryImg {
-    max-height: 200px;
+.openingHero {
+    color: white;
+    font-size: x-large;
+    left: 300px;
+    position: absolute;
+    top: 100px;
 }
+/* .openingStoryImg {
+    max-height: 200px;
+} */
 
 .openingStoryTextbox {
     border: 2px solid lightgray;
@@ -160,11 +271,13 @@ body {
     position: absolute;
     bottom: 0px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .openingStoryClick {
     text-align: center;
     margin: 5px;
+    cursor: pointer;
 }
 
 
@@ -223,6 +336,7 @@ ACTIONS BOX */
 
 .enemyName {
     margin: 2px;
+    font-weight: bold;
 }
 
 .enemyHP {
@@ -247,9 +361,19 @@ ACTIONS BOX */
 
 /* ENEMY IMG CONTAINER */
 
-.enemyImgContainer {}
+.enemyImgContainer {
+    position: relative;
+}
 
-.enemyImg {}
+.enemyImg {
+    position: absolute;
+    height: 70px;
+    width: 2px;
+    top: 14px;
+    left: 224px;
+    border: none;
+    background-color: white;
+}
 .enemyPlaceholder {
     max-height: 100px;
     position: absolute;
@@ -257,16 +381,39 @@ ACTIONS BOX */
     top: 10px;
 }
 
-.enemyShadow {}
+.enemyShadow {
+    background-color: rgb(36, 34, 34);
+    width: 13px;
+    height: 15px;
+    position: absolute;
+    top: 79px;
+    left: 217px;
+    border-bottom-left-radius: 22px;
+    border-top-right-radius: 33px;
+    border-bottom-right-radius: 61px;
+    border-top-left-radius: 50px;
+}
 
-.enemyStage {}
+.enemyStage {
+    position: absolute;
+    left: -277px;
+    top: 3px;
+}
 
 
 /* HERO IMG CONTAINER */
 
-.heroImgContainer {}
+.heroImgContainer {
+    position: relative;
+}
 
-.heroImg {}
+.heroImg {
+    color: white;
+    font-size: 80px;
+    position: absolute;
+    bottom: 80px;
+    left: -270px;
+}
 .heroPlaceholder {
     max-height: 100px;
     position: absolute;
@@ -274,11 +421,21 @@ ACTIONS BOX */
     bottom: 50px;
 }
 
-.heroShadow {}
+.heroShadow {
+    background-color: rgb(36, 34, 34);
+    width: 12px;
+    height: 11px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 85px;
+    right: 254px;
+}
 
-.heroStage {}
-
-.magnifyingGlass {}
+/* Stage includes magnifyingGlass */
+.heroStage {
+    position: absolute;
+    left: -353px
+}
 
 /* HERO STATS */
 
@@ -301,6 +458,7 @@ ACTIONS BOX */
 
 .heroName {
     margin: 2px;
+    font-weight: bold;
 }
 
 .heroHP {
@@ -320,9 +478,11 @@ ACTIONS BOX */
 }
 
 
+
 /* ACTIONS BOX */
 
 .actionsBox {
+    color: rgb(172, 169, 169);
     border: 2px gray solid;
     display: flex;
     flex-wrap: wrap;
@@ -335,37 +495,115 @@ ACTIONS BOX */
     /* order: -1; */
     /* justify-self: flex-start; */
     position: absolute;
-    
+    background-color: rgb(66, 63, 63);
 }
 
 .action1 {
     margin: 2px;
+    margin-left: 4px;
+    cursor: pointer;
 }
 
 .action2 {
     margin: 2px;
+    margin-left: 12px;
+    /* cursor: pointer; */
+    color: rgb(38, 34, 34);
+    position: relative;
+}
+
+.action2Span {
+    transition-delay: .35s;
+    position: absolute;
+    visibility: hidden;
+    bottom: 31px;
+    color: black;
+    text-shadow: -1px -1px 0 rgb(128, 126, 126), 1px -1px 0 rgb(128, 126, 126), -1px 1px 0 rgb(128, 126, 126), 1px 1px 0 rgb(128, 126, 126), 0 -1px 0 rgb(128, 126, 126);
+}
+
+.action2:hover .soulRestricted {
+    visibility: visible;
+    /* opacity: 1; */
 }
 
 .action3 {
     margin: 2px;
+    margin-right: 57px;
+    cursor: pointer;
 }
 
 .action4 {
+    visibility: hidden;
     margin: 2px;
+    cursor: pointer;
 }
 
 .action5 {
+    visibility: hidden;
     margin: 2px;
+    cursor: pointer;
 }
 
 .action6 {
+    visibility: hidden;
     margin: 2px;
+    cursor: pointer;
+}
+
+
+/* PROMPT BOX */
+
+.promptBox {
+    border: 2px gray solid;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; */
+    width: 99.5%;
+    height: 50px;
+    /* flex-direction: column; */
+    align-self: flex-end;
+    flex: none;
+    /* order: -1; */
+    /* justify-self: flex-start; */
+    position: absolute;
+    background-color: rgb(66, 63, 63);
+    cursor: pointer;
+}
+
+.promptBoxText {
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+
+.promptBoxClick {
+    text-align: center;
+    font-style: italic;
+    margin-top: 9px;
+    cursor: pointer;
+}
+
+
+/* Second Battle Screen CSS rules --------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+.enemyTwoImg {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    border-bottom: 80px solid white;
+    border-right: 40px solid transparent;
+    border-left: 40px solid transparent;
+    top: 10px;
+    left: 176px;
 }
 
 
 
-
-/* Second Battle Screen CSS rules --------------------------------------------------------------------------------------- */
 
 
 
@@ -386,6 +624,26 @@ ACTIONS BOX */
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.closingStoryTextbox {
+    border: 2px solid lightgray;
+    height: 25%;
+    max-width: 99%;
+    max-height: 200px;
+    position: absolute;
+    bottom: 0px;
+    padding: 10px;
+    cursor: pointer;
+    bottom: 0px;
+}
+
+.closingStoryClick {
+    text-align: center;
+    margin: 15px;
+    cursor: pointer;
 }
 
 
@@ -397,19 +655,65 @@ ACTIONS BOX */
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .creditsTitle {
+    font-size: 150px;
     text-align: center;
+    margin-bottom: -16px;
+    color: white;
 }
 
 .creditsCreator {
     text-align: center;
+    margin-bottom: 60px;
 }
 
 .creditsAudio {
+    margin: 5px;
+}
+
+.creditsCode {
+    margin: 5px;
+}
+
+.returnMainMenu {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+
+/* Lose Screen CSS rules --------------------------------------------------------------------------------------- */
+
+.loseScreen {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+    position: relative;
     text-align: center;
 }
+
+.loseHead {
+    line-height: 66px;
+}
+
+.loseText {
+    margin-top: 100px;
+}
+
+.returnMainMenuLose {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
 
 
 
