@@ -6,27 +6,38 @@
 
 // functions for audio/sfx---------------------------------------------------------------------------------------------------
 
+let audioMusicList = document.querySelectorAll(".audioMusic");
+let audioSFXList = document.querySelectorAll(".audioSFX");
 
 let muteAllMusic = function() {
-    audioIntro.muted = true;
+
+    audioMusicList.forEach(function(audioElement) {
+        audioElement.muted = true;
+    })
     document.querySelector(".musicMuteButton").removeEventListener("click", muteAllMusic);
     document.querySelector(".musicMuteButton").addEventListener("click", unmuteAllMusic);
 }
 
 let unmuteAllMusic = function() {
-    audioIntro.muted = false;
+    audioMusicList.forEach(function(audioElement) {
+        audioElement.muted = false;
+    })
     document.querySelector(".musicMuteButton").addEventListener("click", muteAllMusic);
     document.querySelector(".musicMuteButton").removeEventListener("click", unmuteAllMusic);
 }
 
 let muteAllSFX = function() {
-    sfxIntro.muted = true;
+    audioSFXList.forEach(function(sfxElement) {
+        sfxElement.muted = true;
+    })
     document.querySelector(".sfxMuteButton").removeEventListener("click", muteAllSFX);
     document.querySelector(".sfxMuteButton").addEventListener("click", unmuteAllSFX);
 }
 
 let unmuteAllSFX = function() {
-    sfxIntro.muted = false;
+    audioSFXList.forEach(function(sfxElement) {
+        sfxElement.muted = false;
+    })
     document.querySelector(".sfxMuteButton").addEventListener("click", muteAllSFX);
     document.querySelector(".sfxMuteButton").removeEventListener("click", unmuteAllSFX);
 }
@@ -116,14 +127,18 @@ let bash = function() {
     // setTimeout(showPromptBox, 3500);
 }
 
+let currentSoulCompressDmg;
 // 'soul compress' SP damage - damages SP of enemy
 let soulCompress = function() {
+    soulCompressSFX.play();
     attackDeactivate();
     promptBoxText.innerText = "You used Soul Compress";
     // showPromptBox move to animation
     setTimeout(showPromptBox, 700);
-    currentEnemy.SP -= 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    currentEnemy.SP -= currentSoulCompressDmg;
     hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    soulCompressAnimation();
     // move turnCounter false to animation
     // should have turnCounter set to false 
     turnCounter = false;
@@ -131,11 +146,12 @@ let soulCompress = function() {
 
 // rest
 let rest = function() {
+    restSFX.play();
     attackDeactivate();
     promptBoxText.innerText = "You used Rest";
     setTimeout(showPromptBox, 700);
     hero.HP += 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
-    hero.grit += 25 (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
+    hero.grit += 25 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     if (hero.HP > hero.maxHP) {
         hero.HP = hero.maxHP;
     }
@@ -169,6 +185,7 @@ let defBlock = function() {
 // enemy moves
 let stab = function () {
     // should have turnCounter set to true
+    stabSFX.play();
     turnCounter = true;
     promptBoxText.innerText = "Line used Stab";
     hero.HP = hero.HP - (10 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1)) + currentEnemy.buff);
@@ -185,6 +202,7 @@ let stab = function () {
 }
 
 let brandish = function() {
+    brandishSFX.play();
     // should have turnCounter set to true
     turnCounter = true;
     promptBoxText.innerText = "Line used Brandish - its strength will increase for its next attack";

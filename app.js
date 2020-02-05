@@ -41,7 +41,8 @@
 //code for random positive or negative:
 //https://stackoverflow.com/questions/8611830/javascript-random-positive-or-negative-number
 
-
+//music from Monolith OST made by ArcOfDream https://arcofdream.itch.io/monolith-ost
+//SFX from Pokemon Gen 1 made by BellBlitzKing https://bellblitzking.itch.io/pokemon-sound-collection
 
 
 
@@ -106,6 +107,9 @@ let heroAnimationIntervalDown;
 let heroAnimationIntervalLeft;
 let heroAnimationIntervalRight;
 
+// variable for infiniteMode
+infiniteMode = true;
+
 // create enemyOne object function - will create in the actual start battle functions
 // let enemyOne = new Character(100, 100, 120, ", 1);
 
@@ -122,12 +126,20 @@ let promptBox = document.querySelector(".promptBox");
 let promptBoxClick = document.querySelector(".promptBoxClick");
 
 let audioIntro = document.querySelector(".audioIntro");
-audioIntro.volume = 0.3;
+audioIntro.volume = 0.8;
 let openingStoryMusic = document.querySelector(".openingStoryMusic");
 let battleMusic = document.querySelector(".battleMusic");
+battleMusic.volume = 0.8;
+let winMusic = document.querySelector(".winMusic");
+let loseMusic = document.querySelector(".loseMusic");
 
 let sfxIntro = document.querySelector(".sfxIntro");
 let bashSFX = document.querySelector(".bashSFX");
+let soulCompressSFX = document.querySelector(".soulCompressSFX");
+let restSFX = document.querySelector(".restSFX");
+let stabSFX = document.querySelector(".stabSFX");
+let brandishSFX = document.querySelector(".brandishSFX");
+
 
 
 let mainMenu = document.querySelector(".mainMenu");
@@ -140,6 +152,10 @@ let enemyImg = document.querySelector(".enemyImg");
 let enemyShadow = document.querySelector(".enemyShadow");
 let enemyBashMarks = document.querySelector(".bashMarks");
 
+
+
+// global variable for infinite mode run function
+let infiniteModeRun;
 
 // variables and objects/arrays---------------------------------------------------------------------------
 

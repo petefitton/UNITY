@@ -125,6 +125,7 @@ body {
     left: 233px;
     bottom: 40px;
     position: absolute;
+    font-style: italic;
 }
 
 
@@ -136,6 +137,7 @@ body {
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
+    color: rgb(172, 169, 169);
 }
 
 .titleMenu {
@@ -143,6 +145,7 @@ body {
     text-align: center;
     margin-bottom: 100px;
     line-height: 110px;
+    color: black;
 }
 
 .playButton {
@@ -150,6 +153,7 @@ body {
     cursor: pointer;
     max-width: 92px;
     margin: 4px auto;
+    color: rgb(172, 169, 169);
 }
 
 .optionsButton {
@@ -157,6 +161,7 @@ body {
     cursor: pointer;
     max-width: 72px;
     margin: 4px auto;
+    color: rgb(172, 169, 169);
 }
 
 .instructionsButton {
@@ -164,6 +169,7 @@ body {
     cursor: pointer;
     max-width: 120px;
     margin: 4px auto;
+    color: rgb(172, 169, 169);
 }
 
 
@@ -179,7 +185,7 @@ body {
 
 .optionsTitle {
     font-size: xx-large;
-    color: white;
+    color: black;
     margin-left: 18px;
     line-height: 48px;
 }
@@ -198,6 +204,7 @@ body {
 
 .musicMuteButton {
     cursor: pointer;
+    color: rgb(172, 169, 169);
 }
 
 .sfxAudio {
@@ -210,14 +217,16 @@ body {
 
 .sfxMuteButton {
     cursor: pointer;
+    color: rgb(172, 169, 169);
 }
 
 .sfxPlayButton {
     cursor: pointer;
+    color: rgb(172, 169, 169);
 }
 
 .returnButtonOptions {
-    color: white;
+    color: rgb(172, 169, 169);
     cursor: pointer;
     position: absolute;
     right: 18px;
@@ -227,7 +236,7 @@ body {
 
 /* Instructions Screen CSS rules --------------------------------------------------------------------------------------- */
 
-.instructionsScreen {
+.instructionsScreen, .instructionsScreenTwo {
     display: none;
     /* margin: 0 10px; */
     background-color: rgb(66, 63, 63);
@@ -241,17 +250,30 @@ h1 {
     margin-top: 0px;
 }
 
+.winInstructions {
+    margin-top: 20px;
+}
+
 ul {
     padding-inline-start: 24px;
 }
 
-.returnButtonInstructions {
-    color: white;
+.proceedInstructions {
+    color: rgb(172, 169, 169);
     cursor: pointer;
     position: absolute;
     right: 25px;
     bottom: 20px;
 }
+
+.returnButtonInstructions {
+    color: rgb(172, 169, 169);
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    bottom: 20px;
+}
+
 
 
 /* Opening Story ScreenCSS rules --------------------------------------------------------------------------------------- */
@@ -292,6 +314,7 @@ ul {
     text-align: center;
     margin: 5px;
     cursor: pointer;
+    font-style: italic;
 }
 
 
@@ -706,7 +729,7 @@ ACTIONS BOX */
 
 .creditsCreator {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 19px;
 }
 
 .creditsAudio {
@@ -718,7 +741,7 @@ ACTIONS BOX */
 }
 
 .returnMainMenu {
-    color: white;
+    color: rgb(172, 169, 169);
     position: absolute;
     bottom: 10px;
     right: 15px;

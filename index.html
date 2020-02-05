@@ -11,22 +11,44 @@
 </head>
 <body>
     <!-- 
-        need audio tags
+        audio tags
     -->
-    <audio class="audioIntro">
+    <audio class="audioMusic audioIntro">
         <source src="audio/Monolith/01 Invitation.mp3" type="audio/mpeg" loop>
     </audio>
-    <audio class="sfxIntro">
+    <audio class="audioSFX sfxIntro">
         <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
     </audio>
+
+
     <audio class="audioMusic openingStoryMusic">
         <source src="audio/Monolith/02 Downfall.mp3" type="audio/mpeg" loop>
     </audio>
     <audio class="audioMusic battleMusic">
         <source src="audio/Monolith/04 Hopeful Feeling.mp3" type="audio/mpeg" loop>
     </audio>
+    <audio class="audioMusic winMusic">
+        <source src="audio/Monolith/35 End of Monolith (Unused).mp3" type="audio/mpeg" loop>
+    </audio>
+    <audio class="audioMusic loseMusic">
+        <source src="audio/Monolith/28 Towering Blues.mp3" type="audio/mpeg" loop>
+    </audio>
+
+
     <audio class="audioSFX bashSFX">
         <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
+    </audio>
+    <audio class="audioSFX soulCompressSFX">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Constrict.wav" type="audio/wav">
+    </audio>
+    <audio class="audioSFX restSFX">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/SleepPowder.wav" type="audio/wav">
+    </audio>
+    <audio class="audioSFX stabSFX">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Slash.wav" type="audio/wav">
+    </audio>
+    <audio class="audioSFX brandishSFX">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/CometPunch.wav" type="audio/wav">
     </audio>
     <!-- <audio class="sfx">
         <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Transform.wav" type="audio/wav">
@@ -106,12 +128,24 @@
                 <li><div class="instructionsBLOCK">BLOCK strengthens defense on the opponent's next turn and goes away after one turn.</div></li>
                 <li><div class="instructionsBUFF">BUFF strengthens offense on the player's next turn and goes away after one turn.</div></li>
             </ul>
+            <!-- one div for the return function on instructions screen -->
+            <div class="proceedInstructions">SECOND PAGE</div>
+        </div>
+        <!-- one set of divs for the second instructions screen -->
+        <div class="instructionsScreenTwo">
             <!-- Action Instructions -->
             <h1>ACTIONS EXPLAINED:</h1>
             <ul>
                 <li><div class="instructionsBash">Bash is an offensive move that decreases enemy HP.</div></li>
                 <li><div class="instructionsSoul Compress">Soul Compress will reduce enemy SP on the Y-axis (decrease height). Soul Compress is disabled until enemy HP is reduced by at least 50%.</div></li>
                 <li><div class="instructionsRest">Rest heals HP and recovers GRIT. Max values cannot be exceeded.</div></li>
+            </ul>
+            <!-- These are Instructions for how to win -->
+            <h1 class="winInstructions">HOW TO WIN:</h1>
+            <ul>
+                <li><div class="instructionsHP">You can win by either killing the enemy or be reducing their existence to zero dimensions.</div></li>
+                <li><div class="instructionsSP">Clearly one way is easier than the other.</div></li>
+                <li><div class="instructionsSPWarning">What will you do?</div></li>
             </ul>
             <!-- one div for the return function on instructions screen -->
             <div class="returnButtonInstructions">RETURN</div>
@@ -245,7 +279,10 @@
             <!-- one div for made by PF -->
             <div class="creditsCreator">Created by Pete Fitton</div>
             <!-- one div for audio taken from/made by -->
-            <div class="creditsAudio">Audio:</div>
+            <div class="creditsAudio">Audio:
+                <p>Music from Monolith OST made by ArcOfDream https://arcofdream.itch.io/monolith-ost</p>
+                <p>SFX from Pokemon Gen 1 made by BellBlitzKing https://bellblitzking.itch.io/pokemon-sound-collection</p>
+            </div>
             <div class="creditsCode">Small coding ideas sourced from: StackOverflow</div>
             <div class="creditsCode">Cursor from: http://www.rw-designer.com</div>
             <div class="returnMainMenu">Return to Main Menu</div>

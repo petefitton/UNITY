@@ -12,17 +12,39 @@
 let titleScreenStyle = document.querySelector('.titleScreen').style;
 titleScreenStyle.opacity = 1;
 let titleScreenFade = function() {
-    titleScreenStyle.opacity -= .1;
-    if (titleScreenStyle.opacity < 0) {
+    titleScreenStyle.opacity -= .05;
+    if (titleScreenStyle.opacity <= 0) {
         titleScreenStyle.display = "none";
-        setTimeout(showMainMenu, 200);
-    } else {
+        setTimeout(showMainMenu, 240);
+    } else if (titleScreenStyle.opacity <= .5) {
+        setTimeout(titleScreenFade, 50);
+    } else if (titleScreenStyle.opacity <= .25) {
         setTimeout(titleScreenFade, 40);
+    } else if (titleScreenStyle.opacity <= .15) {
+        setTimeout(titleScreenFade, 30);
+    } else {
+        setTimeout(titleScreenFade, 80);
     }
 }
 
 //animation between MainMenu and Options
-//????
+// let titleScreenStyle = document.querySelector('.titleScreen').style;
+// titleScreenStyle.opacity = 1;
+// let titleScreenFade = function() {
+//     titleScreenStyle.opacity -= .05;
+//     if (titleScreenStyle.opacity <= 0) {
+//         titleScreenStyle.display = "none";
+//         setTimeout(showMainMenu, 240);
+//     } else if (titleScreenStyle.opacity <= .5) {
+//         setTimeout(titleScreenFade, 50);
+//     } else if (titleScreenStyle.opacity <= .25) {
+//         setTimeout(titleScreenFade, 40);
+//     } else if (titleScreenStyle.opacity <= .15) {
+//         setTimeout(titleScreenFade, 30);
+//     } else {
+//         setTimeout(titleScreenFade, 80);
+//     }
+// }
 
 // animation MainMenu and openingStory
 let mainMenuStyle = mainMenu.style;
@@ -183,7 +205,7 @@ let bashAnimation = function() {
             // heroStaticReady = false;
             // console.log("heroStaticAnimateUp starting")
             // inside function, should change positions of heroImg
-            let heroReturn;
+            // let heroReturn;
             let heroBashReset;
             let heroBashRight;
             let heroBashPrepare = function() {
@@ -267,7 +289,107 @@ let bashAnimation = function() {
         bashAnimationNested();
     }
 }
-    // maybe called 'soul compress' SP damage - damages SP of enemy
+    // 'soul compress' SP damage - damages SP of enemy
+
+let soulCompressAnimation = function() {
+    heroMoveReady = true;
+    if (heroStaticReady == false) {
+        soulCompressAnimationRepeat = setTimeout(soulCompressAnimation, 60);
+    } else {
+        //execute animation
+        let soulCompressAnimationNested = function() {
+            console.log("soulCompressAnimationNested starting")
+            // inside function, should change height of enemy
+            // let heroReturn;
+            // let soulCompressReset;
+            // let heroBashRight;
+            let enemyHeightReduce = function() {
+                // console.log("adding 1px to left")
+                let enemyHeight = parseInt(enemyImg.style.height, 10);
+                enemyHeight -= ((currentSoulCompressDmg/100) * 70 + "px");
+                enemyImg.style.height = enemyHeight;
+                let enemyShadowHeight = parseInt(enemyShadow.style.height, 10);
+                enemyShadowHeight -= ((currentSoulCompressDmg/100) * 41 + "px");
+                enemyShadow.style.height = enemyShadowHeight;
+                // hero.position.shadLeft -= 1;
+                // hero.position.bottom -= 1;
+                // hero.position.shadBottom -= 0.5;
+                // if (hero.position.left < hero.position.leftOrig - 2) {
+                //     // console.log("clearing additive pixel interval")
+                //     clearInterval(heroBashStartChain);
+                //     heroCharge = setInterval(heroBashRight, 30);
+                // }
+            }
+            enemyHeightReduce();
+            // heroBashRight = function() {
+            //     // console.log("subtracting 1px to left")
+            //     hero.position.left += 1;
+            //     hero.position.shadLeft += 1;
+            //     hero.position.bottom += 1;
+            //     hero.position.shadBottom += 0.5;
+            //     if (hero.position.left > hero.position.leftOrig + 9) {
+            //         // console.log("clearing return pixel interval")
+            //         clearInterval(heroCharge);
+            //         heroSecondWindBack = setInterval(heroBashPrepareTwo, 40);
+            //     }
+            // }
+            // let heroBashPrepareTwo = function() {
+            //     // console.log("adding 1px to left")
+            //     hero.position.left -= 1;
+            //     hero.position.shadLeft -= 1;
+            //     hero.position.bottom -= 1;
+            //     hero.position.shadBottom -= 0.5;
+            //     if (hero.position.left < hero.position.leftOrig - 2) {
+            //         // console.log("clearing additive pixel interval")
+            //         clearInterval(heroSecondWindBack);
+            //         heroSecondBash = setInterval(heroBashRightTwo, 20);
+            //     }
+            // }
+            // heroBashRightTwo = function() {
+            //     // console.log("subtracting 1px to left")
+            //     hero.position.left += 1;
+            //     hero.position.shadLeft += 1;
+            //     hero.position.bottom += 1;
+            //     hero.position.shadBottom += 0.5;
+            //     if (hero.position.left > hero.position.leftOrig + 11) {
+            //         // console.log("clearing return pixel interval")
+            //         clearInterval(heroSecondBash);
+            //         bashSFX.play();
+            //         enemyBashMarks.style.display = "block";
+            //         soulCompressResetInterval = setInterval(soulCompressReset, 150);
+            //         currentEnemy.HP -= 21 + (Math.floor(Math.random() * 5) * (Math.round(Math.random()) * 2 - 1));
+            //         let bashPromptBox = setTimeout(showPromptBox, 1500);
+            //         if (currentEnemy.HP <= 0) {
+            //             clearTimeout(bashPromptBox);
+            //         }
+            //     }
+            // }
+            // soulCompressReset = function() {
+            //     // console.log("returning back to default")
+            //     hero.position.left -= 1;
+            //     hero.position.shadLeft -= 1;
+            //     hero.position.bottom -= 1;
+            //     hero.position.shadBottom -= 0.5;
+            //     let bashMarksRemovalDelay = function() {
+            //         enemyBashMarks.style.display = "none";
+            //         // should have turnCounter set to false 
+            //         turnCounter = false;
+            //     }
+            //     setTimeout(bashMarksRemovalDelay, 1000);
+            //     if (hero.position.left == hero.position.leftOrig) {
+            //         // console.log("clearing return pixel interval")
+            //         clearInterval(soulCompressResetInterval);
+            //         let heroMoveReadyDelay = function() {
+            //             heroMoveReady = false;
+            //         }
+            //         setTimeout(heroMoveReadyDelay, 1500)
+            //     }
+            // }
+            // let heroBashStartChain = setInterval(enemyHeightReduce, 200)
+        }
+        soulCompressAnimationNested();
+    }
+}
     // rest
     // learned after 1st battle: block - reduces HP damage from enemy on that turn
     // learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension

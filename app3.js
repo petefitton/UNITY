@@ -51,6 +51,8 @@ let showTitleScreen = function() {
 
 
 let showMainMenu = function() {
+    loseMusic.pause();
+    audioIntro.play();
     gameplayArea.removeEventListener("click", titleScreenFade);
     document.querySelector(".musicMuteButton").removeEventListener("click", muteAllMusic);
     document.querySelector(".sfxMuteButton").removeEventListener("click", muteAllSFX);
@@ -70,10 +72,11 @@ let showMainMenu = function() {
 }
 
 let showMainMenuTwo = function() {
+    winMusic.pause();
     //return to Main Menu after winning game
     document.querySelector(".returnMainMenu").removeEventListener("click", showMainMenuTwo);
-    if (!infiniteMode) {
-        let infiniteMode = document.createElement("div");
+    if (infiniteMode) {
+        infiniteMode = document.createElement("div");
         let infiniteModeContent = document.createTextNode("INFINITE MODE");
         infiniteMode.appendChild(infiniteModeContent);
         mainMenu.appendChild(infiniteMode);
@@ -81,6 +84,7 @@ let showMainMenuTwo = function() {
         infiniteMode.style.cursor = "pointer";
         infiniteMode.style.maxWidth = "120px";
         infiniteMode.style.margin = "4px auto";
+        infiniteMode = false;
     }
     showMainMenu();
     infiniteMode.addEventListener("click", infiniteModeRun);
@@ -125,6 +129,7 @@ let mainMenuReturn = function() {
     document.querySelector(".sfxPlayButton").removeEventListener("click", playIntroSFX);
     document.querySelector(".optionsMenu").style.display = "none";
     document.querySelector(".instructionsScreen").style.display = "none";
+    document.querySelector(".instructionsScreenTwo").style.display = "none";
     mainMenu.style.display = "block";
     document.querySelector(".playButton").style.display = "block";
     document.querySelector(".optionsButton").style.display = "block";
@@ -163,7 +168,7 @@ let showInstructions = function() {
     // the removeEventListener for the instructions button  - should include clicks as well as touches on mobile
     document.querySelector(".instructionsButton").removeEventListener("click", showInstructions);
 
-    document.querySelector(".returnButtonInstructions").addEventListener("click", mainMenuReturn);
+    document.querySelector(".proceedInstructions").addEventListener("click", showInstructionsTwo);
     // add event listener to return button - should include clicks as well as touches on mobile
         // when return button is clicked or touched, the event listener for return button should go away
         // should run function for showing all divs for main menu screen
@@ -180,7 +185,11 @@ let showInstructions = function() {
         // should run function for showing all divs for main menu screen
 }
 
-
+let showInstructionsTwo = function() {
+    document.querySelector(".instructionsScreenTwo").style.display = "block";
+    document.querySelector(".instructionsScreen").style.display = "none";
+    document.querySelector(".returnButtonInstructions").addEventListener("click", mainMenuReturn);
+}
 
 
 
@@ -349,6 +358,7 @@ let firstBattleStart = function() {
             clearTimeout(heroAnimationIntervalDown);
             clearTimeout(heroAnimationIntervalleft);
             clearTimeout(heroAnimationIntervalRight);
+            clearTimeout(bashAnimation);
         }
         if (hero.position.bottom >= hero.position.bottomOrig + 15) {
             heroAnimationsClear();
@@ -471,6 +481,8 @@ let secondBattleStart = function() {
 
 // function for Closing Story Scene
 let startClosingStory = function() {
+    battleMusic.pause();
+    winMusic.play();
     // remove any event listeners from previous screens
 
     ////////this startClosingStory directly below should be whatever is from the previous screen/event
@@ -497,13 +509,14 @@ let rollCredits = function() {
     // destroyed/removed as necessary
 // function for losing game by losing all HP
 
-let infiniteModeRun = function() {
+infiniteModeRun = function() {
     hideAll();
 }
 
 
 // lose function
 let lose = function() {
+    loseMusic.play();
     hideAll();
     document.querySelector(".returnMainMenu").addEventListener("click", showMainMenu);
     loseScreen.style.display = "block";
