@@ -75,6 +75,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100vh;
+    max-height: 800px;
 }
 
 .gameplayArea {
@@ -100,17 +101,30 @@ body {
     height: 100%;
     width: 100%;
     cursor: pointer;
+    position: relative;
+}
+
+.titleImg {
+    position: relative;
+}
+
+.titleImg img {
+    position: absolute;
 }
 
 .title {
     font-size: 150px;
-    text-align: center;
-    margin-bottom: 50px;
-    
+    position: absolute;
+    left: 90px;
+    top: 30px;
 }
+
 .clickAnywhere {
     text-align: center;
     cursor: pointer;
+    left: 233px;
+    bottom: 40px;
+    position: absolute;
 }
 
 
@@ -337,6 +351,7 @@ ACTIONS BOX */
 .enemyName {
     margin: 2px;
     font-weight: bold;
+    margin-left: -3px;
 }
 
 .enemyHP {
@@ -349,10 +364,12 @@ ACTIONS BOX */
 
 .enemySP2D {
     margin: 2px;
+    display: none;
 }
 
 .enemySP3D {
     margin: 2px;
+    display: none;
 }
 
 .enemyGrit {
@@ -369,8 +386,10 @@ ACTIONS BOX */
     position: absolute;
     height: 70px;
     width: 2px;
-    top: 14px;
-    left: 224px;
+    /* top: 14px;
+    was originally just top and left, but I'm rewriting it to be just bottom and left for us in JS
+    bottom: 235px; */
+    /* left: 224px; */
     border: none;
     background-color: white;
 }
@@ -383,15 +402,10 @@ ACTIONS BOX */
 
 .enemyShadow {
     background-color: rgb(36, 34, 34);
-    width: 13px;
-    height: 15px;
     position: absolute;
-    top: 79px;
-    left: 217px;
-    border-bottom-left-radius: 22px;
-    border-top-right-radius: 33px;
-    border-bottom-right-radius: 61px;
-    border-top-left-radius: 50px;
+    transform: rotate(21deg);
+    width: 4px;
+    height: 41px;
 }
 
 .enemyStage {
@@ -400,6 +414,23 @@ ACTIONS BOX */
     top: 3px;
 }
 
+.bashMarks {
+    position: absolute;
+    left: -275px;
+    top: -13px;
+    display: none;
+}
+
+.brandish {
+    display: none;
+}
+
+.brandish img {
+    position: absolute;
+    left: -374px;
+    top: -31px;
+
+}
 
 /* HERO IMG CONTAINER */
 
@@ -427,14 +458,22 @@ ACTIONS BOX */
     height: 11px;
     border-radius: 20px;
     position: absolute;
+    /* declared in JS now
     bottom: 85px;
-    right: 254px;
+    right: 254px; */
 }
 
 /* Stage includes magnifyingGlass */
 .heroStage {
     position: absolute;
     left: -353px
+}
+
+.defBlock img {
+    position: absolute;
+    display: none;
+    left: -475px;
+    top: -50px;
 }
 
 /* HERO STATS */
@@ -457,7 +496,7 @@ ACTIONS BOX */
 }
 
 .heroName {
-    margin: 2px;
+    margin: 2px 10px;
     font-weight: bold;
 }
 

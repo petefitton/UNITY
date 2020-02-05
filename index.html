@@ -14,9 +14,18 @@
         need audio tags
     -->
     <audio class="audioIntro">
-        <source src="audio/Monolith/01 Invitation.mp3" type="audio/mpeg">
+        <source src="audio/Monolith/01 Invitation.mp3" type="audio/mpeg" loop>
     </audio>
     <audio class="sfxIntro">
+        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
+    </audio>
+    <audio class="audioMusic openingStoryMusic">
+        <source src="audio/Monolith/02 Downfall.mp3" type="audio/mpeg" loop>
+    </audio>
+    <audio class="audioMusic battleMusic">
+        <source src="audio/Monolith/04 Hopeful Feeling.mp3" type="audio/mpeg" loop>
+    </audio>
+    <audio class="audioSFX bashSFX">
         <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
     </audio>
     <!-- <audio class="sfx">
@@ -32,6 +41,7 @@
 
         <!-- one set of divs for the title screen -->
         <div class="titleScreen"> <!-- background set on this div -->
+            <div class="titleImg"><img src="img/Proj1TitleCircle.png"></div>
             <!-- one div for the title -->
             <div class="title">UNITY</div>
             <!-- one div for "click/tap anywhere to start" -->
@@ -142,6 +152,10 @@
                 <div class="enemyStage"><img src="img/Proj1EnemyStage.png"></div>
                 <!-- one div for enemy image's shadow -->
                 <div class="enemyShadow"></div>
+                <!-- div for bash marks -->
+                <div class="bashMarks"><img src="img/Proj1BashMarks.png"></div>
+                <!-- div for brandish -->
+                <div class="brandish"><img src="img/Proj1Sword.png"></div>
                 <!-- one div for enemy image -->
                 <div class="enemyImg">
                     <!-- <img class="enemyPlaceholder" src="img/line-placeholder.jpg"> -->
@@ -153,6 +167,8 @@
                 <div class="heroStage"><img src="img/Proj1HeroStage.png"></div>
                 <!-- one div for player image's shadow -->
                 <div class="heroShadow"></div>
+                <!-- one div for defense buff -->
+                <div class="defBlock"><img src="img/Proj1Shield.png"></div>
                 <!-- one div for player image -->
                 <div class="heroImg">.
                     <!-- <img class="heroPlaceholder" src="img/small-dot-placeholder.jpg"> -->
@@ -163,7 +179,7 @@
             </div>
             <div class="heroStats">
                 <!-- div for name -->
-                <div class="heroName">PROMETHEUS</div>
+                <div class="heroName">SISYPHUS</div>
                 <!-- div for HP -->
                 <div class="heroHP">HP: 100</div>
                 <!-- div for SP -->
@@ -229,9 +245,9 @@
             <!-- one div for made by PF -->
             <div class="creditsCreator">Created by Pete Fitton</div>
             <!-- one div for audio taken from/made by -->
-            <div class="creditsAudio">Audio sourced from:</div>
+            <div class="creditsAudio">Audio:</div>
             <div class="creditsCode">Small coding ideas sourced from: StackOverflow</div>
-            <div class="creditsCode">Cursor sourced from: http://www.rw-designer.com</div>
+            <div class="creditsCode">Cursor from: http://www.rw-designer.com</div>
             <div class="returnMainMenu">Return to Main Menu</div>
             <!-- possibly one+ div(s) for images/video/misc by PF -->
         </div>
@@ -258,5 +274,8 @@
 
     </div>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="app2.js"></script>
+    <script type="text/javascript" src="app3.js"></script>
+    <script type="text/javascript" src="app4.js"></script>
 </body>
 </html>
