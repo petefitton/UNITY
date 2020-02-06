@@ -27,24 +27,6 @@ let titleScreenFade = function() {
     }
 }
 
-//animation between MainMenu and Options
-// let titleScreenStyle = document.querySelector('.titleScreen').style;
-// titleScreenStyle.opacity = 1;
-// let titleScreenFade = function() {
-//     titleScreenStyle.opacity -= .05;
-//     if (titleScreenStyle.opacity <= 0) {
-//         titleScreenStyle.display = "none";
-//         setTimeout(showMainMenu, 240);
-//     } else if (titleScreenStyle.opacity <= .5) {
-//         setTimeout(titleScreenFade, 50);
-//     } else if (titleScreenStyle.opacity <= .25) {
-//         setTimeout(titleScreenFade, 40);
-//     } else if (titleScreenStyle.opacity <= .15) {
-//         setTimeout(titleScreenFade, 30);
-//     } else {
-//         setTimeout(titleScreenFade, 80);
-//     }
-// }
 
 // animation MainMenu and openingStory
 let mainMenuStyle = mainMenu.style;
@@ -255,6 +237,7 @@ let bashAnimation = function() {
                     clearInterval(heroSecondBash);
                     bashSFX.play();
                     enemyBashMarks.style.display = "block";
+                    enemyTwoBashMarks.style.display = "block";
                     heroBashResetInterval = setInterval(heroBashReset, 150);
                     currentEnemy.HP -= 21 + (Math.floor(Math.random() * 5) * (Math.round(Math.random()) * 2 - 1));
                     let bashPromptBox = setTimeout(showPromptBox, 1500);
@@ -271,6 +254,7 @@ let bashAnimation = function() {
                 hero.position.shadBottom -= 0.5;
                 let bashMarksRemovalDelay = function() {
                     enemyBashMarks.style.display = "none";
+                    enemyTwoBashMarks.style.display = "none";
                     // should have turnCounter set to false 
                     turnCounter = false;
                 }
@@ -301,14 +285,18 @@ let tempEnemyHeight;
 
 
 let heightReductionHandler = function() {
-    currentEnemy.position.height -= (enemyHReductionAmount/80);
-    currentEnemy.position.shadHeight -= (enemyShadHReductionAmount/80);
-    currentEnemy.position.shadBottom += (enemyShadBReductionAmount/80);
-    currentEnemy.position.shadLeft += (enemyShadLReductionAmount/80);
-    enemyImg.style.height = currentEnemy.position.height + "px";
-    enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
-    enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
-    enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+    if (currentEnemy.name == "LINE") {
+        currentEnemy.position.height -= (enemyHReductionAmount/80);
+        currentEnemy.position.shadHeight -= (enemyShadHReductionAmount/80);
+        currentEnemy.position.shadBottom += (enemyShadBReductionAmount/80);
+        currentEnemy.position.shadLeft += (enemyShadLReductionAmount/80);
+        enemyImg.style.height = currentEnemy.position.height + "px";
+        enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
+        enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+        enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+    } else if (currentEnemy.name == "TRIANGLE") {
+        //reduce height of Triangle
+    }
 }
 
 
@@ -477,7 +465,7 @@ let levelUpProceed = function() {
     if (battleCounter == 1) {
         gameplayArea.removeEventListener('click', levelUpProceed);
         //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
-        secondBattleStart();
+        setTimeout(secondBattleStart, 3000);
         // secondBattleStart();
     }
     // if I added additional story or world map, this section would change ^^^^^^

@@ -77,6 +77,12 @@ function Character(HPInput, SPInput, SP2Input, SP3Input, gritInput, nameInput, l
         this.bordRightOrig = borderRight;
         this.bordLeft = borderLeft;
         this.bordLeftOrig = borderLeft;
+        this.shadBordBottom = borderBottom;
+        this.shadBordBottomOrig = borderBottom;
+        this.shadBordRight = borderRight;
+        this.shadBordRightOrig = borderRight;
+        this.shadBordLeft = borderLeft;
+        this.shadBordLeftOrig = borderLeft;
   };
     this.HP = HPInput;
     this.maxHP = HPInput;
@@ -112,7 +118,7 @@ enemyOneCreation();
 
 //enemyTwo Creation function
 enemyTwoCreation = function() {
-    enemyTwo = new Character(100, 100, 100, 0, 120, "TRIANGLE", 1, 235, 224, 195, 215, 70, 2, 41, 4, 80, 40, 40);
+    enemyTwo = new Character(100, 100, 100, 0, 120, "TRIANGLE", 1, 226, 180, 145, 181, 70, 2, 0, 0, 80, 40, 40);
 }
 enemyTwoCreation();
 
@@ -153,6 +159,9 @@ let gameplayArea = document.querySelector(".gameplayArea");
 let promptBoxText = document.querySelector(".promptBoxText");
 let promptBox = document.querySelector(".promptBox");
 let promptBoxClick = document.querySelector(".promptBoxClick");
+let promptBoxTwoText = document.getElementsByClassName("promptBoxText")[1];
+let promptBoxTwo = document.getElementsByClassName("promptBox")[1];
+let promptBoxTwoClick = document.getElementsByClassName("promptBoxClick")[1];
 
 let audioIntro = document.querySelector(".audioIntro");
 audioIntro.volume = 0.8;
@@ -177,9 +186,15 @@ let loseScreen = document.querySelector(".Screen");
 
 let heroImg = document.querySelector(".heroImg");
 let heroShadow = document.querySelector(".heroShadow");
+let heroTwoImg = document.getElementsByClassName("heroImg")[1];
+let heroTwoShadow = document.getElementsByClassName("heroShadow")[1];
 let enemyImg = document.querySelector(".enemyImg");
 let enemyShadow = document.querySelector(".enemyShadow");
 let enemyBashMarks = document.querySelector(".bashMarks");
+
+
+let enemyTwoBashMarks = document.getElementsByClassName("bashMarks")[1];
+
 
 // initializing enemyImg height and width with DOM
 enemyImg.style.height = enemyOne.position.height + "px";
@@ -199,8 +214,9 @@ enemyTwoImg.style.width = enemyTwo.position.width + "px";
 enemyTwoShadow.style.height = enemyTwo.position.shadHeight + "px";
 enemyTwoShadow.style.width = enemyTwo.position.shadWidth + "px";
 enemyTwoImg.style.borderBottom = enemyTwo.position.bordBottom + "px";
-enemyTwoShadow.style.borderRight = enemyTwo.position.bordRight + "px";
-enemyTwoShadow.style.borderLeft = enemyTwo.position.bordLeft + "px";
+enemyTwoShadow.style.borderBottom = enemyTwo.position.shadBordBottom + "px solid rgb(36, 34, 34)";
+enemyTwoShadow.style.borderRight = enemyTwo.position.shadBordRight + "px solid transparent";
+enemyTwoShadow.style.borderLeft = enemyTwo.position.shadBordLeft + "px solid transparent";
 
 // global variable for infinite mode run function
 let infiniteModeRun;

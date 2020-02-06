@@ -1,4 +1,3 @@
-
 //functions tied to BATTLE TWOOOOOOOOOO ---------------------------------------------------------------------------------
 
 let battleTwoLoad = function() {
@@ -11,11 +10,14 @@ let battleTwoLoad = function() {
 }
 
 let battleLoopTwo = function() {
-    // console.log("battleLoopOne running")
-    heroImg.style.bottom = hero.position.bottom + "px";
-    heroShadow.style.bottom = hero.position.shadBottom + "px";
-    heroImg.style.left = hero.position.left + "px";
-    heroShadow.style.left = hero.position.shadLeft + "px";
+    // console.log("battleLoopTwo running")
+    //battle loop adjusts the location of the hero & shadow image divs plus the same for the enemy
+        //for positioning image divs on the screen
+    heroTwoImg.style.bottom = hero.position.bottom + "px";
+    heroTwoShadow.style.bottom = hero.position.shadBottom + "px";
+    heroTwoImg.style.left = hero.position.left + "px";
+    heroTwoShadow.style.left = hero.position.shadLeft + "px";
+    //hero is good ^^^^^
     enemyTwoImg.style.bottom = currentEnemy.position.bottom + "px";
     enemyTwoShadow.style.bottom = currentEnemy.position.shadBottom + "px";
     enemyTwoImg.style.left = currentEnemy.position.left + "px";
@@ -23,6 +25,9 @@ let battleLoopTwo = function() {
     enemyTwoImg.style.borderLeft = currentEnemy.position.bordLeft + "px solid transparent";
     enemyTwoImg.style.borderRight = currentEnemy.position.bordRight + "px solid transparent";
     enemyTwoImg.style.borderBottom = currentEnemy.position.bordBottom + "px solid white";
+    enemyTwoShadow.style.borderBottom = enemyTwo.position.shadBordBottom + "px solid rgb(36, 34, 34)";
+    enemyTwoShadow.style.borderRight = enemyTwo.position.shadBordRight + "px solid transparent";
+    enemyTwoShadow.style.borderLeft = enemyTwo.position.shadBordLeft + "px solid transparent";
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
     if (enemyTwo.HP <= 0) {
@@ -44,18 +49,18 @@ let battleLoopTwo = function() {
         setTimeout(levelUpSP, 1000);
     } else {
         // console.log(enemyTwo);
-        document.querySelector(".enemyHP").innerText = `HP: ${currentEnemy.HP}`
-        document.querySelector(".enemySP").innerText = `SP: ${currentEnemy.SP}`
-        document.querySelector(".enemySP2").innerText = `SP: ${currentEnemy.SP2}`
-        document.querySelector(".enemyGrit").innerText = `GRIT: ${currentEnemy.grit}`
-        document.querySelector(".enemyName").innerText = `${currentEnemy.name}`
+        document.querySelector(".enemyTwoHP").innerText = `HP: ${currentEnemy.HP}`
+        document.querySelector(".enemyTwoSP").innerText = `SP: ${currentEnemy.SP}`
+        document.querySelector(".enemyTwoSP2").innerText = `SP: ${currentEnemy.SP2}`
+        document.querySelector(".enemyTwoGrit").innerText = `GRIT: ${currentEnemy.grit}`
+        document.querySelector(".enemyTwoName").innerText = `${currentEnemy.name}`
         // code for SP2 and SP3
         // document.querySelector(".enemySP2").innerText = `SP: ${enemy.sp2}`
         // document.querySelector(".enemySP3").innerText = `SP: ${enemy.sp3}`
-        document.querySelector(".heroHP").innerText = `HP: ${hero.HP}`
-        document.querySelector(".heroSP").innerText = `SP: ${hero.SP}`
-        document.querySelector(".heroGrit").innerText = `GRIT: ${hero.grit}`
-        document.querySelector(".heroName").innerText = `${hero.name}`
+        document.getElementsByClassName("heroHP")[1].innerText = `HP: ${hero.HP}`
+        document.getElementsByClassName("heroSP")[1].innerText = `SP: ${hero.SP}`
+        document.getElementsByClassName("heroGrit")[1].innerText = `GRIT: ${hero.grit}`
+        document.getElementsByClassName("heroName")[1].innerText = `${hero.name}`
     }
     turnController();
 }
@@ -66,43 +71,52 @@ let battleLoopTwo = function() {
 
 // calls the BattleLoop functions
 let secondBattleStart = function() {
-    // initialize enemyTwo for when you beat the game and play again
+    // initialize hero Obj
+    hero.position.shadBottom = hero.position.shadBottomOrig;
+    hero.position.shadLeft = hero.position.shadLeftOrig;
+    // initialize enemyTwo Obj for when you beat the game and play again
     // enemyTwo.position.height = enemyTwo.position.heightOrig;
     enemyTwo.position.shadHeight = enemyTwo.position.shadHeightOrig;
     enemyTwo.position.shadBottom = enemyTwo.position.shadBottomOrig;
     enemyTwo.position.shadLeft = enemyTwo.position.shadLeftOrig;
+    //may need to add different initializations for shadows -------------------------------------------------------------------------
     enemyTwo.position.bordBottom = enemyTwo.position.bordBottomOrig;
     enemyTwo.position.bordRight = enemyTwo.position.bordRightOrig;
     enemyTwo.position.bordLeft = enemyTwo.position.bordLeftOrig;
+    enemyTwo.position.left = enemyTwo.position.leftOrig;
+    enemyTwo.position.bottom = enemyTwo.position.bottomOrig;
     enemyTwo.SP = enemyTwo.maxSP;
     enemyTwo.SP2 = enemyTwo.maxSP2;
+    enemyTwo.HP = enemyTwo.maxHP;
     //stop opening story audio
     openingStoryMusic.pause();
     //start battle audio
     battleMusic.play();
-    battleCounter = 0;
+    // battleCounter = 0;
     // create enemyTwo
     // enemyTwoCreation();
     // each battle will have a different currentEnemy:
     currentEnemy = enemyTwo;
-    enemyTwoImg.style.height = currentEnemy.position.height + "px";
-    enemyTwoShadow.style.height = currentEnemy.position.shadHeight + "px";
-    enemyTwoShadow.style.bottom = currentEnemy.position.shadBottom + "px";
-    enemyTwoShadow.style.left = currentEnemy.position.shadLeft + "px";
+                // enemyTwoImg.style.height = currentEnemy.position.height + "px";
+                // enemyTwoShadow.style.height = currentEnemy.position.shadHeight + "px";
+                // enemyTwoShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+                // enemyTwoShadow.style.left = currentEnemy.position.shadLeft + "px";
     //initialize battle to have Soul attacks hidden
     soulAttacksDisable();
     //initialize battle to start with hero's turn
-    hero.position.bottom = hero.position.bottomOrig
-    hero.position.left = hero.position.leftOrig
-    hero.position.shadBottom = hero.position.shadBottomOrig
-    hero.position.shadLeft = hero.position.shadLeftOrig
-    heroImg.style.bottom = hero.position.bottom + "px";
-    heroImg.style.left = hero.position.left + "px";
-    heroShadow.style.bottom = hero.position.shadBottom + "px";
-    heroShadow.style.left = hero.position.shadLeft + "px";
-    enemyTwoImg.style.bottom = currentEnemy.position.bottom + "px";
-    enemyTwoImg.style.left = currentEnemy.position.left + "px";
+    //may be able to delete this big block of code:
+                                                            // hero.position.bottom = hero.position.bottomOrig
+                                                            // hero.position.left = hero.position.leftOrig
+                                                            // hero.position.shadBottom = hero.position.shadBottomOrig
+                                                            // hero.position.shadLeft = hero.position.shadLeftOrig
+                                                            // heroImg.style.bottom = hero.position.bottom + "px";
+                                                            // heroImg.style.left = hero.position.left + "px";
+                                                            // heroShadow.style.bottom = hero.position.shadBottom + "px";
+                                                            // heroShadow.style.left = hero.position.shadLeft + "px";
+                                                            // enemyTwoImg.style.bottom = currentEnemy.position.bottom + "px";
+                                                            // enemyTwoImg.style.left = currentEnemy.position.left + "px";
     turnCounter = true;
+    defenseReady = false;
     hero.level = 1;
     hero.HP = hero.maxHP;
     hero.SP = hero.maxSP;
@@ -122,7 +136,7 @@ let secondBattleStart = function() {
     battleCounter++;
     //call the static animation functions
     //show divs for this particular scene
-    promptBoxText.innerText = "You picked a fight with Triangle."
+    promptBoxTwoText.innerText = "You picked a fight with Triangle."
     setTimeout(battleTwoLoad, 200);
     // if level of hero is == 1, then hide three moves
     // if level of hero is == 2, then hide last move
@@ -132,7 +146,7 @@ let secondBattleStart = function() {
     heroStaticReady = true;
     battleTwo = setInterval(battleLoopTwo, 60);
     // let battleOne = setTimeout(battleLoopOne, 60);
-    let battleOneLongTerm = setInterval(battleLoopOneLongTerm, 3000);
+    let battleTwoLongTerm = setInterval(battleLoopOneLongTerm, 3000);
     // let battleOneLongTerm = setTimeout(battleLoopOneLongTerm, 300);
 }
 

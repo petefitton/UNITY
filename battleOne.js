@@ -5,6 +5,8 @@ let hidePromptBox = function() {
     // console.log("hidePromptBox function running which sets innerText of promptBoxText to an empty string")
     promptBox.style.display = "none";
     promptBoxText.innerText = "";
+    promptBoxTwo.style.display = "none";
+    promptBoxTwoText.innerText = "";
 }
 
 let hidePromptBoxPlusActivate = function() {
@@ -19,6 +21,8 @@ let emptyPromptBoxAndDefenseReady = function() {
     console.log("empty prompt box function running - means defense Ready is set to true now & innerText of promptBoxText is an empty string")
     promptBoxText.innerText = "";
     promptBoxClick.style.display = "none";
+    promptBoxTwoText.innerText = "";
+    promptBoxTwoClick.style.display = "none";
     let defenseReadyTrue = function() {
         defenseReady = true;
     }
@@ -29,6 +33,8 @@ let showPromptBox = function() {
     console.log("show prompt box function running")
     promptBoxClick.style.display = "block";
     promptBox.style.display = "block";
+    promptBoxTwoClick.style.display = "block";
+    promptBoxTwo.style.display = "block";
     // let delayedFunction = function() {
     //     console.log("delayed Function running")
     let promptBoxDelay = function() {
@@ -45,6 +51,8 @@ let showPromptBoxStart = function() {
     // setTimeout(delayedFunction2, 300);
     promptBoxClick.style.display = "block";
     promptBox.style.display = "block";
+    promptBoxTwoClick.style.display = "block";
+    promptBoxTwo.style.display = "block";
     gameplayArea.addEventListener("click", hidePromptBox);
 }
 
@@ -52,6 +60,8 @@ let showPromptBoxEnemy = function() {
     // console.log("showPromptBoxEnemy function running")
     promptBoxClick.style.display = "block";
     promptBox.style.display = "block";
+    promptBoxTwoClick.style.display = "block";
+    promptBoxTwo.style.display = "block";
     gameplayArea.addEventListener("click", hidePromptBoxPlusActivate);
 }
 
@@ -98,9 +108,11 @@ let battleLoopOneLongTerm = function() {
     }
 
     if (true) {
+        //used for testing
         // console.log("soul Attacks Enable about to run")
-        setTimeout(soulAttacksEnable, 30);
+        soulAttacksEnable();
     }
+    //commented out for testing
     // if (currentEnemy.HP <= (currentEnemy.maxHP/2)) {
     //     // console.log("soul Attacks Enable about to run")
     //     setTimeout(soulAttacksEnable, 3000);
@@ -152,14 +164,17 @@ let turnController = function() {
     } else if (turnCounter === false) {
         if (defenseReady === true) {
             console.log("it is the enemy's turn and you are ready to defend function running")
-            enemyMoveDelay = setTimeout(enemyOneMoveSelect, 300);
             defenseReady = false;
+            enemyMoveDelay = setTimeout(enemyOneMoveSelect, 300);
         }
     }
 }
 
 let battleLoopOne = function() {
     // console.log("battleLoopOne running")
+    //battle loop adjusts the location of the hero & shadow image divs plus the same for the enemy
+        //for positioning image divs on the screen
+    //some things listed here are not changing but still being rendered; refactoring might be able to put them in the one run function instead
     heroImg.style.bottom = hero.position.bottom + "px";
     heroShadow.style.bottom = hero.position.shadBottom + "px";
     heroImg.style.left = hero.position.left + "px";
@@ -168,21 +183,26 @@ let battleLoopOne = function() {
     enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
     enemyImg.style.left = currentEnemy.position.left + "px";
     enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+    enemyImg.style.height = currentEnemy.position.height + "px";
+    enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
     if (enemyOne.HP <= 0) {
+        heroStaticReady = false;
         clearTimeout(enemyMoveDelay);
         clearInterval(battleOne);
         clearInterval(battleOneLongTerm);
         // need to revent show prompt box function
         setTimeout(levelUpKill, 1000);
     } else if (hero.HP <= 0) {
+        heroStaticReady = false;
         //kill hero function -----------------------------------------------------------------------------------------
         clearTimeout(enemyMoveDelay);
         clearInterval(battleOne);
         clearInterval(battleOneLongTerm);
         setTimeout(lose, 1000);
     } else if (currentEnemy.SP <= 0) {
+        heroStaticReady = false;
         clearTimeout(enemyMoveDelay);
         clearInterval(battleOne);
         clearInterval(battleOneLongTerm);
@@ -206,7 +226,7 @@ let battleLoopOne = function() {
 
 // calls the BattleLoop functions
 let firstBattleStart = function() {
-    // initialize enemyOne for when you beat the game and play again
+    // initialize enemyOne Obj for when you beat the game and play again
     enemyOne.position.height = enemyOne.position.heightOrig;
     enemyOne.position.shadHeight = enemyOne.position.shadHeightOrig;
     enemyOne.position.shadBottom = enemyOne.position.shadBottomOrig;
@@ -222,18 +242,17 @@ let firstBattleStart = function() {
     // enemyOneCreation();
     // each battle will have a different currentEnemy:
     currentEnemy = enemyOne;
-    enemyImg.style.height = currentEnemy.position.height + "px";
-    enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
-    enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
-    enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+    // enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+    // enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
     //initialize battle to have Soul attacks hidden
     soulAttacksDisable();
     //initialize battle to start with hero's turn
-    heroImg.style.bottom = hero.position.bottom + "px";
-    heroImg.style.left = hero.position.left + "px";
-    enemyImg.style.bottom = currentEnemy.position.bottom + "px";
-    enemyImg.style.left = currentEnemy.position.left + "px";
+    // heroImg.style.bottom = hero.position.bottom + "px";
+    // heroImg.style.left = hero.position.left + "px";
+    // enemyImg.style.bottom = currentEnemy.position.bottom + "px";
+    // enemyImg.style.left = currentEnemy.position.left + "px";
     turnCounter = true;
+    defenseReady = false;
     hero.level = 1;
     hero.HP = hero.maxHP;
     hero.SP = hero.maxSP;
