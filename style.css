@@ -350,6 +350,16 @@ ACTIONS BOX */
     justify-content: space-between;
 }
 
+.secondBattleScreen {
+    display: flex;
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+}
 
 /* ENEMY STATS BOX */
 
@@ -385,12 +395,12 @@ ACTIONS BOX */
     margin: 2px;
 }
 
-.enemySP2D {
+.enemySP2 {
     margin: 2px;
     display: none;
 }
 
-.enemySP3D {
+.enemySP3 {
     margin: 2px;
     display: none;
 }
@@ -637,19 +647,16 @@ ACTIONS BOX */
 }
 
 .action4 {
-    visibility: hidden;
     margin: 2px;
     cursor: pointer;
 }
 
 .action5 {
-    visibility: hidden;
     margin: 2px;
     cursor: pointer;
 }
 
 .action6 {
-    visibility: hidden;
     margin: 2px;
     cursor: pointer;
 }
@@ -699,11 +706,11 @@ ACTIONS BOX */
     position: absolute;
     height: 0px;
     width: 0px;
-    border-bottom: 80px solid white;
-    border-right: 40px solid transparent;
-    border-left: 40px solid transparent;
-    top: 10px;
-    left: 176px;
+    border-bottom: solid white;
+    border-right: solid transparent;
+    border-left: solid transparent;
+    /* top: 10px;
+    left: 176px; */
 }
 
 

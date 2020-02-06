@@ -53,7 +53,7 @@
 
 // constructor function to use for creating all characters
 
-function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom, posLeft, shadowBottom, shadowLeft, heightInitial, widthInitial, shadHeightInitial, shadWidthInitial) {
+function Character(HPInput, SPInput, SP2Input, SP3Input, gritInput, nameInput, levelInput, posBottom, posLeft, shadowBottom, shadowLeft, heightInitial, widthInitial, shadHeightInitial, shadWidthInitial, borderBottom, borderRight, borderLeft) {
     function Position() {
         this.bottom = posBottom;
         this.bottomOrig = posBottom;
@@ -71,12 +71,21 @@ function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom
         this.shadHeightOrig = shadHeightInitial;
         this.shadWidth = shadWidthInitial;
         this.shadWidthOrig = shadWidthInitial;
+        this.bordBottom = borderBottom;
+        this.bordBottomOrig = borderBottom;
+        this.bordRight = borderRight;
+        this.bordRightOrig = borderRight;
+        this.bordLeft = borderLeft;
+        this.bordLeftOrig = borderLeft;
   };
     this.HP = HPInput;
     this.maxHP = HPInput;
     this.SP = SPInput;
     this.maxSP = SPInput;
-    // may add SP2 & SP3
+    this.SP2 = SP2Input;
+    this.maxSP2 = SP2Input;
+    this.SP3 = SP3Input;
+    this.maxSP3 = SP3Input;
     this.grit = gritInput;
     this.maxGrit = gritInput;
     this.defBlock = false;
@@ -89,7 +98,7 @@ function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom
   }
 
 // create protagonist object function
-let hero = new Character(100, 0, 100, "SISYPHUS", 1, 80, -270, 85, -266, 0, 0, 0, 0);
+let hero = new Character(100, 0, 0, 0, 100, "SISYPHUS", 1, 80, -270, 85, -266, 0, 0, 0, 0, 0, 0, 0);
 
 
 // should also call the create Crawler function to create the enemy with name enemyOne
@@ -97,9 +106,21 @@ let hero = new Character(100, 0, 100, "SISYPHUS", 1, 80, -270, 85, -266, 0, 0, 0
 
 //enemyOne Creation function
 enemyOneCreation = function() {
-    enemyOne = new Character(100, 100, 120, "LINE", 1, 235, 224, 195, 215, 70, 2, 41, 4);
+    enemyOne = new Character(100, 100, 0, 0, 120, "LINE", 1, 235, 224, 195, 215, 70, 2, 41, 4, 0, 0, 0);
 }
 enemyOneCreation();
+
+//enemyTwo Creation function
+enemyTwoCreation = function() {
+    enemyTwo = new Character(100, 100, 100, 0, 120, "TRIANGLE", 1, 235, 224, 195, 215, 70, 2, 41, 4, 80, 40, 40);
+}
+enemyTwoCreation();
+
+//enemyThree Creation function
+enemyThreeCreation = function() {
+    enemyThree = new Character(100, 100, 100, 100, 120, "CUBE", 1, 235, 224, 195, 215, 70, 2, 41, 4);
+}
+enemyThreeCreation();
 
 //static animation variables - will be true if static is good to run; false if not
 let heroStaticReady;
@@ -168,6 +189,18 @@ enemyShadow.style.width = enemyOne.position.shadWidth + "px";
 // enemyShadow.style.height = 13;
 // enemyShadow.style.height = 13;
 
+
+let enemyTwoImg = document.querySelector(".enemyTwoImg");
+let enemyTwoShadow = document.querySelector(".enemyTwoShadow");
+
+// initializing enemyImg height and width with DOM
+enemyTwoImg.style.height = enemyTwo.position.height + "px";
+enemyTwoImg.style.width = enemyTwo.position.width + "px";
+enemyTwoShadow.style.height = enemyTwo.position.shadHeight + "px";
+enemyTwoShadow.style.width = enemyTwo.position.shadWidth + "px";
+enemyTwoImg.style.borderBottom = enemyTwo.position.bordBottom + "px";
+enemyTwoShadow.style.borderRight = enemyTwo.position.bordRight + "px";
+enemyTwoShadow.style.borderLeft = enemyTwo.position.bordLeft + "px";
 
 // global variable for infinite mode run function
 let infiniteModeRun;

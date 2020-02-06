@@ -175,8 +175,8 @@
                 <!-- div for SP in 1D plus other dimensions -->
                 <div class="enemySP">SP: 1</div>
                 <div class="break"></div> <!-- break -->
-                <div class="enemySP2D">SP²: 1</div>
-                <div class="enemySP3D">SP³: 1</div>
+                <div class="enemySP2">SP²: 1</div>
+                <div class="enemySP3">SP³: 1</div>
                 <!-- div for stamina bar -->
                 <div class="enemyGrit">GRIT: 120</div>
             </div>
@@ -238,9 +238,6 @@
                 <div class="action2"><span class="soulRestricted action2Span">Accessible once Enemy HP reaches 50%</span>Soul Compress</div>
                 <div class="action3">Rest</div>
                 <div class="break"></div> <!-- break -->
-                <div class="action4">Block</div>
-                <div class="action5">Soul Constrict</div>
-                <div class="action6">Soul Reduce</div>
             </div>
             <!-- one div for promptBox which lays over actions box; for battle prompts such as "LINE stabbed you"-->
             <div class="promptBox">
@@ -253,13 +250,102 @@
 
 
 
-        <!-- one set of divs for the second battle screen STRETCH GOAL -->
-            <!-- same as first battle screen -->
-            <!-- except enemy stat box should have an additional div for SP 2D -->
-                <!-- this might mean the enemy stat box might need to be larger -->
-        <!-- one set of divs for the third battle screen STRETCH GOAL -->
+        <!-- one set of divs for the second battle screen -->
+        <div class="secondBattleScreen"> <!-- background set on this div ^^^ (probably background image rather than solid black) -->
+            <!-- one div for enemy stats -->
+            <div class="enemyStats">
+                <!-- div for name -->
+                <div class="enemyName">NAME</div>
+                <!-- div for HP -->
+                <div class="enemyHP">HP: 200</div>
+                <!-- div for SP in 1D plus other dimensions -->
+                <div class="enemySP">SP: 100</div>
+                <div class="break"></div> <!-- break -->
+                <div class="enemySP2">SP²: 100</div>
+                <div class="enemySP3">SP³: 100</div>
+                <!-- div for stamina bar -->
+                <div class="enemyGrit">GRIT: 120</div>
+            </div>
+            <!-- div for enemy image container -->
+            <div class="enemyImgContainer">
+                <!-- one div for circle under enemy -->
+                <div class="enemyStage"><img src="img/Proj1EnemyStage.png"></div>
+                <!-- one div for enemy image's shadow -->
+                <div class="enemyTwoShadow"></div>
+                <!-- div for bash marks -->
+                <div class="bashMarks"><img src="img/Proj1BashMarks.png"></div>
+                <!-- div for brandish -->
+                <div class="brandish"><img src="img/Proj1Sword.png"></div>
+                <!-- one div for enemy image -->
+                <div class="enemyTwoImg">
+                    <!-- <img class="enemyPlaceholder" src="img/line-placeholder.jpg"> -->
+                </div>
+            </div>
+            <!-- div for hero image container -->
+            <div class="heroImgContainer">
+                <!-- one div for circle under player -->
+                <div class="heroStage"><img src="img/Proj1HeroStage.png"></div>
+                <!-- one div for player image's shadow -->
+                <div class="heroShadow"></div>
+                <!-- one div for defense buff -->
+                <div class="defBlock"><img src="img/Proj1Shield.png"></div>
+                <!-- one div for player image -->
+                <div class="heroImg">.
+                    <!-- <img class="heroPlaceholder" src="img/small-dot-placeholder.jpg"> -->
+                </div>
+                <div class="restZs">
+                    <div class="ZOne">Z</div>
+                    <div class="ZTwo">Z</div>
+                    <div class="ZThree">Z</div>
+                </div>
+                <div class="stabMarkContainer">
+                    <div class="stabMark"></div>
+                </div>
+                <!-- don't need because it's part of the stage, but originally: one div for magnifying glass image -->
+                <!-- <div class="magnifyingGlass"></div> -->
+                <!-- one div for player stats -->
+            </div>
+            <div class="heroStats">
+                <!-- div for name -->
+                <div class="heroName">SISYPHUS</div>
+                <!-- div for HP -->
+                <div class="heroHP">HP: 100</div>
+                <!-- div for SP -->
+                <div class="heroSP">SP: 0</div>
+                <!-- div for stamina -->
+                <div class="heroGrit">GRIT: 100</div>
+                <!-- div for level -->
+                <div class="heroLevel">LVL: 1</div>
+            </div>
+            <!-- one div for actions box -->
+            <div class="actionsBox">
+                <!-- divs for the possible actions -->
+                <div class="action1">Bash</div>
+                <div class="action2"><span class="soulRestricted action2Span">Accessible once Enemy HP reaches 50%</span>Soul Compress</div>
+                <div class="action3">Rest</div>
+                <div class="break"></div> <!-- break -->
+                <div class="action4">Block</div>
+                <div class="action5"><span class="soulRestricted action2Span">Accessible once Enemy HP reaches 50%</span>Soul Constrict</div>
+            </div>
+            <!-- one div for promptBox which lays over actions box; for battle prompts such as "LINE stabbed you"-->
+            <div class="promptBox">
+                <!-- box for text-->
+                <div class="promptBoxText"></div>
+                <p class="promptBoxClick">Click to Continue</p>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- one set of divs for the third battle screen STRETCH GOAL
+                        <div class="action6">Soul Reduce</div>
+ -->
             <!-- same as first battle screen -->
             <!-- except enemy stat box should have an additional div for SP 3D -->
+
+
         <!-- one set of divs for the world map screen STRETCH GOAL -->
             <!-- background on ^^^^^ -->
             <!-- one div for player -->
@@ -322,7 +408,7 @@
     <script type="text/javascript" src="audio&attacks.js"></script>
     <script type="text/javascript" src="sceneTransitions.js"></script>
     <script type="text/javascript" src="battleOne.js"></script>
-    <!-- <script type="text/javascript" src="battleTwo.js"></script> -->
+    <script type="text/javascript" src="battleTwo.js"></script>
     <!-- <script type="text/javascript" src="battleThree.js"></script> -->
     <script type="text/javascript" src="animations&levelUp.js"></script>
 </body>

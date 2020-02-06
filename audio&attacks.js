@@ -98,6 +98,12 @@ let soulAttacksEnable = function() {
     document.querySelector(".action2").style.color = "rgb(172, 169, 169)";
     document.querySelector(".action2").style.cursor = "pointer";
     document.querySelector(".action2Span").classList.remove("soulRestricted");
+    if (hero.level >= 2) {
+        document.querySelector(".action5").addEventListener("click", soulCompress);
+        document.querySelector(".action5").style.color = "rgb(172, 169, 169)";
+        document.querySelector(".action5").style.cursor = "pointer";
+        document.querySelector(".action5Span").classList.remove("soulRestricted");
+    }
 }
 
 let soulAttacksDisable = function() {
@@ -105,6 +111,12 @@ let soulAttacksDisable = function() {
     document.querySelector(".action2").style.color = "rgb(38, 34, 34)";
     document.querySelector(".action2").style.cursor = "initial";
     document.querySelector(".action2Span").classList.add("soulRestricted");
+    if (hero.level >= 2) {
+        document.querySelector(".action5").removeEventListener("click", soulCompress);
+        document.querySelector(".action5").style.color = "rgb(38, 34, 34)";
+        document.querySelector(".action5").style.cursor = "initial";
+        document.querySelector(".action5Span").classList.add("soulRestricted");
+    }
 }
 
 
@@ -135,7 +147,8 @@ let soulCompress = function() {
     promptBoxText.innerText = "You used Soul Compress";
     // showPromptBox move to animation
     setTimeout(showPromptBox, 700);
-    currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    // currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    currentSoulCompressDmg = 100;
     currentEnemy.SP -= currentSoulCompressDmg;
     hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
     soulCompressAnimation();

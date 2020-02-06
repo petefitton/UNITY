@@ -250,7 +250,7 @@ let firstBattleStart = function() {
     battleCounter++;
     //call the static animation functions
     //show divs for this particular scene
-    promptBoxText.innerText = "You picked a fight with line."
+    promptBoxText.innerText = "You picked a fight with Line."
     setTimeout(battleLoad, 200);
     // if level of hero is == 1, then hide three moves
     // if level of hero is == 2, then hide last move

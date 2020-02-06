@@ -477,7 +477,7 @@ let levelUpProceed = function() {
     if (battleCounter == 1) {
         gameplayArea.removeEventListener('click', levelUpProceed);
         //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
-        startClosingStory();
+        secondBattleStart();
         // secondBattleStart();
     }
     // if I added additional story or world map, this section would change ^^^^^^
