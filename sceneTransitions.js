@@ -246,11 +246,13 @@ let rollCredits = function() {
 
 infiniteModeRun = function() {
     hideAll();
+    infiniteMode = true;
 }
 
 
 // lose function
 let lose = function() {
+    infiniteMode = false;
     loseMusic.play();
     hideAll();
     document.querySelector(".returnMainMenu").addEventListener("click", showMainMenu);

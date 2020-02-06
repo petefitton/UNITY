@@ -273,16 +273,37 @@ let bashAnimation = function() {
         bashAnimationNested();
     }
 }
-    // 'soul compress' SP damage - damages SP of enemy
+
+
+// 'soul compress' SP damage - damages SP of enemy----------------------------------------------------------------------------
+
+
+// variables for LINE or both LINE and TRIANGLE:
 let heightReduction;
-let heightReductionInterval;
+// using heightReduction as a function which contains both LINE and TRIANGLE checks, so not declaring a second function at the moment for border reduction
+// accidentally made an unused INTERVAL variable here:
+    // let heightReductionInterval;
 let heightReductionInternal;
+let heightReductionInternalTwo;
+// using hRedInt for both LINE and TRIANGLE
 let enemyHReductionAmount;
 let enemyShadHReductionAmount;
 let enemyShadBReductionAmount;
 let enemyShadLReductionAmount;
 let tempEnemyHeight;
 
+// variables for TRIANGLE - 
+let enemyBBReductionAmount;
+// let enemyRBReductionAmount;
+// let enemyLBReductionAmount;
+let enemyShadBBReductionAmount;
+// let enemyShadRBReductionAmount;
+// let enemyShadLBReductionAmount;
+let tempEnemyBordBottom;
+
+
+// as height is reduced with soul compression, I do not need to worry about moving the positions of the enemy img and shad divs
+    // do have to worry about that with soul constrict
 
 let heightReductionHandler = function() {
     if (currentEnemy.name == "LINE") {
@@ -296,8 +317,16 @@ let heightReductionHandler = function() {
         enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
     } else if (currentEnemy.name == "TRIANGLE") {
         //reduce height of Triangle
+        currentEnemy.position.bordBottom -= (enemyBBReductionAmount/80);
+        currentEnemy.position.shadBordBottom -= (enemyShadBBReductionAmount/80);
+        currentEnemy.position.shadBottom += (enemyShadBBReductionAmount/78);
+        enemyTwoImg.style.borderBottom = currentEnemy.position.bordBottom + "px solid white";
+        enemyTwoShadow.style.borderBottom = currentEnemy.position.shadBordBottom + "px solid rgb(36, 34, 34)";
+        enemyTwoShadow.style.bottom = currentEnemy.position.shadBottom + "px";
     }
 }
+// bottom of triangle shadow goes from 235px at its default initial pos (actually initial is 145)
+// to 223px in its minimal pos (when SP is fully reduced)
 
 
 let soulCompressAnimation = function() {
@@ -308,67 +337,65 @@ let soulCompressAnimation = function() {
         //execute animation
         let soulCompressAnimationNested = function() {
             console.log("soulCompressAnimationNested starting")
-            // function should change height of enemy
             let enemyHeightReduce = function() {
-                // console.log("adding 1px to left")
-                // enemyImg.height -= ((currentSoulCompressDmg/100) * 70);
                 tempEnemyHeight = currentEnemy.position.height;
-            // let tempEnemyShadHeight = currentEnemy.position.shadHeight;
-            // let tempEnemyShadBottom = currentEnemy.position.shadBottom;
-            // let tempEnemyShadLeft = currentEnemy.position.shadLeft;
-                    // currentEnemy.position.height -= (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.heightOrig));
-                    // // as shadow gets smaller in height, it needs to increase in both bottom and left positions a little bit
-                    //     // bottom increases by 38px over the full course of the SP damage
-                    //     // left increases by 7px over the full course of the SP damage
-                    // currentEnemy.position.shadHeight -= (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadHeightOrig));
-                    // currentEnemy.position.shadBottom += (((currentSoulCompressDmg/currentEnemy.maxSP) * 38));
-                    // currentEnemy.position.shadLeft += (((currentSoulCompressDmg/currentEnemy.maxSP) * 8));
+                tempEnemyBordBottom = currentEnemy.position.height;
                 enemyHReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.heightOrig));
-                // as shadow gets smaller in height, it needs to increase in both bottom and left positions a little bit
-                    // bottom increases by 38px over the full course of the SP damage
-                    // left increases by 7px over the full course of the SP damage
                 enemyShadHReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadHeightOrig));
                 enemyShadBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * 38));
                 enemyShadLReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * 8));
-                // if (currentEnemy.position.height <= 0) {
-                //     currentEnemy.position.shadHeight = 0;
-                //     currentEnemy.position.shadBottom = 0;
-                //     currentEnemy.position.shadLeft = 0;
-                // }
-                // currentEnemy.position.height -= 0;
-                // currentEnemy.position.shadHeight -= 0;
-                // currentEnemy.position.shadBottom -= 0;
-                // currentEnemy.position.shadLeft -= 0;
+                // need to calculate the bottom border number for both the image and the shadow of enemyTwo
+                enemyBBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.bordBottomOrig));
+                enemyShadBBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadBordBottomOrig))
                 heightReduction = function() {
                     //perform incremental reductions
                     console.log("running heightReduction")
                     heightReductionHandler();
-                    if (!(currentEnemy.position.height <= (tempEnemyHeight - (enemyHReductionAmount/2)))) {
-                        setTimeout(heightReduction, 12);
-                    } else {
-                        //if reached half height reduction, move to next function
-                        heightReductionInternal();
-                    }
-                    heightReductionInternal = function() {
-                        heightReductionHandler();
-                        if (!(currentEnemy.position.height <= (tempEnemyHeight - enemyHReductionAmount))) {
-                            //if reached full height reduction, stop repeating:
-                            setTimeout(heightReductionInternal, 13);
+                    if (currentEnemy.name == "LINE") {
+                        if (!(currentEnemy.position.height <= (tempEnemyHeight - (enemyHReductionAmount/2)))) {
+                            setTimeout(heightReduction, 12);
                         } else {
-                            heroMoveReady = false;
+                            //if reached half height reduction, move to next function
+                            heightReductionInternal();
+                        }
+                        heightReductionInternal = function() {
+                            heightReductionHandler();
+                            if (!(currentEnemy.position.height <= (tempEnemyHeight - enemyHReductionAmount))) {
+                                setTimeout(heightReductionInternal, 13);
+                                //if reached full height reduction, stop repeating:
+                            } else {
+                                heroMoveReady = false;
+                            }
+                        }
+                    } else if (currentEnemy.name == "TRIANGLE") {
+                        if (!(currentEnemy.position.bordBottom <= (tempEnemyBordBottom - (enemyBBReductionAmount/2)))) {
+                            setTimeout(heightReduction, 12);
+                        } else {
+                            //if reached half height reduction, move to next function
+                            heightReductionTwoInternal();
+                        }
+                        heightReductionTwoInternal = function() {
+                            heightReductionHandler();
+                            if (!(currentEnemy.position.bordBottom <= (tempEnemyBordBottom - enemyBBReductionAmount))) {
+                                setTimeout(heightReductionTwoInternal, 13);
+                                //if reached full height (BB) reduction, stop repeating:
+                            } else {
+                                // if SP has been fully reduced, maintain a minimum 'height' of 2px
+                                // if SP == 0, then make sure there remains a little thickness so you can see it
+                                if (currentEnemy.position.bordBottom <= 0) {
+                                    currentEnemy.position.bordBottom = 2;
+                                    currentEnemy.position.shadBordBottom = 2;
+                                    currentEnemy.position.shadBottom = 223;
+                                    enemyTwoImg.style.borderBottom = currentEnemy.position.bordBottom + "px solid white";
+                                    enemyTwoShadow.style.borderBottom = currentEnemy.position.shadBordBottom + "px solid rgb(36, 34, 34)";
+                                    enemyTwoShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+                                }
+                                heroMoveReady = false;
+                            }
                         }
                     }
                 }
                 heightReduction();
-
-
-                // enemyImg.style.height = currentEnemy.position.height + "px";
-                // // as shadow gets smaller in height, it needs to increase in both bottom and left positions a little bit
-                //     // bottom increases by 38px over the full course of the SP damage
-                //     // left increases by 7px over the full course of the SP damage
-                // enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
-                // enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
-                // enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
             }()
         }()
     }
@@ -387,31 +414,60 @@ let restAnimation = function() {
     if (heroStaticReady == false) {
         bashAnimationRepeat = setTimeout(restAnimation, 60);
     } else {
-        restZs.style.bottom = 109 + "px";
-        incrementRest = function() {
-            restZs.style.display = "block";
-            restZs.style.bottom = 110 + "px";
-            setTimeout(incrementRestTwo, 600);
-        }
-        incrementRestTwo = function() {
-            restZs.style.bottom = 111 + "px";
-            setTimeout(decrementRest, 600);
-        }
-        decrementRest = function() {
-            restZs.style.bottom = 110 + "px";
-            setTimeout(decrementRestTwo, 600);
-        }
-        decrementRestTwo = function() {
+        if (currentEnemy.name == "LINE") {
             restZs.style.bottom = 109 + "px";
-            //function to hide Z's
-            let hideZs = function() {
-                restZs.style.display = "none";
-                heroMoveReady = false;
+            incrementRest = function() {
+                restZs.style.display = "block";
+                restZs.style.bottom = 110 + "px";
+                setTimeout(incrementRestTwo, 600);
             }
-            setTimeout(hideZs, 1500);
+            incrementRestTwo = function() {
+                restZs.style.bottom = 111 + "px";
+                setTimeout(decrementRest, 600);
+            }
+            decrementRest = function() {
+                restZs.style.bottom = 110 + "px";
+                setTimeout(decrementRestTwo, 600);
+            }
+            decrementRestTwo = function() {
+                restZs.style.bottom = 109 + "px";
+                //function to hide Z's
+                let hideZs = function() {
+                    restZs.style.display = "none";
+                    heroMoveReady = false;
+                }
+                setTimeout(hideZs, 1500);
+            }
+        //show Z's
+        setTimeout(incrementRest, 40);
+        // triangle means it's the second battle div; not actually important that it's specifically the triangle who is the currentEnemy
+        } else if (currentEnemy.name == "TRIANGLE") {
+            restZsTwo.style.bottom = 109 + "px";
+            incrementRest = function() {
+                restZsTwo.style.display = "block";
+                restZsTwo.style.bottom = 110 + "px";
+                setTimeout(incrementRestTwo, 600);
+            }
+            incrementRestTwo = function() {
+                restZsTwo.style.bottom = 111 + "px";
+                setTimeout(decrementRest, 600);
+            }
+            decrementRest = function() {
+                restZsTwo.style.bottom = 110 + "px";
+                setTimeout(decrementRestTwo, 600);
+            }
+            decrementRestTwo = function() {
+                restZsTwo.style.bottom = 109 + "px";
+                //function to hide Z's
+                let hideZs = function() {
+                    restZsTwo.style.display = "none";
+                    heroMoveReady = false;
+                }
+                setTimeout(hideZs, 1500);
+            }
+        //show Z's
+        setTimeout(incrementRest, 40);
         }
-    //show Z's
-    setTimeout(incrementRest, 40);
     }
 }
 // enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
@@ -423,8 +479,10 @@ let stabAnimation = function() {
     heroMoveReady = true;
     if (heroStaticReady == true) {
         document.querySelector(".stabMarkContainer").style.display = "block";
+        document.getElementsByClassName("stabMarkContainer")[1].style.display = "block";
         let stabDelay = function() {
             document.querySelector(".stabMarkContainer").style.display = "none";
+            document.getElementsByClassName("stabMarkContainer")[1].style.display = "none";
             heroMoveReady = false;
         }
         setTimeout(stabDelay, 1300);
@@ -435,8 +493,48 @@ let stabAnimation = function() {
 
 
 
-    // learned after 1st battle: block - reduces HP damage from enemy on that turn
-    // learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
+//UNNEEDED as it's in defBlock()....----- learned after 1st battle: block - reduces HP damage from enemy on that turn
+
+// learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
+let soulConstrictAnimation = function() {
+    //
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // learned after 2nd battle: 'soul reduce' SP damage3D - damages SP of enemy in the second dimension
 // staticAnimOff() function which turns off animation
 
@@ -465,8 +563,12 @@ let levelUpProceed = function() {
     if (battleCounter == 1) {
         gameplayArea.removeEventListener('click', levelUpProceed);
         //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
-        setTimeout(secondBattleStart, 3000);
+        setTimeout(secondBattleStart, 500);
         // secondBattleStart();
+    } else {
+        gameplayArea.removeEventListener('click', levelUpProceed);
+        //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
+        setTimeout(startClosingStory, 500);
     }
     // if I added additional story or world map, this section would change ^^^^^^
     // it then removes itself (the eventlistener for confirming the text was read from leveling up)  - should include clicks as well as touches on mobile
@@ -475,10 +577,14 @@ let levelUpProceed = function() {
 // function for leveling up which includes learning new moves
 let levelUpKill = function() {
     console.log("level Up function running")
+    hero.level++;
     // remove event listeners for all action buttons
     document.querySelector(".action1").removeEventListener('click', bash);
     document.querySelector(".action2").removeEventListener('click', soulCompress);
     document.querySelector(".action3").removeEventListener('click', rest);
+    document.getElementsByClassName("action1")[1].removeEventListener('click', bash);
+    document.getElementsByClassName("action2")[1].removeEventListener('click', soulCompress);
+    document.getElementsByClassName("action3")[1].removeEventListener('click', rest);
     // end of 1st and 2nd battles should run level up function according to battleCounter variable
     if (battleCounter == 1) {
         // if it's battle 1, then destroy enemyOne's object and then run level up sequence
@@ -496,10 +602,14 @@ let levelUpKill = function() {
 // function for leveling up which includes learning new moves
 let levelUpSP = function() {
     console.log("level Up function running")
+    hero.level++;
     // remove event listeners for all action buttons
     document.querySelector(".action1").removeEventListener('click', bash);
     document.querySelector(".action2").removeEventListener('click', soulCompress);
     document.querySelector(".action3").removeEventListener('click', rest);
+    document.getElementsByClassName("action1")[1].removeEventListener('click', bash);
+    document.getElementsByClassName("action2")[1].removeEventListener('click', soulCompress);
+    document.getElementsByClassName("action3")[1].removeEventListener('click', rest);
     // end of 1st and 2nd battles should run level up function according to battleCounter variable
     if (battleCounter == 1) {
         // if it's battle 1, then destroy enemyOne's object and then run level up sequence

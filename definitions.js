@@ -3,7 +3,7 @@
 //------------------------------------------------------------------------------------------------------
 
 
-//--------- APP1.js File: -------------------------------------------------------------------------
+//--------- definitions.js File: -------------------------------------------------------------------------
 // functions for character creation
 
 // DOM References
@@ -12,17 +12,28 @@
 
 
 
-//--------- APP2.js File: -------------------------------------------------------------------------
+//--------- audio&attacks.js File: -------------------------------------------------------------------------
     // functions for audio/sfx
     // functions for attacks/actions
 
 
-//--------- APP3.js File: -------------------------------------------------------------------------
-    // functions for moving between different screens includes Prompt Box functions directly above First Battle functions
+//--------- sceneTransitions.js File: -------------------------------------------------------------------------
+    // functions for moving between different screens
+    //includes infiniteModeRun & lose functions
+
+
+//--------- battleOne.js File: -------------------------------------------------------------------------
+    //general battle functions/vars
+    //battleOne specific functions/vars
+    //includes Prompt Box functions directly above First Battle functions
         // game loop functions during battle integrated into the various battle screen functions
 
 
-//--------- APP3.js File: -------------------------------------------------------------------------
+//--------- battleTwo.js File: -------------------------------------------------------------------------
+    //battleTwo specific functions/vars
+
+
+//--------- animations&levelUp.js File: -------------------------------------------------------------------------
     // functions for animations
     // function for leveling up
     // functions misc 
@@ -118,7 +129,7 @@ enemyOneCreation();
 
 //enemyTwo Creation function
 enemyTwoCreation = function() {
-    enemyTwo = new Character(100, 100, 100, 0, 120, "TRIANGLE", 1, 226, 180, 145, 181, 70, 2, 0, 0, 80, 40, 40);
+    enemyTwo = new Character(100, 100, 100, 0, 120, "TRIANGLE", 1, 226, 177, 145, 175, 70, 2, 0, 0, 80, 40, 40);
 }
 enemyTwoCreation();
 
@@ -143,7 +154,7 @@ let heroAnimationIntervalLeft;
 let heroAnimationIntervalRight;
 
 // variable for infiniteMode
-infiniteMode = true;
+let infiniteMode = false;
 
 // create enemyOne object function - will create in the actual start battle functions
 // let enemyOne = new Character(100, 100, 120, ", 1);
@@ -177,6 +188,7 @@ let soulCompressSFX = document.querySelector(".soulCompressSFX");
 let restSFX = document.querySelector(".restSFX");
 let stabSFX = document.querySelector(".stabSFX");
 let brandishSFX = document.querySelector(".brandishSFX");
+let defBlockSFX = document.querySelector(".defBlockSFX");
 
 
 
@@ -247,6 +259,8 @@ let enemyMoveDelay;
 
 // restZs
 let restZs = document.querySelector(".restZs");
+let restZsTwo = document.getElementsByClassName("restZs")[1];
 
 let battleOne;
 let battleOneLongTerm;
+let battleTwoLongTerm;

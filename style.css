@@ -502,9 +502,12 @@ ACTIONS BOX */
     left: -353px
 }
 
+.defBlock {
+    display: none;
+}
+
 .defBlock img {
     position: absolute;
-    display: none;
     left: -475px;
     top: -50px;
 }
@@ -740,7 +743,7 @@ ACTIONS BOX */
     height: 0px; */
     /* border-radius: 20px; */
     position: absolute;
-    transform: rotate(180deg);
+    transform: rotate(180deg) skewX(-6deg);
     /* background: none; */
     /* these two are from the original enemyShadow for enemyOne declared in JS now
     bottom: 85px;

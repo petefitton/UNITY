@@ -88,6 +88,8 @@ let attackActivate = function() {
         // document.getElementsByClassName("action2")[1].addEventListener('click', soulCompress);
         document.getElementsByClassName("action3")[1].addEventListener("click", rest);
         document.getElementsByClassName("action3")[1].style.cursor = "pointer";
+        document.getElementsByClassName("action4")[0].addEventListener("click", defBlock);
+        document.getElementsByClassName("action4")[0].style.cursor = "pointer";
     }
 }
 let attackDeactivate = function() {
@@ -105,16 +107,25 @@ let attackDeactivate = function() {
         document.getElementsByClassName("action2")[1].style.cursor = "initial";
         document.getElementsByClassName("action3")[1].removeEventListener("click", rest);
         document.getElementsByClassName("action3")[1].style.cursor = "initial";
+        document.getElementsByClassName("action4")[0].removeEventListener("click", defBlock);
+        document.getElementsByClassName("action4")[0].style.cursor = "initial";
+        document.getElementsByClassName("action5")[0].removeEventListener("click", soulConstrict);
+        document.getElementsByClassName("action5")[0].style.cursor = "initial";
     }
     // add them for other actions if I get that far
 }
 
 let soulAttacksEnable = function() {
-    document.querySelector(".action2").addEventListener("click", soulCompress);
-    document.querySelector(".action2").style.color = "rgb(172, 169, 169)";
-    document.querySelector(".action2").style.cursor = "pointer";
-    document.querySelector(".action2Span").classList.remove("soulRestricted");
-    if (hero.level >= 2) {
+    if (hero.level == 1) {
+        document.querySelector(".action2").addEventListener("click", soulCompress);
+        document.querySelector(".action2").style.color = "rgb(172, 169, 169)";
+        document.querySelector(".action2").style.cursor = "pointer";
+        document.querySelector(".action2Span").classList.remove("soulRestricted");
+    } else if (hero.level >= 2) {
+        document.getElementsByClassName("action2")[1].addEventListener("click", soulCompress);
+        document.getElementsByClassName("action2")[1].style.color = "rgb(172, 169, 169)";
+        document.getElementsByClassName("action2")[1].style.cursor = "pointer";
+        document.getElementsByClassName("action2Span")[1].classList.remove("soulRestricted");
         document.querySelector(".action5").addEventListener("click", soulConstrict);
         document.querySelector(".action5").style.color = "rgb(172, 169, 169)";
         document.querySelector(".action5").style.cursor = "pointer";
@@ -123,11 +134,16 @@ let soulAttacksEnable = function() {
 }
 
 let soulAttacksDisable = function() {
-    document.querySelector(".action2").removeEventListener("click", soulCompress);
-    document.querySelector(".action2").style.color = "rgb(38, 34, 34)";
-    document.querySelector(".action2").style.cursor = "initial";
-    document.querySelector(".action2Span").classList.add("soulRestricted");
-    if (hero.level >= 2) {
+    if (hero.level == 1) {
+        document.querySelector(".action2").removeEventListener("click", soulCompress);
+        document.querySelector(".action2").style.color = "rgb(38, 34, 34)";
+        document.querySelector(".action2").style.cursor = "initial";
+        document.querySelector(".action2Span").classList.add("soulRestricted");
+    } else if (hero.level >= 2) {
+        document.getElementsByClassName("action2")[1].removeEventListener("click", soulCompress);
+        document.getElementsByClassName("action2")[1].style.color = "rgb(38, 34, 34)";
+        document.getElementsByClassName("action2")[1].style.cursor = "initial";
+        document.getElementsByClassName("action2Span")[1].classList.add("soulRestricted");
         document.querySelector(".action5").removeEventListener("click", soulConstrict);
         document.querySelector(".action5").style.color = "rgb(38, 34, 34)";
         document.querySelector(".action5").style.cursor = "initial";
@@ -165,9 +181,12 @@ let soulCompress = function() {
     promptBoxTwoText.innerText = "You used Soul Compress";
     // showPromptBox move to animation
     setTimeout(showPromptBox, 700);
-    // currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
-    currentSoulCompressDmg = 100;
+// currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+currentSoulCompressDmg = 100;
     currentEnemy.SP -= currentSoulCompressDmg;
+    if (currentEnemy.SP < 0) {
+        currentEnemy.SP = 0;
+    }
     hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
     soulCompressAnimation();
     // move turnCounter false to animation
@@ -198,12 +217,17 @@ let rest = function() {
 // learned after 1st battle: block - reduces HP damage from enemy on that turn
 let defBlock = function() {
     attackDeactivate();
+    // sound
+    defBlockSFX.play();
+    // defBlockAnimation(); <----- don't need because I'm just writing the code directly here since it's not involved
     promptBoxText.innerText = "You used Block";
     promptBoxTwoText.innerText = "You used Block";
-    showPromptBox();
+    setTimeout(showPromptBox, 700);
     hero.grit -= 20 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     //hero should use grit to block
     hero.defBlock = true;
+    document.querySelector(".defBlock").style.display = "block";
+    document.getElementsByClassName("defBlock")[1].style.display = "block";
     // would need to create a loop like gameloop that would monitor once the block should be ended
     // need to make sure the block function is not called inside of itself or anything weird like that
     // by making sure it turns off before it can be used on the next round
@@ -211,7 +235,29 @@ let defBlock = function() {
     turnCounter = false;
 }
 
+let currentSoulConstrictDmg;
+// 'soul compress' SP damage - damages SP of enemy
 // learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
+let soulConstrict = function() {
+    //does soul constriction damage
+    soulCompressSFX.play();
+    promptBoxText.innerText = "You used Soul Constrict";
+    promptBoxTwoText.innerText = "You used Soul Constrict";
+    setTimeout(showPromptBox, 700);
+// currentSoulConstrictDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+currentSoulConstrictDmg = 100;
+    currentEnemy.SP2 -= currentSoulConstrictDmg;
+    if (currentEnemy.SP2 < 0) {
+        currentEnemy.SP2 = 0;
+    }
+    hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    soulConstrictAnimation();
+    // move turnCounter false to animation
+    // should have turnCounter set to false 
+    turnCounter = false;
+}
+
+
 
 // learned after 2nd battle: 'soul reduce' SP damage3D - damages SP of enemy in the second dimension
 
@@ -223,7 +269,7 @@ let stab = function () {
     turnCounter = true;
     stabAnimation();
     promptBoxText.innerText = "Line used Stab";
-    promptBoxTwoText.innerText = "Line used Stab";
+    promptBoxTwoText.innerText = "Triangle used Slash";
     currentEnemy.grit -= 20 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     hero.HP = hero.HP - (10 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1)) + currentEnemy.buff);
     showPromptBoxEnemy();
@@ -235,7 +281,9 @@ let stab = function () {
         }
         setTimeout(brandishRemoval, 1000)
     }
-
+    hero.defBlock = false;
+    document.querySelector(".defBlock").style.display = "none";
+    document.getElementsByClassName("defBlock")[1].style.display = "none";
 }
 
 let brandish = function() {
@@ -243,21 +291,31 @@ let brandish = function() {
     // should have turnCounter set to true
     turnCounter = true;
     promptBoxText.innerText = "Line used Brandish - its strength will increase for its next attack";
-    promptBoxTwoText.innerText = "Line used Brandish - its strength will increase for its next attack";
+    promptBoxTwoText.innerText = "Triangle used Triangulate - its strength will increase for its next attack";
     showPromptBoxEnemy();
     buffCounter = true;
     currentEnemy.grit -= 15 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     currentEnemy.buff = 16 + (Math.floor(Math.random() * 5) * (Math.round(Math.random()) * 2 - 1));
     document.querySelector(".brandish").style.display = "block";
+    document.getElementsByClassName("brandish")[1].style.display = "block";
 }
 
 //enemyOne move select function
 let enemyOneMoveSelect = function() {
-    let x = Math.floor(Math.random() * 10);
-    if (x >= 3) {
-        stab();
+    if (currentEnemy.grit <= 0) {
+        restSFX.play();
+        turnCounter = true;
+        promptBoxText.innerText = "Line is forced to rest due to low Grit";
+        promptBoxTwoText.innerText = "Triangle is forced to rest due to low Grit";
+        showPromptBoxEnemy();
+        currentEnemy.grit = 40;
     } else {
-        brandish();
+        let x = Math.floor(Math.random() * 10);
+        if (x >= 3) {
+            stab();
+        } else {
+            brandish();
+        }
     }
 }
 

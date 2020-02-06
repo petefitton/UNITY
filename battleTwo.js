@@ -9,6 +9,36 @@ let battleTwoLoad = function() {
     setTimeout(showSecondBattleScreen, 200);
 }
 
+let battleLoopTwoLongTerm = function() {
+    // console.log("longer battle lop running that checks to enable soul attacks")
+    if (hero.position.bottom >= hero.position.bottomOrig + 15) {
+        heroAnimationsClear();
+    }
+    
+    if (hero.position.bottom <= hero.position.bottomOrig - 15) {
+        heroAnimationsClear();
+    }
+    
+    if (hero.position.left >= hero.position.leftOrig + 15) {
+        heroAnimationsClear();
+    }
+    
+    if (hero.position.left <= hero.position.leftOrig - 15) {
+        heroAnimationsClear();
+    }
+
+    if (true) {
+        //used for testing
+        // console.log("soul Attacks Enable about to run")
+        soulAttacksEnable();
+    }
+    //commented out for testing
+    // if (currentEnemy.HP <= (currentEnemy.maxHP/2)) {
+    //     // console.log("soul Attacks Enable about to run")
+    //     setTimeout(soulAttacksEnable, 3000);
+    // }
+}
+
 let battleLoopTwo = function() {
     // console.log("battleLoopTwo running")
     //battle loop adjusts the location of the hero & shadow image divs plus the same for the enemy
@@ -30,7 +60,7 @@ let battleLoopTwo = function() {
     enemyTwoShadow.style.borderLeft = enemyTwo.position.shadBordLeft + "px solid transparent";
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
-    if (enemyTwo.HP <= 0) {
+    if (currentEnemy.HP <= 0) {
         clearTimeout(enemyMoveDelay);
         clearInterval(battleTwo);
         clearInterval(battleTwoLongTerm);
@@ -52,6 +82,9 @@ let battleLoopTwo = function() {
         document.querySelector(".enemyTwoHP").innerText = `HP: ${currentEnemy.HP}`
         document.querySelector(".enemyTwoSP").innerText = `SP: ${currentEnemy.SP}`
         document.querySelector(".enemyTwoSP2").innerText = `SP: ${currentEnemy.SP2}`
+        if (currentEnemy.grit <=0) {
+            currentEnemy.grit = 0;
+        }
         document.querySelector(".enemyTwoGrit").innerText = `GRIT: ${currentEnemy.grit}`
         document.querySelector(".enemyTwoName").innerText = `${currentEnemy.name}`
         // code for SP2 and SP3
@@ -117,7 +150,6 @@ let secondBattleStart = function() {
                                                             // enemyTwoImg.style.left = currentEnemy.position.left + "px";
     turnCounter = true;
     defenseReady = false;
-    hero.level = 1;
     hero.HP = hero.maxHP;
     hero.SP = hero.maxSP;
     hero.grit = hero.maxGrit;
@@ -146,7 +178,7 @@ let secondBattleStart = function() {
     heroStaticReady = true;
     battleTwo = setInterval(battleLoopTwo, 60);
     // let battleOne = setTimeout(battleLoopOne, 60);
-    let battleTwoLongTerm = setInterval(battleLoopOneLongTerm, 3000);
+    battleTwoLongTerm = setInterval(battleLoopTwoLongTerm, 3000);
     // let battleOneLongTerm = setTimeout(battleLoopOneLongTerm, 300);
 }
 
