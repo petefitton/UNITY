@@ -81,8 +81,8 @@ let attackActivate = function() {
     document.querySelector(".action3").addEventListener("click", rest);
     document.querySelector(".action3").style.cursor = "pointer";
 }
-
 let attackDeactivate = function() {
+
     document.querySelector(".action1").removeEventListener("click", bash);
     document.querySelector(".action1").style.cursor = "initial";
     document.querySelector(".action2").removeEventListener("click", soulCompress);
@@ -116,8 +116,8 @@ let soulAttacksDisable = function() {
 
 // bash - damages HP of enemy
 let bash = function() {
-    console.log("bash function running")
     attackDeactivate();
+    console.log("bash function running")
     promptBoxText.innerText = "You used Bash";
     bashAnimation();
     // a lot of the code tied to this attack is located in the animation function which is in app4.js
@@ -130,8 +130,8 @@ let bash = function() {
 let currentSoulCompressDmg;
 // 'soul compress' SP damage - damages SP of enemy
 let soulCompress = function() {
-    soulCompressSFX.play();
     attackDeactivate();
+    soulCompressSFX.play();
     promptBoxText.innerText = "You used Soul Compress";
     // showPromptBox move to animation
     setTimeout(showPromptBox, 700);
@@ -146,8 +146,9 @@ let soulCompress = function() {
 
 // rest
 let rest = function() {
-    restSFX.play();
     attackDeactivate();
+    restSFX.play();
+    restAnimation();
     promptBoxText.innerText = "You used Rest";
     setTimeout(showPromptBox, 700);
     hero.HP += 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
@@ -167,7 +168,7 @@ let defBlock = function() {
     attackDeactivate();
     promptBoxText.innerText = "You used Block";
     showPromptBox();
-    hero.grit -= 20 (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
+    hero.grit -= 20 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     //hero should use grit to block
     hero.defBlock = true;
     // would need to create a loop like gameloop that would monitor once the block should be ended
@@ -187,7 +188,9 @@ let stab = function () {
     // should have turnCounter set to true
     stabSFX.play();
     turnCounter = true;
+    stabAnimation();
     promptBoxText.innerText = "Line used Stab";
+    currentEnemy.grit -= 20 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     hero.HP = hero.HP - (10 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1)) + currentEnemy.buff);
     showPromptBoxEnemy();
     if (buffCounter === true) {
@@ -208,6 +211,7 @@ let brandish = function() {
     promptBoxText.innerText = "Line used Brandish - its strength will increase for its next attack";
     showPromptBoxEnemy();
     buffCounter = true;
+    currentEnemy.grit -= 15 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     currentEnemy.buff = 16 + (Math.floor(Math.random() * 5) * (Math.round(Math.random()) * 2 - 1));
     document.querySelector(".brandish").style.display = "block";
 }

@@ -499,6 +499,48 @@ ACTIONS BOX */
     top: -50px;
 }
 
+.restZs {
+    display: none;
+    position: absolute;
+    left: -246px;
+    /* bottom: 109px; */
+    font-weight: bold;
+}
+
+.ZOne {
+    position: absolute;
+    left: 19px;
+    bottom: 25px;
+    font-size: 10px;
+}
+
+.ZTwo {
+    position: absolute;
+    left: 10px;
+    bottom: 13px;
+    font-size: 13px;
+}
+
+/* .ZThree {} */
+
+.stabMarkContainer {
+    position: absolute;
+    bottom: 80px;
+    left: -262px;
+    border: 1px solid black;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.stabMark {
+    font-size: 43px;
+    background-color: white;
+    width: 3px;
+    height: 44px;
+}
+
+
+
 /* HERO STATS */
 
 .heroStats {
@@ -724,12 +766,12 @@ ACTIONS BOX */
     font-size: 150px;
     text-align: center;
     margin-bottom: -16px;
-    color: white;
+    color: #bdbcbc;
 }
 
 .creditsCreator {
     text-align: center;
-    margin-bottom: 19px;
+    margin-bottom: -9px;
 }
 
 .creditsAudio {

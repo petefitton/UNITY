@@ -195,5 +195,9 @@ let enemyShadowHeight;
 // enemyMoveDelay to prevent enemy from taking move when hero ends battle
 let enemyMoveDelay;
 
+
+// restZs
+let restZs = document.querySelector(".restZs");
+
 let battleOne;
 let battleOneLongTerm;

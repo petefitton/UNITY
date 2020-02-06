@@ -90,7 +90,7 @@ let heroStaticAnimateUp = function() {
         // console.log("subtracting 1px to bottom")
         hero.position.bottom -= 1;
         hero.position.shadBottom -= 0.5;
-        if (hero.position.bottom == hero.position.bottomOrig) {
+        if (hero.position.bottom <= hero.position.bottomOrig) {
             // console.log("clearing return pixel interval")
             clearInterval(heroReturn);
             heroStaticReady = true;
@@ -119,7 +119,7 @@ let heroStaticAnimateDown = function() {
         // console.log("adding 1px to bottom")
         hero.position.bottom += 1;
         hero.position.shadBottom += 0.5;
-        if (hero.position.bottom == hero.position.bottomOrig) {
+        if (hero.position.bottom >= hero.position.bottomOrig) {
             // console.log("clearing return pixel interval")
             clearInterval(heroReturn);
             heroStaticReady = true;
@@ -148,7 +148,7 @@ let heroStaticAnimateRight = function() {
         // console.log("subtracting 1px to left")
         hero.position.left -= 1;
         hero.position.shadLeft -= 1;
-        if (hero.position.left == hero.position.leftOrig) {
+        if (hero.position.left <= hero.position.leftOrig) {
             // console.log("clearing return pixel interval")
             clearInterval(heroReturn);
             heroStaticReady = true;
@@ -177,7 +177,7 @@ let heroStaticAnimateLeft = function() {
         // console.log("adding 1px to left")
         hero.position.left += 1;
         hero.position.shadLeft += 1;
-        if (hero.position.left == hero.position.leftOrig) {
+        if (hero.position.left >= hero.position.leftOrig) {
             // console.log("clearing return pixel interval")
             clearInterval(heroReturn);
             heroStaticReady = true;
@@ -388,12 +388,62 @@ let soulCompressAnimation = function() {
 
 
 // rest
+let incrementRest;
+let incrementRestTwo;
+let decrementRest;
+let decrementRestTwo;
+
+
 let restAnimation = function() {
-    
+    heroMoveReady = true;
+    if (heroStaticReady == false) {
+        bashAnimationRepeat = setTimeout(restAnimation, 60);
+    } else {
+        restZs.style.bottom = 109 + "px";
+        incrementRest = function() {
+            restZs.style.display = "block";
+            restZs.style.bottom = 110 + "px";
+            setTimeout(incrementRestTwo, 600);
+        }
+        incrementRestTwo = function() {
+            restZs.style.bottom = 111 + "px";
+            setTimeout(decrementRest, 600);
+        }
+        decrementRest = function() {
+            restZs.style.bottom = 110 + "px";
+            setTimeout(decrementRestTwo, 600);
+        }
+        decrementRestTwo = function() {
+            restZs.style.bottom = 109 + "px";
+            //function to hide Z's
+            let hideZs = function() {
+                restZs.style.display = "none";
+                heroMoveReady = false;
+            }
+            setTimeout(hideZs, 1500);
+        }
+    //show Z's
+    setTimeout(incrementRest, 40);
+    }
 }
+// enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
 
 
-//end of function should have: heroMoveReady = false;
+
+let stabAnimation = function() {
+    //slashing white line through circle
+    heroMoveReady = true;
+    if (heroStaticReady == true) {
+        document.querySelector(".stabMarkContainer").style.display = "block";
+        let stabDelay = function() {
+            document.querySelector(".stabMarkContainer").style.display = "none";
+            heroMoveReady = false;
+        }
+        setTimeout(stabDelay, 1300);
+    } else {
+        setTimeout(stabAnimation, 20);
+    }
+}
 
 
 
