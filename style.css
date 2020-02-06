@@ -407,8 +407,8 @@ ACTIONS BOX */
 
 .enemyImg {
     position: absolute;
-    height: 70px;
-    width: 2px;
+    /* height: 70px;
+    width: 2px; */
     /* top: 14px;
     was originally just top and left, but I'm rewriting it to be just bottom and left for us in JS
     bottom: 235px; */
@@ -426,9 +426,9 @@ ACTIONS BOX */
 .enemyShadow {
     background-color: rgb(36, 34, 34);
     position: absolute;
-    transform: rotate(21deg);
-    width: 4px;
-    height: 41px;
+    transform: rotate(201deg);
+    /* width: 4px;
+    height: 41px; */
 }
 
 .enemyStage {

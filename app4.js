@@ -290,6 +290,27 @@ let bashAnimation = function() {
     }
 }
     // 'soul compress' SP damage - damages SP of enemy
+let heightReduction;
+let heightReductionInterval;
+let heightReductionInternal;
+let enemyHReductionAmount;
+let enemyShadHReductionAmount;
+let enemyShadBReductionAmount;
+let enemyShadLReductionAmount;
+let tempEnemyHeight;
+
+
+let heightReductionHandler = function() {
+    currentEnemy.position.height -= (enemyHReductionAmount/80);
+    currentEnemy.position.shadHeight -= (enemyShadHReductionAmount/80);
+    currentEnemy.position.shadBottom += (enemyShadBReductionAmount/80);
+    currentEnemy.position.shadLeft += (enemyShadLReductionAmount/80);
+    enemyImg.style.height = currentEnemy.position.height + "px";
+    enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
+    enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+    enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+}
+
 
 let soulCompressAnimation = function() {
     heroMoveReady = true;
@@ -299,98 +320,83 @@ let soulCompressAnimation = function() {
         //execute animation
         let soulCompressAnimationNested = function() {
             console.log("soulCompressAnimationNested starting")
-            // inside function, should change height of enemy
-            // let heroReturn;
-            // let soulCompressReset;
-            // let heroBashRight;
+            // function should change height of enemy
             let enemyHeightReduce = function() {
                 // console.log("adding 1px to left")
-                let enemyHeight = parseInt(enemyImg.style.height, 10);
-                enemyHeight -= ((currentSoulCompressDmg/100) * 70 + "px");
-                enemyImg.style.height = enemyHeight;
-                let enemyShadowHeight = parseInt(enemyShadow.style.height, 10);
-                enemyShadowHeight -= ((currentSoulCompressDmg/100) * 41 + "px");
-                enemyShadow.style.height = enemyShadowHeight;
-                // hero.position.shadLeft -= 1;
-                // hero.position.bottom -= 1;
-                // hero.position.shadBottom -= 0.5;
-                // if (hero.position.left < hero.position.leftOrig - 2) {
-                //     // console.log("clearing additive pixel interval")
-                //     clearInterval(heroBashStartChain);
-                //     heroCharge = setInterval(heroBashRight, 30);
+                // enemyImg.height -= ((currentSoulCompressDmg/100) * 70);
+                tempEnemyHeight = currentEnemy.position.height;
+            // let tempEnemyShadHeight = currentEnemy.position.shadHeight;
+            // let tempEnemyShadBottom = currentEnemy.position.shadBottom;
+            // let tempEnemyShadLeft = currentEnemy.position.shadLeft;
+                    // currentEnemy.position.height -= (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.heightOrig));
+                    // // as shadow gets smaller in height, it needs to increase in both bottom and left positions a little bit
+                    //     // bottom increases by 38px over the full course of the SP damage
+                    //     // left increases by 7px over the full course of the SP damage
+                    // currentEnemy.position.shadHeight -= (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadHeightOrig));
+                    // currentEnemy.position.shadBottom += (((currentSoulCompressDmg/currentEnemy.maxSP) * 38));
+                    // currentEnemy.position.shadLeft += (((currentSoulCompressDmg/currentEnemy.maxSP) * 8));
+                enemyHReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.heightOrig));
+                // as shadow gets smaller in height, it needs to increase in both bottom and left positions a little bit
+                    // bottom increases by 38px over the full course of the SP damage
+                    // left increases by 7px over the full course of the SP damage
+                enemyShadHReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadHeightOrig));
+                enemyShadBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * 38));
+                enemyShadLReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * 8));
+                // if (currentEnemy.position.height <= 0) {
+                //     currentEnemy.position.shadHeight = 0;
+                //     currentEnemy.position.shadBottom = 0;
+                //     currentEnemy.position.shadLeft = 0;
                 // }
-            }
-            enemyHeightReduce();
-            // heroBashRight = function() {
-            //     // console.log("subtracting 1px to left")
-            //     hero.position.left += 1;
-            //     hero.position.shadLeft += 1;
-            //     hero.position.bottom += 1;
-            //     hero.position.shadBottom += 0.5;
-            //     if (hero.position.left > hero.position.leftOrig + 9) {
-            //         // console.log("clearing return pixel interval")
-            //         clearInterval(heroCharge);
-            //         heroSecondWindBack = setInterval(heroBashPrepareTwo, 40);
-            //     }
-            // }
-            // let heroBashPrepareTwo = function() {
-            //     // console.log("adding 1px to left")
-            //     hero.position.left -= 1;
-            //     hero.position.shadLeft -= 1;
-            //     hero.position.bottom -= 1;
-            //     hero.position.shadBottom -= 0.5;
-            //     if (hero.position.left < hero.position.leftOrig - 2) {
-            //         // console.log("clearing additive pixel interval")
-            //         clearInterval(heroSecondWindBack);
-            //         heroSecondBash = setInterval(heroBashRightTwo, 20);
-            //     }
-            // }
-            // heroBashRightTwo = function() {
-            //     // console.log("subtracting 1px to left")
-            //     hero.position.left += 1;
-            //     hero.position.shadLeft += 1;
-            //     hero.position.bottom += 1;
-            //     hero.position.shadBottom += 0.5;
-            //     if (hero.position.left > hero.position.leftOrig + 11) {
-            //         // console.log("clearing return pixel interval")
-            //         clearInterval(heroSecondBash);
-            //         bashSFX.play();
-            //         enemyBashMarks.style.display = "block";
-            //         soulCompressResetInterval = setInterval(soulCompressReset, 150);
-            //         currentEnemy.HP -= 21 + (Math.floor(Math.random() * 5) * (Math.round(Math.random()) * 2 - 1));
-            //         let bashPromptBox = setTimeout(showPromptBox, 1500);
-            //         if (currentEnemy.HP <= 0) {
-            //             clearTimeout(bashPromptBox);
-            //         }
-            //     }
-            // }
-            // soulCompressReset = function() {
-            //     // console.log("returning back to default")
-            //     hero.position.left -= 1;
-            //     hero.position.shadLeft -= 1;
-            //     hero.position.bottom -= 1;
-            //     hero.position.shadBottom -= 0.5;
-            //     let bashMarksRemovalDelay = function() {
-            //         enemyBashMarks.style.display = "none";
-            //         // should have turnCounter set to false 
-            //         turnCounter = false;
-            //     }
-            //     setTimeout(bashMarksRemovalDelay, 1000);
-            //     if (hero.position.left == hero.position.leftOrig) {
-            //         // console.log("clearing return pixel interval")
-            //         clearInterval(soulCompressResetInterval);
-            //         let heroMoveReadyDelay = function() {
-            //             heroMoveReady = false;
-            //         }
-            //         setTimeout(heroMoveReadyDelay, 1500)
-            //     }
-            // }
-            // let heroBashStartChain = setInterval(enemyHeightReduce, 200)
-        }
-        soulCompressAnimationNested();
+                // currentEnemy.position.height -= 0;
+                // currentEnemy.position.shadHeight -= 0;
+                // currentEnemy.position.shadBottom -= 0;
+                // currentEnemy.position.shadLeft -= 0;
+                heightReduction = function() {
+                    //perform incremental reductions
+                    console.log("running heightReduction")
+                    heightReductionHandler();
+                    if (!(currentEnemy.position.height <= (tempEnemyHeight - (enemyHReductionAmount/2)))) {
+                        setTimeout(heightReduction, 12);
+                    } else {
+                        //if reached half height reduction, move to next function
+                        heightReductionInternal();
+                    }
+                    heightReductionInternal = function() {
+                        heightReductionHandler();
+                        if (!(currentEnemy.position.height <= (tempEnemyHeight - enemyHReductionAmount))) {
+                            //if reached full height reduction, stop repeating:
+                            setTimeout(heightReductionInternal, 13);
+                        } else {
+                            heroMoveReady = false;
+                        }
+                    }
+                }
+                heightReduction();
+
+
+                // enemyImg.style.height = currentEnemy.position.height + "px";
+                // // as shadow gets smaller in height, it needs to increase in both bottom and left positions a little bit
+                //     // bottom increases by 38px over the full course of the SP damage
+                //     // left increases by 7px over the full course of the SP damage
+                // enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
+                // enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+                // enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+            }()
+        }()
     }
 }
-    // rest
+
+
+// rest
+let restAnimation = function() {
+    
+}
+
+
+//end of function should have: heroMoveReady = false;
+
+
+
     // learned after 1st battle: block - reduces HP damage from enemy on that turn
     // learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
     // learned after 2nd battle: 'soul reduce' SP damage3D - damages SP of enemy in the second dimension

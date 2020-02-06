@@ -53,7 +53,7 @@
 
 // constructor function to use for creating all characters
 
-function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom, posLeft, shadowBottom, shadowLeft) {
+function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom, posLeft, shadowBottom, shadowLeft, heightInitial, widthInitial, shadHeightInitial, shadWidthInitial) {
     function Position() {
         this.bottom = posBottom;
         this.bottomOrig = posBottom;
@@ -63,6 +63,14 @@ function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom
         this.shadBottomOrig = shadowBottom;
         this.shadLeft = shadowLeft;
         this.shadLeftOrig = shadowLeft;
+        this.height = heightInitial;
+        this.heightOrig = heightInitial;
+        this.width = widthInitial;
+        this.widthOrig = widthInitial;
+        this.shadHeight = shadHeightInitial;
+        this.shadHeightOrig = shadHeightInitial;
+        this.shadWidth = shadWidthInitial;
+        this.shadWidthOrig = shadWidthInitial;
   };
     this.HP = HPInput;
     this.maxHP = HPInput;
@@ -81,17 +89,17 @@ function Character(HPInput, SPInput, gritInput, nameInput, levelInput, posBottom
   }
 
 // create protagonist object function
-let hero = new Character(100, 0, 100, "SISYPHUS", 1, 80, -270, 85, -266);
+let hero = new Character(100, 0, 100, "SISYPHUS", 1, 80, -270, 85, -266, 0, 0, 0, 0);
 
 
 // should also call the create Crawler function to create the enemy with name enemyOne
-let enemyOne;
+// let enemyOne;
 
 //enemyOne Creation function
 enemyOneCreation = function() {
-    enemyOne = new Character(100, 100, 120, "LINE", 1, 235, 224, 195, 215);
+    enemyOne = new Character(100, 100, 120, "LINE", 1, 235, 224, 195, 215, 70, 2, 41, 4);
 }
-
+enemyOneCreation();
 
 //static animation variables - will be true if static is good to run; false if not
 let heroStaticReady;
@@ -152,6 +160,13 @@ let enemyImg = document.querySelector(".enemyImg");
 let enemyShadow = document.querySelector(".enemyShadow");
 let enemyBashMarks = document.querySelector(".bashMarks");
 
+// initializing enemyImg height and width with DOM
+enemyImg.style.height = enemyOne.position.height + "px";
+enemyImg.style.width = enemyOne.position.width + "px";
+enemyShadow.style.height = enemyOne.position.shadHeight + "px";
+enemyShadow.style.width = enemyOne.position.shadWidth + "px";
+// enemyShadow.style.height = 13;
+// enemyShadow.style.height = 13;
 
 
 // global variable for infinite mode run function
@@ -174,6 +189,11 @@ let defenseReady = false;
 // current enemy variable that changes for each battle
 let currentEnemy;
 
-// enemyMoveDelay to prevent enemy from taking move when hero ends battle
-let enemyMoveDelay
+let enemyHeight;
+let enemyShadowHeight;
 
+// enemyMoveDelay to prevent enemy from taking move when hero ends battle
+let enemyMoveDelay;
+
+let battleOne;
+let battleOneLongTerm;
