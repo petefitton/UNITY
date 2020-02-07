@@ -8,6 +8,9 @@
 
 //animations for dissolving between screens using fade()
 //taken from https://stackoverflow.com/questions/29017379/how-to-make-fadeout-effect-with-pure-javascript
+
+
+
 // animation between titleScreen and MainMenu
 let titleScreenStyle = document.querySelector('.titleScreen').style;
 titleScreenStyle.opacity = 1;
@@ -336,7 +339,7 @@ let soulCompressAnimation = function() {
     } else {
         //execute animation
         let soulCompressAnimationNested = function() {
-            console.log("soulCompressAnimationNested starting")
+            // console.log("soulCompressAnimationNested starting")
             let enemyHeightReduce = function() {
                 tempEnemyHeight = currentEnemy.position.height;
                 tempEnemyBordBottom = currentEnemy.position.bordBottom;
@@ -349,7 +352,7 @@ let soulCompressAnimation = function() {
                 enemyShadBBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadBordBottomOrig));
                 heightReduction = function() {
                     //perform incremental reductions
-                    console.log("running heightReduction")
+                    // console.log("running heightReduction")
                     heightReductionHandler();
                     if (currentEnemy.name == "LINE") {
                         if (!(currentEnemy.position.height <= (tempEnemyHeight - (enemyHReductionAmount/2)))) {
@@ -559,7 +562,7 @@ let soulConstrictAnimation = function() {
     } else {
         //execute animation
         let soulConstrictAnimationNested = function() {
-            console.log("soulConstrictAnimationNested starting")
+            // console.log("soulConstrictAnimationNested starting")
             let enemyWidthReduce = function() {
                 tempEnemyBordLeft = currentEnemy.position.bordLeft;
                 // tempEnemyBordBottom = currentEnemy.position.height;
@@ -568,7 +571,7 @@ let soulConstrictAnimation = function() {
                 enemyShadLeftIncreaseAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * 38.5));
                 widthReduction = function() {
                     //perform incremental reductions
-                    console.log("running widthReduction")
+                    // console.log("running widthReduction")
                     widthReductionHandler();
                     if (currentEnemy.name == "LINE") {
                         //do nothing
@@ -611,21 +614,6 @@ let soulConstrictAnimation = function() {
         }()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -676,7 +664,7 @@ let levelUpProceed = function() {
 // function for leveling up which includes learning new moves
 let levelUpKill = function() {
     hideAll();
-    console.log("level Up function running")
+    // console.log("level Up function running")
     hero.level++;
     // remove event listeners for all action buttons
     document.querySelector(".action1").removeEventListener('click', bash);
@@ -710,7 +698,7 @@ let levelUpKill = function() {
 // function for leveling up which includes learning new moves
 let levelUpSP = function() {
     hideAll();
-    console.log("level Up function running")
+    // console.log("level Up function running")
     hero.level++;
     // remove event listeners for all action buttons
     document.querySelector(".action1").removeEventListener('click', bash);

@@ -18,7 +18,7 @@ let hidePromptBoxPlusActivate = function() {
 
 let emptyPromptBoxAndDefenseReady = function() {
     gameplayArea.removeEventListener("click", emptyPromptBoxAndDefenseReady);
-    console.log("empty prompt box function running - means defense Ready is set to true now & innerText of promptBoxText is an empty string")
+    // console.log("empty prompt box function running - means defense Ready is set to true now & innerText of promptBoxText is an empty string")
     promptBoxText.innerText = "";
     promptBoxClick.style.display = "none";
     promptBoxTwoText.innerText = "";
@@ -30,7 +30,7 @@ let emptyPromptBoxAndDefenseReady = function() {
 }
 
 let showPromptBox = function() {
-    console.log("show prompt box function running")
+    // console.log("show prompt box function running")
     promptBoxClick.style.display = "block";
     promptBox.style.display = "block";
     promptBoxTwoClick.style.display = "block";
@@ -168,7 +168,7 @@ let turnController = function() {
                 // DOM query other moves as I build it out more
     } else if (turnCounter === false) {
         if (defenseReady === true) {
-            console.log("it is the enemy's turn and you are ready to defend function running")
+            // console.log("it is the enemy's turn and you are ready to defend function running")
             defenseReady = false;
             enemyMoveDelay = setTimeout(enemyOneMoveSelect, 300);
         }

@@ -57,9 +57,6 @@ function Character(HPInput, SPInput, SP2Input, SP3Input, gritInput, nameInput, l
 let hero = new Character(100, 0, 0, 0, 100, "SISYPHUS", 1, 80, -270, 85, -266, 0, 0, 0, 0, 0, 0, 0);
 
 
-// should also call the create Crawler function to create the enemy with name enemyOne
-// let enemyOne;
-
 //enemyOne Creation function
 let enemyOne;
 enemyOneCreation = function() {
@@ -74,11 +71,11 @@ enemyTwoCreation = function() {
 }
 enemyTwoCreation();
 
-//enemyThree Creation function
-enemyThreeCreation = function() {
-    enemyThree = new Character(100, 100, 100, 100, 120, "CUBE", 1, 235, 224, 195, 215, 70, 2, 41, 4);
-}
-enemyThreeCreation();
+//enemyThree Creation function - did not reach this stretch goal
+// enemyThreeCreation = function() {
+//     enemyThree = new Character(100, 100, 100, 100, 120, "CUBE", 1, 235, 224, 195, 215, 70, 2, 41, 4);
+// }
+// enemyThreeCreation();
 
 //static animation variables - will be true if static is good to run; false if not
 let heroStaticReady;
@@ -104,12 +101,6 @@ let heroBashStartChain;
 
 // variable for infiniteMode
 let infiniteMode = false;
-
-// create enemyOne object function - will create in the actual start battle functions
-// let enemyOne = new Character(100, 100, 120, ", 1);
-
-    // create enemy2 object function -------STRETCH
-    // create enemy3 object function -------STRETCH
 
 
 
@@ -183,7 +174,6 @@ enemyTwoShadow.style.borderLeft = enemyTwo.position.shadBordLeft + "px solid tra
 // global variable for infinite mode run function
 let infiniteModeRun;
 
-// variables and objects/arrays---------------------------------------------------------------------------
 
 // battleCounter = 0 by default and increments each time a battle is called
 let battleCounter = 0;

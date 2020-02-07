@@ -32,7 +32,7 @@ let battleLoopTwoLongTerm = function() {
     //     soulAttacksEnable();
     // }
     if (currentEnemy.HP <= (currentEnemy.maxHP/2)) {
-        console.log("soul Attacks Enable about to run from Battle Loop Two Long Term")
+        // console.log("soul Attacks Enable about to run from Battle Loop Two Long Term")
         setTimeout(soulAttacksEnable, 2000);
     }
 }
@@ -156,10 +156,6 @@ let secondBattleStart = function() {
     // enemyTwoCreation();
     // each battle will have a different currentEnemy:
     currentEnemy = enemyTwo;
-                // enemyTwoImg.style.height = currentEnemy.position.height + "px";
-                // enemyTwoShadow.style.height = currentEnemy.position.shadHeight + "px";
-                // enemyTwoShadow.style.bottom = currentEnemy.position.shadBottom + "px";
-                // enemyTwoShadow.style.left = currentEnemy.position.shadLeft + "px";
     //initialize battle to have Soul attacks hidden
     soulAttacksDisable();
     setTimeout(soulAttacksDisable, 500);
@@ -167,17 +163,6 @@ let secondBattleStart = function() {
     setTimeout(soulAttacksDisable, 1500);
     setTimeout(soulAttacksDisable, 2000);
     //initialize battle to start with hero's turn
-    //may be able to delete this big block of code:
-                                                            // hero.position.bottom = hero.position.bottomOrig
-                                                            // hero.position.left = hero.position.leftOrig
-                                                            // hero.position.shadBottom = hero.position.shadBottomOrig
-                                                            // hero.position.shadLeft = hero.position.shadLeftOrig
-                                                            // heroImg.style.bottom = hero.position.bottom + "px";
-                                                            // heroImg.style.left = hero.position.left + "px";
-                                                            // heroShadow.style.bottom = hero.position.shadBottom + "px";
-                                                            // heroShadow.style.left = hero.position.shadLeft + "px";
-                                                            // enemyTwoImg.style.bottom = currentEnemy.position.bottom + "px";
-                                                            // enemyTwoImg.style.left = currentEnemy.position.left + "px";
     turnCounter = true;
     defenseReady = false;
     hero.HP = hero.maxHP;

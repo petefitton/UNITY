@@ -15,10 +15,8 @@ let hideAll = function() {
     //firstBattleScreen
     document.querySelector(".firstBattleScreen").style.display = "none";
     document.querySelector(".secondBattleScreen").style.display = "none";
-    //secondBattleScreen --------_STRETCH
-    // document.querySelector(".secondBattleScreen").style.display = "none";
-    //thirdBattleScreen --------_STRETCH
-    // document.querySelector(".thirdBattleScreen").style.display = "none";
+        //thirdBattleScreen --------_STRETCH
+        // document.querySelector(".thirdBattleScreen").style.display = "none";
     //closingStory
     document.querySelector(".closingStory").style.display = "none";
     //creditsScreen
@@ -48,7 +46,7 @@ let showTitleScreen = function() {
 
 
 
-// not sure why I originally broke this out, but I think I can remove it
+// I think this was if I wanted a fade from the title screen to the opening story, which I decided not to do for now at least
 // let titleScreenProceed = function() {
 //     gameplayArea.addEventListener("click", titleScreenFade);
 // }
@@ -163,7 +161,7 @@ let showInstructions = function() {
     document.querySelector(".instructionsScreen").style.display = "block";
 
 
-    // I might be wrong, but I think these three event listeners should not be added here
+    // I might be wrong, but I think these three event listeners should not be added here; not removing at the moment
     document.querySelector(".musicMuteButton").addEventListener("click", muteAllMusic);
     document.querySelector(".sfxMuteButton").addEventListener("click", muteAllSFX);
     document.querySelector(".sfxPlayButton").addEventListener("click", playIntroSFX);
@@ -244,14 +242,8 @@ let rollCredits = function() {
     document.querySelector(".creditsScreen").style.display = "block";
     document.querySelector(".returnMainMenu").addEventListener("click", showMainMenuTwo);
 }
-    // once credits are fully displayed
-        // addeventlistener click anywhere to Reset
-            // when clicked/touched: the eventlistener removes itself
-            // and runs gameReset function
-// function for gameReset which executes once the game finishes and starts the game over without having to reload the page
-    // all things should be initialized including the hero and all enemies
-    // destroyed/removed as necessary
-// function for losing game by losing all HP
+
+
 let infiniteRandom;
 
 infiniteModeRun = function() {

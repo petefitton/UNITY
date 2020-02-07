@@ -122,7 +122,7 @@ let attackDeactivate = function() {
 }
 
 let soulAttacksEnable = function() {
-    console.log("soul Attacks Enable about to run directly")
+    // console.log("soul Attacks Enable about to run directly")
     if (hero.level >= 1) {
         document.querySelector(".action2").addEventListener("click", soulCompress);
         document.querySelector(".action2").style.color = "rgb(172, 169, 169)";
@@ -142,7 +142,7 @@ let soulAttacksEnable = function() {
 }
 
 let soulAttacksDisable = function() {
-    console.log("soul Attacks Disable about to run directly")
+    // console.log("soul Attacks Disable about to run directly")
     if (hero.level >= 1) {
         document.querySelector(".action2").removeEventListener("click", soulCompress);
         document.querySelector(".action2").style.color = "rgb(38, 34, 34)";
@@ -176,7 +176,7 @@ let delayEnemyTurn = function() {
 // bash - damages HP of enemy
 let bash = function() {
     attackDeactivate();
-    console.log("bash function running")
+    // console.log("bash function running")
     promptBoxText.innerText = "You used Bash";
     promptBoxTwoText.innerText = "You used Bash";
     bashAnimation();
@@ -258,9 +258,6 @@ let defBlock = function() {
     hero.defBlock = true;
     document.querySelector(".defBlock").style.display = "block";
     document.getElementsByClassName("defBlock")[1].style.display = "block";
-    // would need to create a loop like gameloop that would monitor once the block should be ended
-    // need to make sure the block function is not called inside of itself or anything weird like that
-    // by making sure it turns off before it can be used on the next round
     // should have turnCounter set to false 
     setTimeout(delayEnemyTurn, 2000);
 }
@@ -301,7 +298,13 @@ let soulConstrict = function() {
 
 
 
+
+
 // learned after 2nd battle: 'soul reduce' SP damage3D - damages SP of enemy in the second dimension
+
+
+
+
 
 
 // enemy moves
