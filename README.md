@@ -26,7 +26,7 @@ Make a custom background for some of the scenes that moves
 
 Wireframes:
 
-![Wireframes](/img/Proj1Wireframes.jpeg)
+![Wireframes](/img/Proj1Wireframes.png)
 
 
 
