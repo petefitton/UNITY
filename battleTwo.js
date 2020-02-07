@@ -61,11 +61,16 @@ let battleLoopTwo = function() {
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
     if (currentEnemy.HP <= 0) {
-        clearTimeout(enemyMoveDelay);
-        clearInterval(battleTwo);
-        clearInterval(battleTwoLongTerm);
-        // need to revent show prompt box function
-        setTimeout(levelUpKill, 1000);
+        if (infiniteMode) {
+            infiniteModeRun();
+        } else {
+            enemyTwo.alive = false;
+            clearTimeout(enemyMoveDelay);
+            clearInterval(battleTwo);
+            clearInterval(battleTwoLongTerm);
+            // need to revent show prompt box function
+            setTimeout(levelUpKill, 1000);
+        }
     } else if (hero.HP <= 0) {
         //kill hero function -----------------------------------------------------------------------------------------
         clearTimeout(enemyMoveDelay);
@@ -73,10 +78,15 @@ let battleLoopTwo = function() {
         clearInterval(battleTwoLongTerm);
         setTimeout(lose, 1000);
     } else if (currentEnemy.SP <= 0 && currentEnemy.SP2 <= 0) {
-        clearTimeout(enemyMoveDelay);
-        clearInterval(battleTwo);
-        clearInterval(battleTwoLongTerm);
-        setTimeout(levelUpSP, 1000);
+        if (infiniteMode) {
+            infiniteModeRun();
+        } else {
+            enemyTwo.alive = false;
+            clearTimeout(enemyMoveDelay);
+            clearInterval(battleTwo);
+            clearInterval(battleTwoLongTerm);
+            setTimeout(levelUpSP, 1000);
+        }
     } else {
         // console.log(enemyTwo);
         document.querySelector(".enemyTwoHP").innerText = `HP: ${currentEnemy.HP}`
@@ -104,6 +114,12 @@ let battleLoopTwo = function() {
 
 // calls the BattleLoop functions
 let secondBattleStart = function() {
+    //stop opening story audio
+    openingStoryMusic.pause();
+    //start battle audio
+    audioIntro.pause();
+    battleMusic.pause();
+    battleMusic.currentTime = 0;
     // initialize hero Obj
     hero.position.shadBottom = hero.position.shadBottomOrig;
     hero.position.shadLeft = hero.position.shadLeftOrig;
@@ -121,9 +137,9 @@ let secondBattleStart = function() {
     enemyTwo.SP = enemyTwo.maxSP;
     enemyTwo.SP2 = enemyTwo.maxSP2;
     enemyTwo.HP = enemyTwo.maxHP;
-    //stop opening story audio
-    openingStoryMusic.pause();
-    //start battle audio
+    if (!enemyOne.alive) {
+        enemyTwoCreation();
+    }
     battleMusic.play();
     // battleCounter = 0;
     // create enemyTwo
@@ -163,13 +179,13 @@ let secondBattleStart = function() {
         document.querySelector(".action5Span").classList.add("soulRestricted");
     }
     //hide all divs through hide divs function
-    setTimeout(hideAll, 198);
+    hideAll();
     // increments battleCounter by one
     battleCounter++;
     //call the static animation functions
     //show divs for this particular scene
     promptBoxTwoText.innerText = "You picked a fight with Triangle."
-    setTimeout(battleTwoLoad, 200);
+    setTimeout(battleTwoLoad, 100);
     // if level of hero is == 1, then hide three moves
     // if level of hero is == 2, then hide last move
     // start battle one loop by calling function globally defined
@@ -181,32 +197,3 @@ let secondBattleStart = function() {
     battleTwoLongTerm = setInterval(battleLoopTwoLongTerm, 3000);
     // let battleOneLongTerm = setTimeout(battleLoopOneLongTerm, 300);
 }
-
-
-
-
-
-
-
-
-// let secondBattleStart = function() {
-//     //second battle stats for hero should default [HP should be set to maxHP for example]
-// }
-//for second function it would be nice if the promptBoxClick p tag just disappeared, so maybe create new versions
-//of the prompt box handlers for second battle
-// function for showing all divs for 2nd battle screen/scene
-    // increments battleCounter by one
-    // 2nd battle should not create a new protagonist but should carry over the old one
-    // how do I want to handle HP from 1st to 2nd battle? automatic full HP?
-    // should also call the create Crawler function to create the enemy with name enemy2
-    // 2nd battle should have the new move from levelling up - 'block'
-    // if level of hero is == 2, then show new two moves
-    // if level of hero is == 3, then show all five moves
-    // start gameloop function
-// function for showing all divs for 3rd battle screen/scene
-    // increments battleCounter by one
-    // should also call the create Crawler function to create the enemy with name enemy3
-    // if level of hero is == 2, then show new two moves
-    // if level of hero is == 3, then show all five moves
-    // start gameloop function
-

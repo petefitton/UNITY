@@ -243,6 +243,10 @@ let soulConstrict = function() {
     soulCompressSFX.play();
     promptBoxText.innerText = "You used Soul Constrict";
     promptBoxTwoText.innerText = "You used Soul Constrict";
+    if (currentEnemy.name == "LINE") {
+        //do nothing
+        promptBoxText.innerText = "Soul Constrict has no effect";
+    } 
     setTimeout(showPromptBox, 700);
 // currentSoulConstrictDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
 currentSoulConstrictDmg = 100;
@@ -251,7 +255,11 @@ currentSoulConstrictDmg = 100;
         currentEnemy.SP2 = 0;
     }
     hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
-    soulConstrictAnimation();
+    if (currentEnemy.name == "LINE") {
+        //do nothing
+    } else {
+        soulConstrictAnimation();
+    }
     // move turnCounter false to animation
     // should have turnCounter set to false 
     turnCounter = false;

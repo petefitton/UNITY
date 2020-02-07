@@ -188,12 +188,17 @@ let battleLoopOne = function() {
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
     if (enemyOne.HP <= 0) {
-        heroStaticReady = false;
-        clearTimeout(enemyMoveDelay);
-        clearInterval(battleOne);
-        clearInterval(battleOneLongTerm);
-        // need to revent show prompt box function
-        setTimeout(levelUpKill, 1000);
+        if (infiniteMode) {
+            infiniteModeRun();
+        } else {
+            enemyOne.alive = false;
+            heroStaticReady = false;
+            clearTimeout(enemyMoveDelay);
+            clearInterval(battleOne);
+            clearInterval(battleOneLongTerm);
+            // need to revent show prompt box function
+            setTimeout(levelUpKill, 1000);
+        }
     } else if (hero.HP <= 0) {
         heroStaticReady = false;
         //kill hero function -----------------------------------------------------------------------------------------
@@ -202,11 +207,16 @@ let battleLoopOne = function() {
         clearInterval(battleOneLongTerm);
         setTimeout(lose, 1000);
     } else if (currentEnemy.SP <= 0) {
-        heroStaticReady = false;
-        clearTimeout(enemyMoveDelay);
-        clearInterval(battleOne);
-        clearInterval(battleOneLongTerm);
-        setTimeout(levelUpSP, 1000);
+        if (infiniteMode) {
+            infiniteModeRun();
+        } else {
+            enemyOne.alive = false;
+            heroStaticReady = false;
+            clearTimeout(enemyMoveDelay);
+            clearInterval(battleOne);
+            clearInterval(battleOneLongTerm);
+            setTimeout(levelUpSP, 1000);
+        }
     } else {
         // console.log(enemyOne);
         document.querySelector(".enemyHP").innerText = `HP: ${currentEnemy.HP}`
@@ -226,6 +236,12 @@ let battleLoopOne = function() {
 
 // calls the BattleLoop functions
 let firstBattleStart = function() {
+    //stop opening story audio
+    openingStoryMusic.pause();
+    //start battle audio
+    audioIntro.pause();
+    battleMusic.pause();
+    battleMusic.currentTime = 0;
     // initialize enemyOne Obj for when you beat the game and play again
     enemyOne.position.height = enemyOne.position.heightOrig;
     enemyOne.position.shadHeight = enemyOne.position.shadHeightOrig;
@@ -233,9 +249,9 @@ let firstBattleStart = function() {
     enemyOne.position.shadLeft = enemyOne.position.shadLeftOrig;
     enemyOne.SP = enemyOne.maxSP;
     enemyOne.HP = enemyOne.maxHP;
-    //stop opening story audio
-    openingStoryMusic.pause();
-    //start battle audio
+    if (!enemyOne.alive) {
+        enemyOneCreation();
+    }
     battleMusic.play();
     battleCounter = 0;
     // create enemyOne
@@ -264,13 +280,13 @@ let firstBattleStart = function() {
     //adds soulCompress class to action2Span DIV so that it will show hover text to tell player the action is unavailable
     document.querySelector(".action2Span").classList.add("soulRestricted");
     //hide all divs through hide divs function
-    setTimeout(hideAll, 198);
+    hideAll();
     // increments battleCounter by one
     battleCounter++;
     //call the static animation functions
     //show divs for this particular scene
     promptBoxText.innerText = "You picked a fight with Line."
-    setTimeout(battleLoad, 200);
+    setTimeout(battleLoad, 100);
     // if level of hero is == 1, then hide three moves
     // if level of hero is == 2, then hide last move
     // start battle one loop by calling function globally defined

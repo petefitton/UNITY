@@ -346,7 +346,7 @@ let soulCompressAnimation = function() {
                 enemyShadLReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * 8));
                 // need to calculate the bottom border number for both the image and the shadow of enemyTwo
                 enemyBBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.bordBottomOrig));
-                enemyShadBBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadBordBottomOrig))
+                enemyShadBBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadBordBottomOrig));
                 heightReduction = function() {
                     //perform incremental reductions
                     console.log("running heightReduction")
@@ -495,26 +495,111 @@ let stabAnimation = function() {
 
 //UNNEEDED as it's in defBlock()....----- learned after 1st battle: block - reduces HP damage from enemy on that turn
 
-// learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension
-let soulConstrictAnimation = function() {
-    //
+// learned after 1st battle: 'soul constrict' SP damage2D - damages SP of enemy in the second dimension------------------------------------
+
+// variables for LINE or both LINE and TRIANGLE:
+let widthReduction;
+let widthReductionInternal;
+let widthReductionInternalTwo;
+// using wRedInt for both LINE and TRIANGLE
+let enemyWReductionAmount;
+//need vars for enemyTwo's border-left & right for both img & shadow
+//need vars for enemyTwo's left for both img & shadow
+let enemyLeftIncreaseAmount;
+let enemyBordLeftReductionAmount;
+// do not need this as left & right are identical let enemyBordRightReductionAmount;
+// do not need this either because it'll be identical to the above let enemyShadBordLeftReductionAmount;
+// nor this let enemyShadBordRightReductionAmount;
+// this will be identical to left of img up above ---> let enemyShadLeftIncreaseAmount;
+
+//temp var for calculations below
+let tempEnemyBordLeft;
+
+
+let widthReductionHandler = function() {
+    if (currentEnemy.name == "LINE") {
+        //do nothing
+    } else if (currentEnemy.name == "TRIANGLE") {
+        //reduce border left, border right, and increase left position of Triangle img
+        //reduce border left, border right, and increase left position of Triangle shadow
+        // note that I am not using enemyBord!RIGHT! etc
+        currentEnemy.position.bordLeft -= (enemyBordLeftReductionAmount/80);
+        currentEnemy.position.bordRight -= (enemyBordLeftReductionAmount/80);
+        currentEnemy.position.left += (enemyLeftIncreaseAmount/80);
+        currentEnemy.position.shadBordLeft -= (enemyBordLeftReductionAmount/80);
+        currentEnemy.position.shadBordRight -= (enemyBordLeftReductionAmount/80);
+        currentEnemy.position.shadLeft += (enemyShadLeftIncreaseAmount/80);
+        enemyTwoImg.style.borderLeft = currentEnemy.position.bordLeft + "px solid transparent";
+        enemyTwoImg.style.borderRight = currentEnemy.position.bordRight + "px solid transparent";
+        enemyTwoImg.style.left = currentEnemy.position.left + "px";
+        enemyTwoShadow.style.borderLeft = currentEnemy.position.shadBordLeft + "px solid transparent";
+        enemyTwoShadow.style.borderRight = currentEnemy.position.shadBordRight + "px solid transparent";
+        enemyTwoShadow.style.left = currentEnemy.position.shadLeft + "px";
+    }
 }
+// bottom of triangle shadow goes from 235px at its default initial pos (actually initial is 145)
+// to 223px in its minimal pos (when SP is fully reduced)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let soulConstrictAnimation = function() {
+    heroMoveReady = true;
+    if (heroStaticReady == false) {
+        soulConstrictAnimationRepeat = setTimeout(soulConstrictAnimation, 60);
+    } else {
+        //execute animation
+        let soulConstrictAnimationNested = function() {
+            console.log("soulConstrictAnimationNested starting")
+            let enemyWidthReduce = function() {
+                tempEnemyBordLeft = currentEnemy.position.bordLeft;
+                // tempEnemyBordBottom = currentEnemy.position.height;
+                enemyBordLeftReductionAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * currentEnemy.position.bordLeftOrig));
+                enemyLeftIncreaseAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * 39));
+                enemyShadLeftIncreaseAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * 38));
+                widthReduction = function() {
+                    //perform incremental reductions
+                    console.log("running widthReduction")
+                    widthReductionHandler();
+                    if (currentEnemy.name == "LINE") {
+                        //do nothing
+                    } else if (currentEnemy.name == "TRIANGLE") {
+                        if (!(currentEnemy.position.bordLeft <= (tempEnemyBordLeft - (enemyBordLeftReductionAmount/2)))) {
+                            setTimeout(widthReduction, 12);
+                        } else {
+                            //if reached half width reduction, move to next function
+                            widthReductionTwoInternal();
+                        }
+                        widthReductionTwoInternal = function() {
+                            widthReductionHandler();
+                            if (!(currentEnemy.position.bordLeft <= (tempEnemyBordLeft - enemyBordLeftReductionAmount))) {
+                                setTimeout(widthReductionTwoInternal, 13);
+                                //if reached full width (BB) reduction, stop repeating:
+                            } else {
+                                // if SP has been fully reduced, maintain a minimum 'width' of 2px
+                                // if SP == 0, then make sure there remains a little thickness so you can see it
+                                if (currentEnemy.position.bordLeft <= 0) {
+                                    currentEnemy.position.bordLeft = 2;
+                                    currentEnemy.position.bordRight = 2;
+                                    currentEnemy.position.left = 216;
+                                    currentEnemy.position.shadBordLeft = 2;
+                                    currentEnemy.position.shadBordRight = 2
+                                    currentEnemy.position.shadLeft = 213;
+                                    enemyTwoImg.style.borderLeft = currentEnemy.position.bordLeft + "px solid transparent";
+                                    enemyTwoImg.style.borderRight = currentEnemy.position.bordRight + "px solid transparent";
+                                    enemyTwoImg.style.left = currentEnemy.position.left + "px";
+                                    enemyTwoShadow.style.borderLeft = currentEnemy.position.shadBordLeft + "px solid transparent";
+                                    enemyTwoShadow.style.borderRight = currentEnemy.position.shadBordRight + "px solid transparent";
+                                    enemyTwoShadow.style.left = currentEnemy.position.shadLeft + "px";
+                                }
+                                heroMoveReady = false;
+                            }
+                        }
+                    }
+                }
+                widthReduction();
+            }()
+        }()
+    }
+}
 
 
 

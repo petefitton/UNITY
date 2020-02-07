@@ -863,6 +863,25 @@ ACTIONS BOX */
 
 
 
+/* Infinite Screen CSS rules --------------------------------------------------------------------------------------- */
+
+
+.infiniteScreen {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.infiniteHead {
+    line-height: 66px;
+}
+
+.infiniteText {
+    margin-top: 100px;
+}
 
 /* Media Query CSS rules --------------------------------------------------------------------------------------- */
 

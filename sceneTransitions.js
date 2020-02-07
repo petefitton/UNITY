@@ -14,6 +14,7 @@ let hideAll = function() {
     document.querySelector(".openingStory").style.display = "none";
     //firstBattleScreen
     document.querySelector(".firstBattleScreen").style.display = "none";
+    document.querySelector(".secondBattleScreen").style.display = "none";
     //secondBattleScreen --------_STRETCH
     // document.querySelector(".secondBattleScreen").style.display = "none";
     //thirdBattleScreen --------_STRETCH
@@ -22,6 +23,8 @@ let hideAll = function() {
     document.querySelector(".closingStory").style.display = "none";
     //creditsScreen
     document.querySelector(".creditsScreen").style.display = "none";
+    loseScreen.style.display = "none";
+    infiniteScreen.style.display = "none";
 }
 
 
@@ -84,10 +87,14 @@ let showMainMenuTwo = function() {
         infiniteMode.style.cursor = "pointer";
         infiniteMode.style.maxWidth = "120px";
         infiniteMode.style.margin = "4px auto";
-        infiniteMode = false;
     }
     showMainMenu();
-    infiniteMode.addEventListener("click", infiniteModeRun);
+    //adding event listener to infiniteMode on next line
+
+    let pleaseWorks = document.querySelector(".mainMenu").childNodes;
+    // console.log(pleaseWorks);
+    pleaseWorks[pleaseWorks.length - 1].addEventListener("click", infiniteModeRun);
+    // infiniteMode.addEventListener("click", infiniteModeRun);
 }
 
 // function for showing all divs for options screen
@@ -230,6 +237,7 @@ let startClosingStory = function() {
 
 // function for showing all divs for credits screen/scene
 let rollCredits = function() {
+    infiniteMode = true;
     gameplayArea.removeEventListener("click", rollCredits);
     hideAll();
     document.querySelector(".creditsScreen").style.display = "block";
@@ -246,15 +254,24 @@ let rollCredits = function() {
 
 infiniteModeRun = function() {
     hideAll();
-    infiniteMode = true;
+    infiniteScreen.style.display = "block";
+    let infiniteRandom = Math.round(Math.random());
+    if (infiniteRandom === 0) {
+        setTimeout(firstBattleStart, 4000);
+    } else if (infiniteRandom === 1) {
+        setTimeout(secondBattleStart, 4000);
+    } else {
+        infiniteModeRun();
+    }
 }
 
 
 // lose function
 let lose = function() {
     infiniteMode = false;
+    battleMusic.pause();
     loseMusic.play();
     hideAll();
-    document.querySelector(".returnMainMenu").addEventListener("click", showMainMenu);
+    document.querySelector(".returnMainMenuLose").addEventListener("click", showMainMenu);
     loseScreen.style.display = "block";
 }

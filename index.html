@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Unity</title>
-    <!-- any desired fonts -->
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -53,11 +52,11 @@
     <audio class="audioSFX defBlockSFX">
         <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/DefenseCurl.wav" type="audio/wav">
     </audio>
-    <!-- <audio class="sfx">
-        <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Transform.wav" type="audio/wav">
-    </audio> -->
+
     <!-- recommendation to turn screen to landscape on mobile -->
     <div class="mobileLandscapeRecomendation">You can rotate device for a better experience!</div>
+
+
 
 
     <!-- one large div that contains the whole gameplay area -->
@@ -94,19 +93,11 @@
             <!-- music audio level -->
             <div class="musicAudio">MUSIC AUDIO CONTROLS
                 <div class="musicMuteButton">Mute/Unmute Music</div>
-            <!-- <audio controls class="audioIntro">
-                <source src="audio/Monolith/01 Invitation.mp3" type="audio/mpeg">
-                <source src="audio/Monolith/02 Downfall.mp3" type="audio/mpeg">
-            </audio> -->
             </div>
             <!-- SFX audio level -->
             <div class="sfxAudio">SFX AUDIO CONTROLS
                 <div class="sfxMuteButton">Mute/Unmute SFX</div>
                 <div class="sfxPlayButton">Play SFX</div>
-                <!-- <audio controls>
-                    <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Tackle.wav" type="audio/wav">
-                    <source src="audio/PokemonSFX/Pokemon Gen 1 SFX - Red & Blue Attack Move Sounds/Transform.wav" type="audio/wav">
-                </audio> -->
             </div>
             <!-- one div for the return function on options screen -->
             <div class="returnButtonOptions">RETURN</div>
@@ -116,12 +107,7 @@
 
         <!-- one set of divs for the instructions screen -->
         <div class="instructionsScreen">
-            <!-- what do I want to have on this instructions screen?
-                I would like to have instructions for the various attacks
-                Instructions for the game mechanics 
-            I may need two instructions Screens if this proves too much text
-        
-            These are Instructions for Game Mechanics-->
+            <!-- These are Instructions for Game Mechanics-->
             <h1>GAME MECHANICS:</h1>
             <ul>
                 <li><div class="instructionsHP">HP stands for hit points (health).</div></li>
@@ -168,7 +154,7 @@
 
 
         <!-- one set of divs for the first battle screen -->
-        <div class="firstBattleScreen"> <!-- background set on this div ^^^ (probably background image rather than solid black) -->
+        <div class="firstBattleScreen"> <!-- background set on this div -->
             <!-- one div for enemy stats -->
             <div class="enemyStats">
                 <!-- div for name -->
@@ -218,10 +204,10 @@
                 <div class="stabMarkContainer">
                     <div class="stabMark"></div>
                 </div>
-                <!-- don't need because it's part of the stage, but originally: one div for magnifying glass image -->
-                <!-- <div class="magnifyingGlass"></div> -->
-                <!-- one div for player stats -->
+                    <!-- don't need because it's part of the stage, but originally: one div for magnifying glass image -->
+                    <!-- <div class="magnifyingGlass"></div> -->
             </div>
+            <!-- one div for player stats -->
             <div class="heroStats">
                 <!-- div for name -->
                 <div class="heroName">SISYPHUS</div>
@@ -253,15 +239,18 @@
 
 
 
+
+
+
         <!-- one set of divs for the second battle screen -->
-        <div class="secondBattleScreen"> <!-- background set on this div ^^^ (probably background image rather than solid black) -->
+        <div class="secondBattleScreen"> <!-- background set on this div -->
             <!-- one div for enemy stats -->
             <div class="enemyStats">
                 <!-- div for name -->
                 <div class="enemyTwoName">NAME</div>
                 <!-- div for HP -->
                 <div class="enemyTwoHP">HP: 200</div>
-                <!-- div for SP in 1D plus other dimensions -->
+                <!-- div for SP in 1D plus other dimension(s) -->
                 <div class="enemyTwoSP">SP: 100</div>
                 <div class="break"></div> <!-- break -->
                 <div class="enemyTwoSP2">SP²: 100</div>
@@ -303,10 +292,10 @@
                 <div class="stabMarkContainer">
                     <div class="stabMark"></div>
                 </div>
-                <!-- don't need because it's part of the stage, but originally: one div for magnifying glass image -->
-                <!-- <div class="magnifyingGlass"></div> -->
-                <!-- one div for player stats -->
+                        <!-- don't need because it's part of the stage, but originally: one div for magnifying glass image -->
+                        <!-- <div class="magnifyingGlass"></div> -->
             </div>
+            <!-- one div for player stats -->
             <div class="heroStats">
                 <!-- div for name -->
                 <div class="heroName">SISYPHUS</div>
@@ -338,17 +327,13 @@
         </div>
 
 
-
-
-
-        <!-- one set of divs for the third battle screen STRETCH GOAL
-                        <div class="action6">Soul Reduce</div>
- -->
+        <!-- one set of divs for the third battle screen UBER STRETCH GOAL
+                        <div class="action6">Soul Reduce</div>-->
             <!-- same as first battle screen -->
             <!-- except enemy stat box should have an additional div for SP 3D -->
 
 
-        <!-- one set of divs for the world map screen STRETCH GOAL -->
+        <!-- one set of divs for the world map screen UBER UBER STRETCH GOAL -->
             <!-- background on ^^^^^ -->
             <!-- one div for player -->
             <!-- one div for enemy -->
@@ -369,7 +354,7 @@
 
 
         <!-- one set of divs for the credits screen -->
-        <div class=creditsScreen> <!-- background on ^^^^^ -->
+        <div class=creditsScreen> <!-- background on this -->
             <!-- one div for UNITY -->
             <div class="creditsTitle">UNITY</div>
             <!-- one div for made by PF -->
@@ -382,7 +367,6 @@
             <div class="creditsCode">Small coding ideas sourced from: StackOverflow</div>
             <div class="creditsCode">Cursor from: http://www.rw-designer.com & Icons from: https://game-icons.net/</div>
             <div class="returnMainMenu">Return to Main Menu</div>
-            <!-- possibly one+ div(s) for images/video/misc by PF -->
         </div>
 
 
@@ -393,19 +377,15 @@
             <div class="returnMainMenuLose">Return to Main Menu</div>
         </div>
 
-        
-        <!-- Just some notes a la background animation idea(s): -->
-            
-        <!-- one set of divs for the full background -->
-        <!-- I think the way I would like to do the background is to create a video with some animation software and then just call it -->
-        <!-- as a single object -->
-            <!-- I think the way I would like to make the dots and lines move in the background is to have individual divs -->
-                <!-- for each that -->
-            <!-- Actually after typing that out, it would probably be easiest for me to just make a video that loops -->
-                <!-- Not sure what the easiest way to do that is though. -->
-                <!-- But I'm not sure how easy it would be to smoothly move so many divs in different ways continuously through the game -->
+        <!-- Infinite Mode Screen -->
+        <div class="infiniteScreen">
+            <h1 class="infiniteHead">INFINITE MODE!</h1>
+            <div class="infiniteText">You are traveling to find a new enemy.</div>
+        </div>
+
 
     </div>
+    <script type="text/javascript" src="TableOfContents.js"></script>
     <script type="text/javascript" src="definitions.js"></script>
     <script type="text/javascript" src="audio&attacks.js"></script>
     <script type="text/javascript" src="sceneTransitions.js"></script>
