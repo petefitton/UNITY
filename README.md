@@ -63,12 +63,12 @@ I also had some glitches in animations.  I suspect they were occurring due to th
 
 I also had some glitches in Infinite Mode (this feature is described further below).  I think these issues also were occurring because of some setTimeouts in addition to some things not being reset fully when switching between the various battles over and over.  I worked on it to add those additional initializations and attempted to fine-tune the setTimeouts as well.  It is also fixed as far as I can tell.
 
+I attempted to develop my project with a mobile-first approach.  I think overall that many of the choices I made were good in that way, but I did run into some important problems that prevent that from being more successful:
+    I can tell that there are some basic design problems with the mobile-first design.  The first concern is that most of the buttons are located near the bottom of the gameplay area. Clicking near the bottom of the phone's screen on my phone causes the browser's bottom and top sections to pop up and forces the available screen to be reduced.  It causes my screen to zoom in as well which I don't quite understand at the moment.
+
 
 
 Features/Stretch Goals ---------------------------------------------------------------------------------------------------
-
-MOBILE FIRST
-The game was tested with Chrome's developer tools to check general mobile compatibility during the entire development process.  I am excited to see what the mobile experience is like and expect to learn a great deal after testing the game on a variety of mobile devices.
 
 
 BATTLE ANIMATIONS
@@ -84,6 +84,8 @@ I was really happy to be able to fully implement Infinite Mode.  Infinite Mode u
 
 LEVEL UP
 I was also able to implement a brief leveling up scene after defeating the first enemy.
+
+
 
 
 Sources -----------------------------------------------------------------------------------------------------------------
