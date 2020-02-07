@@ -61,13 +61,13 @@ let battleLoopTwo = function() {
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
     if (currentEnemy.HP <= 0) {
+        enemyTwo.alive = false;
+        clearTimeout(enemyMoveDelay);
+        clearInterval(battleTwo);
+        clearInterval(battleTwoLongTerm);
         if (infiniteMode) {
-            infiniteModeRun();
+            setTimeout(infiniteModeRun, 1000);
         } else {
-            enemyTwo.alive = false;
-            clearTimeout(enemyMoveDelay);
-            clearInterval(battleTwo);
-            clearInterval(battleTwoLongTerm);
             // need to revent show prompt box function
             setTimeout(levelUpKill, 1000);
         }
@@ -78,13 +78,13 @@ let battleLoopTwo = function() {
         clearInterval(battleTwoLongTerm);
         setTimeout(lose, 1000);
     } else if (currentEnemy.SP <= 0 && currentEnemy.SP2 <= 0) {
+        enemyTwo.alive = false;
+        clearTimeout(enemyMoveDelay);
+        clearInterval(battleTwo);
+        clearInterval(battleTwoLongTerm);
         if (infiniteMode) {
-            infiniteModeRun();
+            setTimeout(infiniteModeRun, 1000);
         } else {
-            enemyTwo.alive = false;
-            clearTimeout(enemyMoveDelay);
-            clearInterval(battleTwo);
-            clearInterval(battleTwoLongTerm);
             setTimeout(levelUpSP, 1000);
         }
     } else {
@@ -114,6 +114,15 @@ let battleLoopTwo = function() {
 
 // calls the BattleLoop functions
 let secondBattleStart = function() {
+    //hide all divs through hide divs function
+    hideAll();
+    gameplayArea.removeEventListener("click", emptyPromptBoxAndDefenseReady);
+    gameplayArea.removeEventListener("click", hidePromptBox);
+    gameplayArea.removeEventListener("click", hidePromptBoxPlusActivate);
+    promptBox.style.display = "none";
+    promptBoxText.innerText = "";
+    promptBoxTwo.style.display = "none";
+    promptBoxTwoText.innerText = "";
     //stop opening story audio
     openingStoryMusic.pause();
     //start battle audio
@@ -178,8 +187,6 @@ let secondBattleStart = function() {
     if (hero.level >= 2) {
         document.querySelector(".action5Span").classList.add("soulRestricted");
     }
-    //hide all divs through hide divs function
-    hideAll();
     // increments battleCounter by one
     battleCounter++;
     //call the static animation functions

@@ -188,14 +188,14 @@ let battleLoopOne = function() {
     heroStaticHandler();
     // when dead, the setInterval stops and then runs level up function
     if (enemyOne.HP <= 0) {
+        enemyOne.alive = false;
+        heroStaticReady = false;
+        clearTimeout(enemyMoveDelay);
+        clearInterval(battleOne);
+        clearInterval(battleOneLongTerm);
         if (infiniteMode) {
-            infiniteModeRun();
+            setTimeout(infiniteModeRun, 1000);
         } else {
-            enemyOne.alive = false;
-            heroStaticReady = false;
-            clearTimeout(enemyMoveDelay);
-            clearInterval(battleOne);
-            clearInterval(battleOneLongTerm);
             // need to revent show prompt box function
             setTimeout(levelUpKill, 1000);
         }
@@ -207,14 +207,14 @@ let battleLoopOne = function() {
         clearInterval(battleOneLongTerm);
         setTimeout(lose, 1000);
     } else if (currentEnemy.SP <= 0) {
+        enemyOne.alive = false;
+        heroStaticReady = false;
+        clearTimeout(enemyMoveDelay);
+        clearInterval(battleOne);
+        clearInterval(battleOneLongTerm);
         if (infiniteMode) {
-            infiniteModeRun();
+            setTimeout(infiniteModeRun, 1000);
         } else {
-            enemyOne.alive = false;
-            heroStaticReady = false;
-            clearTimeout(enemyMoveDelay);
-            clearInterval(battleOne);
-            clearInterval(battleOneLongTerm);
             setTimeout(levelUpSP, 1000);
         }
     } else {
@@ -236,6 +236,15 @@ let battleLoopOne = function() {
 
 // calls the BattleLoop functions
 let firstBattleStart = function() {
+    //hide all divs through hide divs function
+    hideAll();
+    gameplayArea.removeEventListener("click", emptyPromptBoxAndDefenseReady);
+    gameplayArea.removeEventListener("click", hidePromptBox);
+    gameplayArea.removeEventListener("click", hidePromptBoxPlusActivate);
+    promptBox.style.display = "none";
+    promptBoxText.innerText = "";
+    promptBoxTwo.style.display = "none";
+    promptBoxTwoText.innerText = "";
     //stop opening story audio
     openingStoryMusic.pause();
     //start battle audio
@@ -269,7 +278,9 @@ let firstBattleStart = function() {
     // enemyImg.style.left = currentEnemy.position.left + "px";
     turnCounter = true;
     defenseReady = false;
-    hero.level = 1;
+    if (!infiniteMode) {
+        hero.level = 1;
+    }
     hero.HP = hero.maxHP;
     hero.SP = hero.maxSP;
     hero.grit = hero.maxGrit;
@@ -279,8 +290,6 @@ let firstBattleStart = function() {
     gameplayArea.removeEventListener("click", firstBattleStart);
     //adds soulCompress class to action2Span DIV so that it will show hover text to tell player the action is unavailable
     document.querySelector(".action2Span").classList.add("soulRestricted");
-    //hide all divs through hide divs function
-    hideAll();
     // increments battleCounter by one
     battleCounter++;
     //call the static animation functions

@@ -74,14 +74,15 @@ let playIntroSFX = function() {
 // should remove all of the activations from the above function
 
 let attackActivate = function() {
-    if (battleCounter === 1) {
+    if (battleCounter >= 1) {
         document.querySelector(".action1").addEventListener("click", bash);
         document.querySelector(".action1").style.cursor = "pointer";
         // soul compress should default to being off until enemy is at 50% HP
         // document.querySelector(".action2").addEventListener('click', soulCompress);
         document.querySelector(".action3").addEventListener("click", rest);
         document.querySelector(".action3").style.cursor = "pointer";
-    } else if (battleCounter === 2) {
+    }
+    if (battleCounter >= 2) {
         document.getElementsByClassName("action1")[1].addEventListener("click", bash);
         document.getElementsByClassName("action1")[1].style.cursor = "pointer";
         // soul compress should default to being off until enemy is at 50% HP
@@ -93,14 +94,15 @@ let attackActivate = function() {
     }
 }
 let attackDeactivate = function() {
-    if (battleCounter === 1) {
+    if (battleCounter >= 1) {
         document.querySelector(".action1").removeEventListener("click", bash);
         document.querySelector(".action1").style.cursor = "initial";
         document.querySelector(".action2").removeEventListener("click", soulCompress);
         document.querySelector(".action2").style.cursor = "initial";
         document.querySelector(".action3").removeEventListener("click", rest);
         document.querySelector(".action3").style.cursor = "initial";
-    } else if (battleCounter === 2) {
+    }
+    if (battleCounter >= 2) {
         document.getElementsByClassName("action1")[1].removeEventListener("click", bash);
         document.getElementsByClassName("action1")[1].style.cursor = "initial";
         document.getElementsByClassName("action2")[1].removeEventListener("click", soulCompress);
@@ -116,12 +118,13 @@ let attackDeactivate = function() {
 }
 
 let soulAttacksEnable = function() {
-    if (hero.level == 1) {
+    if (hero.level >= 1) {
         document.querySelector(".action2").addEventListener("click", soulCompress);
         document.querySelector(".action2").style.color = "rgb(172, 169, 169)";
         document.querySelector(".action2").style.cursor = "pointer";
         document.querySelector(".action2Span").classList.remove("soulRestricted");
-    } else if (hero.level >= 2) {
+    }
+    if (hero.level >= 2) {
         document.getElementsByClassName("action2")[1].addEventListener("click", soulCompress);
         document.getElementsByClassName("action2")[1].style.color = "rgb(172, 169, 169)";
         document.getElementsByClassName("action2")[1].style.cursor = "pointer";
@@ -134,12 +137,13 @@ let soulAttacksEnable = function() {
 }
 
 let soulAttacksDisable = function() {
-    if (hero.level == 1) {
+    if (hero.level >= 1) {
         document.querySelector(".action2").removeEventListener("click", soulCompress);
         document.querySelector(".action2").style.color = "rgb(38, 34, 34)";
         document.querySelector(".action2").style.cursor = "initial";
         document.querySelector(".action2Span").classList.add("soulRestricted");
-    } else if (hero.level >= 2) {
+    }
+    if (hero.level >= 2) {
         document.getElementsByClassName("action2")[1].removeEventListener("click", soulCompress);
         document.getElementsByClassName("action2")[1].style.color = "rgb(38, 34, 34)";
         document.getElementsByClassName("action2")[1].style.cursor = "initial";

@@ -641,19 +641,22 @@ let soulConstrictAnimation = function() {
 //need divs in index.html for whatever level up stuff I want to show - maybe one larger div that goes in the center of the gameplay space
 // level up sequence function should pop up a div which says what move or moves you have learned
 let levelUpProceed = function() {
+    document.querySelector(".levelUpProceed").removeEventListener("click", levelUpProceed);
+    // this one below is again unnecessary
+    gameplayArea.removeEventListener('click', levelUpProceed);
+    document.querySelector(".levelUpScreen").style.display = "none";
     // clear all divs function
     hideAll();
     // show all divs for battle 2 or 3 function according to what the current battle count is (or story if I got a ton done)
     //batCount==1 means you have just ended the first battle, so should load the second battle
     if (battleCounter == 1) {
-        gameplayArea.removeEventListener('click', levelUpProceed);
         //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
-        setTimeout(secondBattleStart, 500);
+        setTimeout(secondBattleStart, 100);
         // secondBattleStart();
     } else {
-        gameplayArea.removeEventListener('click', levelUpProceed);
+        // gameplayArea.removeEventListener('click', levelUpProceed);
         //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
-        setTimeout(startClosingStory, 500);
+        setTimeout(startClosingStory, 100);
     }
     // if I added additional story or world map, this section would change ^^^^^^
     // it then removes itself (the eventlistener for confirming the text was read from leveling up)  - should include clicks as well as touches on mobile
@@ -661,6 +664,7 @@ let levelUpProceed = function() {
 
 // function for leveling up which includes learning new moves
 let levelUpKill = function() {
+    hideAll();
     console.log("level Up function running")
     hero.level++;
     // remove event listeners for all action buttons
@@ -672,20 +676,29 @@ let levelUpKill = function() {
     document.getElementsByClassName("action3")[1].removeEventListener('click', rest);
     // end of 1st and 2nd battles should run level up function according to battleCounter variable
     if (battleCounter == 1) {
+        hero.maxHP += 20;
+        hero.HP = hero.maxHP;
+        document.querySelector(".levelUpScreen").style.display = "block";
+        document.querySelector(".levelUpProceed").addEventListener("click", levelUpProceed);
         // if it's battle 1, then destroy enemyOne's object and then run level up sequence
         //learn two new moves
     } else if (battleCounter == 2) {
+        //removing this eventlistener is probably not necessary but won't hurt
+        gameplayArea.removeEventListener('click', levelUpProceed);
+        //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
+        setTimeout(startClosingStory, 500);
         // if it's battle 2, then destroy enemyTwo's object and then run level up sequence
         //learn new move
     }
     // addeventlistener for confirming you have read the text which then calls:  - should include clicks as well as touches on mobile
-    gameplayArea.addEventListener('click', levelUpProceed);
+    // gameplayArea.addEventListener('click', levelUpProceed);
 }
 
 
 
 // function for leveling up which includes learning new moves
 let levelUpSP = function() {
+    hideAll();
     console.log("level Up function running")
     hero.level++;
     // remove event listeners for all action buttons
@@ -697,14 +710,22 @@ let levelUpSP = function() {
     document.getElementsByClassName("action3")[1].removeEventListener('click', rest);
     // end of 1st and 2nd battles should run level up function according to battleCounter variable
     if (battleCounter == 1) {
+        hero.maxHP += 20;
+        hero.HP = hero.maxHP;
+        document.querySelector(".levelUpScreen").style.display = "block";
+        document.querySelector(".levelUpProceed").addEventListener("click", levelUpProceed);
         // if it's battle 1, then destroy enemyOne's object and then run level up sequence
         //learn two new moves
     } else if (battleCounter == 2) {
+        //removing this eventlistener is probably not necessary but won't hurt
+        gameplayArea.removeEventListener('click', levelUpProceed);
+        //secondBattleStart() will run when all three battles are set up, but for now, I am just running:
+        setTimeout(startClosingStory, 500);
         // if it's battle 2, then destroy enemyTwo's object and then run level up sequence
         //learn new move
     }
     // addeventlistener for confirming you have read the text which then calls:  - should include clicks as well as touches on mobile
-    gameplayArea.addEventListener('click', levelUpProceed);
+    // gameplayArea.addEventListener('click', levelUpProceed);
 }
 // functions misc --------------------------------------------------------------------------------------------
 

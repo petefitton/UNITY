@@ -1,25 +1,4 @@
-/* Styling for centering the main div and media queries for mobile first based development
-    mobile should force to landscape orientation
-    browsers should easily be able to be resized with gameplay staying centered
-    main gameplay div will need an exact width and height
-        I need to figure out that number as that will be pretty important
-
-h1 tag for title & Main Menu screen should be text-aligend center
-h6 tag for elems on main menu screen should be text-aligend center
-
-all elements on each type of screen will need to be set to their specific location in the gameplay screen 
-
-how do I want to handle animations?
-    static animation vs battle action animation
-    static = probably JS with some random activity that bounds back to center fairly quickly (small movements and at random intervals)
-    battle action = probably JS too
-
-
-
-
-*/
-
-/* INDEX:
+/* TABLE OF CONTENTS:
 
 Full page CSS rules
 
@@ -43,21 +22,24 @@ Closing Story Screen CSS rules
 
 Credits CSS rules
 
+Lose Screen CSS rules
+
+Infinite Mode CSS rules
+
 Media Query CSS rules 
-
-
-
-
-
 
 SOURCES/CREDITS:
 
 cursor image Dot.cur taken from: http://www.rw-designer.com/cursor-library
 
-
-
+Icons from: https://game-icons.net/
 
 */
+
+
+
+
+
 
 
 /* Full page CSS rules --------------------------------------------------------------------------------------- */
@@ -195,7 +177,6 @@ body {
 }
 
 .musicAudio {
-    /* color: white; */
     display: flex;
     margin-top: 23px;
     flex-direction: column;
@@ -208,7 +189,6 @@ body {
 }
 
 .sfxAudio {
-    /* color: white; */
     display: flex;
     flex-direction: column;
     margin-top: 46px;
@@ -238,7 +218,6 @@ body {
 
 .instructionsScreen, .instructionsScreenTwo {
     display: none;
-    /* margin: 0 10px; */
     background-color: rgb(66, 63, 63);
     height: 100%;
     width: 100%;
@@ -320,7 +299,7 @@ ul {
 
 /* First Battle Screen CSS rules --------------------------------------------------------------------------------------- */
 
-/* INDEX:
+/* TABLE OF CONTENTS:
 
 MAIN
 
@@ -332,7 +311,9 @@ HERO IMG CONTAINER
 
 HERO STATS
 
-ACTIONS BOX */
+ACTIONS BOX 
+
+PROMPT BOX */
 
 
 
@@ -417,12 +398,6 @@ ACTIONS BOX */
 
 .enemyImg {
     position: absolute;
-    /* height: 70px;
-    width: 2px; */
-    /* top: 14px;
-    was originally just top and left, but I'm rewriting it to be just bottom and left for us in JS
-    bottom: 235px; */
-    /* left: 224px; */
     border: none;
     background-color: white;
 }
@@ -437,8 +412,6 @@ ACTIONS BOX */
     background-color: rgb(36, 34, 34);
     position: absolute;
     transform: rotate(201deg);
-    /* width: 4px;
-    height: 41px; */
 }
 
 .enemyStage {
@@ -491,9 +464,6 @@ ACTIONS BOX */
     height: 11px;
     border-radius: 20px;
     position: absolute;
-    /* declared in JS now
-    bottom: 85px;
-    right: 254px; */
 }
 
 /* Stage includes magnifyingGlass */
@@ -516,7 +486,6 @@ ACTIONS BOX */
     display: none;
     position: absolute;
     left: -246px;
-    /* bottom: 109px; */
     font-weight: bold;
 }
 
@@ -533,8 +502,6 @@ ACTIONS BOX */
     bottom: 13px;
     font-size: 13px;
 }
-
-/* .ZThree {} */
 
 .stabMarkContainer {
     position: absolute;
@@ -564,7 +531,6 @@ ACTIONS BOX */
     width: 245px;
     height: 60px;
     float: right;
-    /* align-self: flex-end; */
     flex: none;
     margin: 0;
     align-self: flex-end;
@@ -606,11 +572,8 @@ ACTIONS BOX */
     justify-content: space-around;
     width: 99.5%;
     height: 50px;
-    /* flex-direction: column; */
     align-self: flex-end;
     flex: none;
-    /* order: -1; */
-    /* justify-self: flex-start; */
     position: absolute;
     background-color: rgb(66, 63, 63);
 }
@@ -624,7 +587,6 @@ ACTIONS BOX */
 .action2 {
     margin: 2px;
     margin-left: 12px;
-    /* cursor: pointer; */
     color: rgb(38, 34, 34);
     position: relative;
 }
@@ -640,7 +602,6 @@ ACTIONS BOX */
 
 .action2:hover .soulRestricted {
     visibility: visible;
-    /* opacity: 1; */
 }
 
 .action3 {
@@ -654,14 +615,9 @@ ACTIONS BOX */
     cursor: pointer;
 }
 
-/* .action5 {
-    margin: 2px;
-    cursor: pointer;
-} */
 .action5 {
     margin: 2px;
     margin-left: 12px;
-    /* cursor: pointer; */
     color: rgb(38, 34, 34);
     position: relative;
 }
@@ -677,7 +633,6 @@ ACTIONS BOX */
 
 .action5:hover .soulRestricted {
     visibility: visible;
-    /* opacity: 1; */
 }
 
 .action6 {
@@ -690,16 +645,10 @@ ACTIONS BOX */
 
 .promptBox {
     border: 2px gray solid;
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; */
     width: 99.5%;
     height: 50px;
-    /* flex-direction: column; */
     align-self: flex-end;
     flex: none;
-    /* order: -1; */
-    /* justify-self: flex-start; */
     position: absolute;
     background-color: rgb(66, 63, 63);
     cursor: pointer;
@@ -719,11 +668,51 @@ ACTIONS BOX */
 }
 
 
+
+/* Level Up Screen CSS rules --------------------------------------------------------------------------------------- */
+
+.levelUpScreen {
+    display: none;
+    background-color: rgb(66, 63, 63);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.levelUpTitle {
+    font-size: 58px;
+}
+
+.gainHP {
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+
+.newMoves {
+    line-height: 23px;
+}
+
+.newMoves span {
+    font-weight: bold;
+}
+
+.levelUpProceed {
+    color: rgb(172, 169, 169);
+    cursor: pointer;
+    position: absolute;
+    right: 18px;
+    bottom: 20px;
+}
+
+
 /* Second Battle Screen CSS rules --------------------------------------------------------------------------------------- */
 
 
-
-
+.enemyTwoName {
+    font-weight: bold;
+    margin-left: 4px;
+}
 
 
 .enemyTwoImg {
@@ -733,21 +722,11 @@ ACTIONS BOX */
     border-bottom: solid white;
     border-right: solid transparent;
     border-left: solid transparent;
-    /* top: 10px;
-    left: 176px; */
 }
 
 .enemyTwoShadow {
-    /* background-color: rgb(36, 34, 34); */
-    /* width: 0px;
-    height: 0px; */
-    /* border-radius: 20px; */
     position: absolute;
     transform: rotate(180deg) skewX(-6deg);
-    /* background: none; */
-    /* these two are from the original enemyShadow for enemyOne declared in JS now
-    bottom: 85px;
-    right: 254px; */
 }
 
 

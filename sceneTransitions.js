@@ -25,6 +25,7 @@ let hideAll = function() {
     document.querySelector(".creditsScreen").style.display = "none";
     loseScreen.style.display = "none";
     infiniteScreen.style.display = "none";
+    document.querySelector(".levelUpScreen").style.display = "none";
 }
 
 
@@ -251,16 +252,18 @@ let rollCredits = function() {
     // all things should be initialized including the hero and all enemies
     // destroyed/removed as necessary
 // function for losing game by losing all HP
+let infiniteRandom;
 
 infiniteModeRun = function() {
     hideAll();
     infiniteScreen.style.display = "block";
-    let infiniteRandom = Math.round(Math.random());
+    infiniteRandom = Math.round(Math.random());
     if (infiniteRandom === 0) {
-        setTimeout(firstBattleStart, 4000);
+        setTimeout(firstBattleStart, 3000);
     } else if (infiniteRandom === 1) {
-        setTimeout(secondBattleStart, 4000);
+        setTimeout(secondBattleStart, 3000);
     } else {
+        console.log("error with infinite mode")
         infiniteModeRun();
     }
 }
