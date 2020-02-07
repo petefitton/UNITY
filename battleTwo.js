@@ -26,17 +26,15 @@ let battleLoopTwoLongTerm = function() {
     if (hero.position.left <= hero.position.leftOrig - 15) {
         heroAnimationsClear();
     }
-
-    if (true) {
-        //used for testing
-        // console.log("soul Attacks Enable about to run")
-        soulAttacksEnable();
-    }
-    //commented out for testing
-    // if (currentEnemy.HP <= (currentEnemy.maxHP/2)) {
+    // if (true) {
+    //     //used for testing
     //     // console.log("soul Attacks Enable about to run")
-    //     setTimeout(soulAttacksEnable, 3000);
+    //     soulAttacksEnable();
     // }
+    if (currentEnemy.HP <= (currentEnemy.maxHP/2)) {
+        console.log("soul Attacks Enable about to run from Battle Loop Two Long Term")
+        setTimeout(soulAttacksEnable, 2000);
+    }
 }
 
 let battleLoopTwo = function() {
@@ -66,32 +64,32 @@ let battleLoopTwo = function() {
         clearInterval(battleTwo);
         clearInterval(battleTwoLongTerm);
         if (infiniteMode) {
-            setTimeout(infiniteModeRun, 1000);
+            setTimeout(infiniteModeRun, 4000);
         } else {
             // need to revent show prompt box function
-            setTimeout(levelUpKill, 1000);
+            setTimeout(levelUpKill, 4000);
         }
     } else if (hero.HP <= 0) {
         //kill hero function -----------------------------------------------------------------------------------------
         clearTimeout(enemyMoveDelay);
         clearInterval(battleTwo);
         clearInterval(battleTwoLongTerm);
-        setTimeout(lose, 1000);
+        setTimeout(lose, 4000);
     } else if (currentEnemy.SP <= 0 && currentEnemy.SP2 <= 0) {
         enemyTwo.alive = false;
         clearTimeout(enemyMoveDelay);
         clearInterval(battleTwo);
         clearInterval(battleTwoLongTerm);
         if (infiniteMode) {
-            setTimeout(infiniteModeRun, 1000);
+            setTimeout(infiniteModeRun, 4000);
         } else {
-            setTimeout(levelUpSP, 1000);
+            setTimeout(levelUpSP, 4000);
         }
     } else {
         // console.log(enemyTwo);
         document.querySelector(".enemyTwoHP").innerText = `HP: ${currentEnemy.HP}`
         document.querySelector(".enemyTwoSP").innerText = `SP: ${currentEnemy.SP}`
-        document.querySelector(".enemyTwoSP2").innerText = `SP: ${currentEnemy.SP2}`
+        document.querySelector(".enemyTwoSP2").innerText = `SP2: ${currentEnemy.SP2}`
         if (currentEnemy.grit <=0) {
             currentEnemy.grit = 0;
         }
@@ -104,6 +102,7 @@ let battleLoopTwo = function() {
         document.getElementsByClassName("heroSP")[1].innerText = `SP: ${hero.SP}`
         document.getElementsByClassName("heroGrit")[1].innerText = `GRIT: ${hero.grit}`
         document.getElementsByClassName("heroName")[1].innerText = `${hero.name}`
+        document.getElementsByClassName("heroLevel")[1].innerText = `LVL: ${hero.level}`
     }
     turnController();
 }
@@ -114,6 +113,8 @@ let battleLoopTwo = function() {
 
 // calls the BattleLoop functions
 let secondBattleStart = function() {
+    document.querySelector(".brandish").style.display = "none";
+    document.getElementsByClassName("brandish")[1].style.display = "none";
     //hide all divs through hide divs function
     hideAll();
     gameplayArea.removeEventListener("click", emptyPromptBoxAndDefenseReady);
@@ -161,6 +162,10 @@ let secondBattleStart = function() {
                 // enemyTwoShadow.style.left = currentEnemy.position.shadLeft + "px";
     //initialize battle to have Soul attacks hidden
     soulAttacksDisable();
+    setTimeout(soulAttacksDisable, 500);
+    setTimeout(soulAttacksDisable, 1000);
+    setTimeout(soulAttacksDisable, 1500);
+    setTimeout(soulAttacksDisable, 2000);
     //initialize battle to start with hero's turn
     //may be able to delete this big block of code:
                                                             // hero.position.bottom = hero.position.bottomOrig

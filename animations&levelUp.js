@@ -177,6 +177,8 @@ let heroStaticAnimateLeft = function() {
 // battle action animation functions
     // bash - damages HP of enemy
 
+
+
 let bashAnimation = function() {
     heroMoveReady = true;
     if (heroStaticReady == false) {
@@ -188,9 +190,7 @@ let bashAnimation = function() {
             // console.log("heroStaticAnimateUp starting")
             // inside function, should change positions of heroImg
             // let heroReturn;
-            let heroBashReset;
-            let heroBashRight;
-            let heroBashPrepare = function() {
+            heroBashPrepare = function() {
                 // console.log("adding 1px to left")
                 hero.position.left -= 1;
                 hero.position.shadLeft -= 1;
@@ -214,7 +214,7 @@ let bashAnimation = function() {
                     heroSecondWindBack = setInterval(heroBashPrepareTwo, 40);
                 }
             }
-            let heroBashPrepareTwo = function() {
+            heroBashPrepareTwo = function() {
                 // console.log("adding 1px to left")
                 hero.position.left -= 1;
                 hero.position.shadLeft -= 1;
@@ -226,7 +226,7 @@ let bashAnimation = function() {
                     heroSecondBash = setInterval(heroBashRightTwo, 20);
                 }
             }
-            heroBashRightTwo = function() {
+            let heroBashRightTwo = function() {
                 // console.log("subtracting 1px to left")
                 hero.position.left += 1;
                 hero.position.shadLeft += 1;
@@ -262,13 +262,13 @@ let bashAnimation = function() {
                 if (hero.position.left == hero.position.leftOrig) {
                     // console.log("clearing return pixel interval")
                     clearInterval(heroBashResetInterval);
-                    let heroMoveReadyDelay = function() {
+                    heroMoveReadyDelay = function() {
                         heroMoveReady = false;
                     }
                     setTimeout(heroMoveReadyDelay, 1500)
                 }
             }
-            let heroBashStartChain = setInterval(heroBashPrepare, 200)
+            heroBashStartChain = setInterval(heroBashPrepare, 200)
         }
         bashAnimationNested();
     }
@@ -339,7 +339,7 @@ let soulCompressAnimation = function() {
             console.log("soulCompressAnimationNested starting")
             let enemyHeightReduce = function() {
                 tempEnemyHeight = currentEnemy.position.height;
-                tempEnemyBordBottom = currentEnemy.position.height;
+                tempEnemyBordBottom = currentEnemy.position.bordBottom;
                 enemyHReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.heightOrig));
                 enemyShadHReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * currentEnemy.position.shadHeightOrig));
                 enemyShadBReductionAmount = (((currentSoulCompressDmg/currentEnemy.maxSP) * 38));
@@ -364,6 +364,17 @@ let soulCompressAnimation = function() {
                                 setTimeout(heightReductionInternal, 13);
                                 //if reached full height reduction, stop repeating:
                             } else {
+                                if (currentEnemy.position.height <= 2) {
+                                    currentEnemy.position.height = 2;
+                                    currentEnemy.position.shadHeight = 2;
+                                    //233 determined by visually aligning shadow bottom as the divs change over time
+                                    currentEnemy.position.shadBottom = 233;
+                                    currentEnemy.position.shadLeft = 223;
+                                    enemyShadow.style.bottom = currentEnemy.position.shadBottom + "px";
+                                    enemyShadow.style.left = currentEnemy.position.shadLeft + "px";
+                                    enemyImg.style.height = currentEnemy.position.height + "px";
+                                    enemyShadow.style.height = currentEnemy.position.shadHeight + "px";
+                                }
                                 heroMoveReady = false;
                             }
                         }
@@ -554,7 +565,7 @@ let soulConstrictAnimation = function() {
                 // tempEnemyBordBottom = currentEnemy.position.height;
                 enemyBordLeftReductionAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * currentEnemy.position.bordLeftOrig));
                 enemyLeftIncreaseAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * 39));
-                enemyShadLeftIncreaseAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * 38));
+                enemyShadLeftIncreaseAmount = (((currentSoulConstrictDmg/currentEnemy.maxSP2) * 38.5));
                 widthReduction = function() {
                     //perform incremental reductions
                     console.log("running widthReduction")
@@ -576,13 +587,13 @@ let soulConstrictAnimation = function() {
                             } else {
                                 // if SP has been fully reduced, maintain a minimum 'width' of 2px
                                 // if SP == 0, then make sure there remains a little thickness so you can see it
-                                if (currentEnemy.position.bordLeft <= 0) {
+                                if (currentEnemy.position.bordLeft <= 0.1) {
                                     currentEnemy.position.bordLeft = 2;
                                     currentEnemy.position.bordRight = 2;
                                     currentEnemy.position.left = 216;
                                     currentEnemy.position.shadBordLeft = 2;
-                                    currentEnemy.position.shadBordRight = 2
-                                    currentEnemy.position.shadLeft = 213;
+                                    currentEnemy.position.shadBordRight = 2;
+                                    currentEnemy.position.shadLeft = 214.5;
                                     enemyTwoImg.style.borderLeft = currentEnemy.position.bordLeft + "px solid transparent";
                                     enemyTwoImg.style.borderRight = currentEnemy.position.bordRight + "px solid transparent";
                                     enemyTwoImg.style.left = currentEnemy.position.left + "px";

@@ -74,23 +74,27 @@ let playIntroSFX = function() {
 // should remove all of the activations from the above function
 
 let attackActivate = function() {
-    if (battleCounter >= 1) {
-        document.querySelector(".action1").addEventListener("click", bash);
-        document.querySelector(".action1").style.cursor = "pointer";
-        // soul compress should default to being off until enemy is at 50% HP
-        // document.querySelector(".action2").addEventListener('click', soulCompress);
-        document.querySelector(".action3").addEventListener("click", rest);
-        document.querySelector(".action3").style.cursor = "pointer";
-    }
-    if (battleCounter >= 2) {
-        document.getElementsByClassName("action1")[1].addEventListener("click", bash);
-        document.getElementsByClassName("action1")[1].style.cursor = "pointer";
-        // soul compress should default to being off until enemy is at 50% HP
-        // document.getElementsByClassName("action2")[1].addEventListener('click', soulCompress);
-        document.getElementsByClassName("action3")[1].addEventListener("click", rest);
-        document.getElementsByClassName("action3")[1].style.cursor = "pointer";
-        document.getElementsByClassName("action4")[0].addEventListener("click", defBlock);
-        document.getElementsByClassName("action4")[0].style.cursor = "pointer";
+    if (hero.grit <= 0) {
+        rest();
+    } else {
+        if (battleCounter >= 1) {
+            document.querySelector(".action1").addEventListener("click", bash);
+            document.querySelector(".action1").style.cursor = "pointer";
+            // soul compress should default to being off until enemy is at 50% HP
+            // document.querySelector(".action2").addEventListener('click', soulCompress);
+            document.querySelector(".action3").addEventListener("click", rest);
+            document.querySelector(".action3").style.cursor = "pointer";
+        }
+        if (battleCounter >= 2) {
+            document.getElementsByClassName("action1")[1].addEventListener("click", bash);
+            document.getElementsByClassName("action1")[1].style.cursor = "pointer";
+            // soul compress should default to being off until enemy is at 50% HP
+            // document.getElementsByClassName("action2")[1].addEventListener('click', soulCompress);
+            document.getElementsByClassName("action3")[1].addEventListener("click", rest);
+            document.getElementsByClassName("action3")[1].style.cursor = "pointer";
+            document.getElementsByClassName("action4")[0].addEventListener("click", defBlock);
+            document.getElementsByClassName("action4")[0].style.cursor = "pointer";
+        }
     }
 }
 let attackDeactivate = function() {
@@ -118,6 +122,7 @@ let attackDeactivate = function() {
 }
 
 let soulAttacksEnable = function() {
+    console.log("soul Attacks Enable about to run directly")
     if (hero.level >= 1) {
         document.querySelector(".action2").addEventListener("click", soulCompress);
         document.querySelector(".action2").style.color = "rgb(172, 169, 169)";
@@ -137,6 +142,7 @@ let soulAttacksEnable = function() {
 }
 
 let soulAttacksDisable = function() {
+    console.log("soul Attacks Disable about to run directly")
     if (hero.level >= 1) {
         document.querySelector(".action2").removeEventListener("click", soulCompress);
         document.querySelector(".action2").style.color = "rgb(38, 34, 34)";
@@ -156,6 +162,11 @@ let soulAttacksDisable = function() {
 }
 
 
+
+let delayEnemyTurn = function() {
+    turnCounter = false;
+}
+
 // individual functions for each attack/action
     // should turn off static animation functions -----> staticAnimOff()
     // should call battle action functions
@@ -172,6 +183,9 @@ let bash = function() {
     // a lot of the code tied to this attack is located in the animation function which is in app4.js
     // want effects of attack to wait until after the animation, but that will come in a bit
     hero.grit -= 10 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    if (hero.grit < 0) {
+        hero.grit = 0;
+    }
     // placing showPromptBox in the animation function
     // setTimeout(showPromptBox, 3500);
 }
@@ -185,17 +199,21 @@ let soulCompress = function() {
     promptBoxTwoText.innerText = "You used Soul Compress";
     // showPromptBox move to animation
     setTimeout(showPromptBox, 700);
-// currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
-currentSoulCompressDmg = 100;
+    currentSoulCompressDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    // test:
+    // currentSoulCompressDmg = 100;
     currentEnemy.SP -= currentSoulCompressDmg;
     if (currentEnemy.SP < 0) {
         currentEnemy.SP = 0;
     }
     hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    if (hero.grit < 0) {
+        hero.grit = 0;
+    }
     soulCompressAnimation();
     // move turnCounter false to animation
     // should have turnCounter set to false 
-    turnCounter = false;
+    setTimeout(delayEnemyTurn, 2000);
 }
 
 // rest
@@ -203,8 +221,13 @@ let rest = function() {
     attackDeactivate();
     restSFX.play();
     restAnimation();
-    promptBoxText.innerText = "You used Rest";
-    promptBoxTwoText.innerText = "You used Rest";
+    if (hero.grit <= 0) {
+        promptBoxText.innerText = "You were forced to Rest";
+        promptBoxTwoText.innerText = "You were forced to Rest";
+    } else {
+        promptBoxText.innerText = "You used Rest";
+        promptBoxTwoText.innerText = "You used Rest";
+    }
     setTimeout(showPromptBox, 700);
     hero.HP += 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
     hero.grit += 25 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
@@ -214,8 +237,8 @@ let rest = function() {
     if (hero.grit > hero.maxGrit) {
         hero.grit = hero.maxGrit
     }
-    // should have turnCounter set to false 
-    turnCounter = false;
+    // should have turnCounter set to false in timeout
+    setTimeout(delayEnemyTurn, 2000);
 }
 
 // learned after 1st battle: block - reduces HP damage from enemy on that turn
@@ -228,6 +251,9 @@ let defBlock = function() {
     promptBoxTwoText.innerText = "You used Block";
     setTimeout(showPromptBox, 700);
     hero.grit -= 20 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
+    if (hero.grit < 0) {
+        hero.grit = 0;
+    }
     //hero should use grit to block
     hero.defBlock = true;
     document.querySelector(".defBlock").style.display = "block";
@@ -236,7 +262,7 @@ let defBlock = function() {
     // need to make sure the block function is not called inside of itself or anything weird like that
     // by making sure it turns off before it can be used on the next round
     // should have turnCounter set to false 
-    turnCounter = false;
+    setTimeout(delayEnemyTurn, 2000);
 }
 
 let currentSoulConstrictDmg;
@@ -252,13 +278,17 @@ let soulConstrict = function() {
         promptBoxText.innerText = "Soul Constrict has no effect";
     } 
     setTimeout(showPromptBox, 700);
-// currentSoulConstrictDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
-currentSoulConstrictDmg = 100;
+    currentSoulConstrictDmg = 26 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    // test:
+    // currentSoulConstrictDmg = 100;
     currentEnemy.SP2 -= currentSoulConstrictDmg;
     if (currentEnemy.SP2 < 0) {
         currentEnemy.SP2 = 0;
     }
     hero.grit -= 15 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1));
+    if (hero.grit < 0) {
+        hero.grit = 0;
+    }
     if (currentEnemy.name == "LINE") {
         //do nothing
     } else {
@@ -266,7 +296,7 @@ currentSoulConstrictDmg = 100;
     }
     // move turnCounter false to animation
     // should have turnCounter set to false 
-    turnCounter = false;
+    setTimeout(delayEnemyTurn, 2000);
 }
 
 
@@ -281,7 +311,7 @@ let stab = function () {
     turnCounter = true;
     stabAnimation();
     promptBoxText.innerText = "Line used Stab";
-    promptBoxTwoText.innerText = "Triangle used Slash";
+    promptBoxTwoText.innerText = "Triangle used Flatten";
     currentEnemy.grit -= 20 + (Math.floor(Math.random() * 3) * (Math.round(Math.random()) * 2 - 1));
     hero.HP = hero.HP - (10 + (Math.floor(Math.random() * 4) * (Math.round(Math.random()) * 2 - 1)) + currentEnemy.buff);
     showPromptBoxEnemy();
@@ -290,6 +320,7 @@ let stab = function () {
         currentEnemy.buff = 0;
         let brandishRemoval = function() {
             document.querySelector(".brandish").style.display = "none";
+            document.getElementsByClassName("brandish")[1].style.display = "none";
         }
         setTimeout(brandishRemoval, 1000)
     }
@@ -330,6 +361,3 @@ let enemyOneMoveSelect = function() {
         }
     }
 }
-
-//triangle attack flatten() which is not very effective
-

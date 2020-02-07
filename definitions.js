@@ -93,6 +93,14 @@ let heroAnimationIntervalUp;
 let heroAnimationIntervalDown;
 let heroAnimationIntervalLeft;
 let heroAnimationIntervalRight;
+let heroBashRight;
+let heroBashPrepare;
+let heroBashPrepareTwo;
+let heroBashReset;
+let heroBashResetInterval;
+let heroMoveReadyDelay;
+let heroBashStartChain;
+
 
 // variable for infiniteMode
 let infiniteMode = false;
